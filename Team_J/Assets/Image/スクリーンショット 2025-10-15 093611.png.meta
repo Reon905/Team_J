@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ddff2881ed8029349a9335d2391ed9cd
+guid: b16c57f09b8c4394bb423e317647843c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 649223268058989734
-    second: Button_0
+      213: 6457138964351984796
+    second: "\u30B9\u30AF\u30EA\u30FC\u30F3\u30B7\u30E7\u30C3\u30C8 2025-10-15 093611_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_0
+      name: "\u30B9\u30AF\u30EA\u30FC\u30F3\u30B7\u30E7\u30C3\u30C8 2025-10-15 093611_0"
       rect:
         serializedVersion: 2
-        x: 1400
-        y: 835
-        width: 566
-        height: 101
+        x: 51
+        y: 36
+        width: 595
+        height: 143
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a403906f11820900800000000000000
-      internalID: 649223268058989734
+      spriteID: c94a88b3dad5c9950800000000000000
+      internalID: 6457138964351984796
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8a956d3581c0a9f4a99c0c909f8169b5
+    spriteID: 1ad3b988298a7f943b247aad7e6fc8ca
     internalID: 0
     vertices: []
     indices: 
@@ -135,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Button_0: 649223268058989734
-      Button_1: 1109779643
+      "\u30B9\u30AF\u30EA\u30FC\u30F3\u30B7\u30E7\u30C3\u30C8 2025-10-15 093611_0": 6457138964351984796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
