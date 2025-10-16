@@ -2,15 +2,17 @@ using UnityEngine;
 public class E_NPC_Controller : MonoBehaviour
 {
     public float m_fSightAngle = 45.0f;     //前方視界範囲
+    Vector2 posDelta;
+    float targetAngle;
 
     //NPCの視界判定
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))     //PlayerタグのColliderだけが真
+        if (other.gameObject.tag == "Player")     //PlayerタグのColliderだけが真
         {
-            Vector2 posDelta = other.transform.position - transform.position;
-            float targetAngle = Vector2.Angle(transform.forward, posDelta);
-            if(targetAngle < m_fSightAngle)
+            posDelta = other.transform.position - this.transform.position;
+            targetAngle = Vector2.Angle(this.transform.forward, posDelta);
+            if(targetAngle < m_fSightAngle)     //targetAngleがm_SightAngleに収まっているかどうか
             {
                 Debug.Log("視界の範囲内&視界の角度内");
             }
