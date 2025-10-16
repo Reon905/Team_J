@@ -1,31 +1,28 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 public class E_NPC_Controller : MonoBehaviour
 {
     // 視界の対象とするレイヤー（Playerや障害物など）
     // これを設定することにより、自身のコライダーに反応しなくなる
     public LayerMask m_TargetLayer; 
 
-    public float m_fSightAngle = 45.0f;     //前方視界範囲
+    public float m_fSightAngle;     //前方視界範囲
     Vector2 posDelta;   //NPCからプレイヤーへのベクトル
     public float targetAngle;
     public int time;
 
+    private void Start()
+    {
+        m_fSightAngle = 45.0f;
+    }
+
     private void Update()
     {
-        time += 1;
-        if(time == 15)
-        {
-            time = 0;
-        }
+
     }
 
     //NPCの視界判定
     private void OnTriggerStay2D(Collider2D other)
-    {
-        if (time == 15)
-        {
-            
+    { 
         if (other.CompareTag("Player"))     //PlayerタグのColliderだけが真
         {
             RaycastHit2D hit;   //rayが当たったコライダー判別用
@@ -57,15 +54,15 @@ public class E_NPC_Controller : MonoBehaviour
                 }
             }
         }
-        }
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ぶつかってきた相手のタグが "target" だったら
+        // 衝突した相手のタグが "Player" だったら
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 接触した時の処理をここに書く！
-            Debug.Log("targetと接触したよ！");
+            // 接触した時の処理
+            Debug.Log("Playerと接触");
         }
     }
 }
