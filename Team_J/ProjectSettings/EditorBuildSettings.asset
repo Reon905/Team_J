@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HasuiRikuto/Title.unity
     guid: 24cbc8dc878dd344b9567ee5832cb0c8
+  - enabled: 1
+    path: Assets/HasuiRikuto/Caught Scene.unity
+    guid: e15a4902d4aa0de408d3458c74083951
+  - enabled: 1
+    path: Assets/mizuno reo/Customize/Scen_Customize.unity
+    guid: 31ebcf6521e469544abd4b9b87d397d0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
