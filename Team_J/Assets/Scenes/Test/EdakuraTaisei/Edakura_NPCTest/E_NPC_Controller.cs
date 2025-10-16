@@ -1,20 +1,24 @@
+ï»¿using Unity.VisualScripting;
 using UnityEngine;
 public class E_NPC_Controller : MonoBehaviour
 {
-    public float m_fSightAngle = 45.0f;     //‘O•û‹ŠE”ÍˆÍ
+    public float m_fSightAngle = 45.0f;     //å‰æ–¹è¦–ç•Œç¯„å›²
     Vector2 posDelta;
-    float targetAngle;
+    public float targetAngle;
 
-    //NPC‚Ì‹ŠE”»’è
+    //NPCã®è¦–ç•Œåˆ¤å®š
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")     //Playerƒ^ƒO‚ÌCollider‚¾‚¯‚ª^
+        if (other.gameObject.tag == "Player")     //Playerã‚¿ã‚°ã®Colliderã ã‘ãŒçœŸ
         {
             posDelta = other.transform.position - this.transform.position;
-            targetAngle = Vector2.Angle(this.transform.forward, posDelta);
-            if(targetAngle < m_fSightAngle)     //targetAngle‚ªm_SightAngle‚Éû‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+            targetAngle = Vector2.Angle(this.transform.right, posDelta);
+            //PlayerãŒNPCã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèªï¼ˆéšœå®³ç‰©ã¯ç„¡è¦–ï¼‰
+            if(targetAngle < m_fSightAngle)     //targetAngleãŒm_SightAngleã«åã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
             {
-                Debug.Log("‹ŠE‚Ì”ÍˆÍ“à&‹ŠE‚ÌŠp“x“à");
+                Debug.Log("ç¯„å›²å†…ï¼†è¦–ç•Œç¯„å›²å†…");
+                //Rayã‚’é£›ã°ã—ã¦ã€é–“ã«éšœå®³ç‰©ãŒãªã„ã‹ã‚’åˆ¤å®šã™ã‚‹
+
             }
         }
     }
