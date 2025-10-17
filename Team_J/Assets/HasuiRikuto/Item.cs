@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
 
     void Start()
     {
-        // 1000円〜2000円の範囲でランダムな値を設定
+        // 2000円〜4000円の範囲でランダムな値を設定
         price = Random.Range(2000, 4001);
 
         Debug.Log("アイテムの金額は " + price + " 円です。");
