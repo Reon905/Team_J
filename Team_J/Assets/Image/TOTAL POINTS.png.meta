@@ -1,0 +1,201 @@
+fileFormatVersion: 2
+guid: f9c002c098be72542b78010583622592
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4599799427512244461
+    second: TOTAL POINTS_0
+  - first:
+      213: 2293433936766032290
+    second: TOTAL POINTS_1
+  - first:
+      213: -8811083240718363089
+    second: TOTAL POINTS_2
+  - first:
+      213: 742093682054128257
+    second: TOTAL POINTS_3
+  - first:
+      213: -5115695720993849214
+    second: TOTAL POINTS_4
+  - first:
+      213: -5118861840854904157
+    second: TOTAL POINTS_5
+  - first:
+      213: -7429915860124590178
+    second: TOTAL POINTS_6
+  - first:
+      213: -6598053720374321238
+    second: TOTAL POINTS_7
+  - first:
+      213: 2697771126033793413
+    second: TOTAL POINTS_8
+  - first:
+      213: 7476915115585275616
+    second: TOTAL POINTS_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TOTAL POINTS_0
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 541
+        width: 844
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 317661d9aca3a20c0800000000000000
+      internalID: -4599799427512244461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TOTAL POINTS_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 235
+        width: 906
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9d3cca30ae3df10800000000000000
+      internalID: 2293433936766032290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 51b88ec2cef377841b4797bf070d37a9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TOTAL POINTS_0: -4599799427512244461
+      TOTAL POINTS_1: 2293433936766032290
+      TOTAL POINTS_2: -8811083240718363089
+      TOTAL POINTS_3: 742093682054128257
+      TOTAL POINTS_4: -5115695720993849214
+      TOTAL POINTS_5: -5118861840854904157
+      TOTAL POINTS_6: -7429915860124590178
+      TOTAL POINTS_7: -6598053720374321238
+      TOTAL POINTS_8: 2697771126033793413
+      TOTAL POINTS_9: 7476915115585275616
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
