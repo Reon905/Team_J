@@ -1,71 +1,72 @@
-using TMPro;           // TextMeshProを使うために必要
+using TMPro;           // TextMeshProの名前空間
 using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
-    public static RaceManager Instance;  // シングルトンインスタンス
+    // シングルトンインスタンス（どこからでもアクセス可能に）
+    public static RaceManager Instance;
 
-    // UI表示用のTextMeshProUGUIをInspectorでセット
+    // 文字表示用TextMeshProUGUIをInspectorでセット
     public TextMeshProUGUI messageText;
 
-    private float raceStartTime;          // レース開始時間を記録する変数
-    private bool raceOngoing = false;     // レース中かどうかのフラグ
+    private float raceStartTime;   // レース開始時間を記録
+    private bool raceOngoing = false;  // レース中かどうかのフラグ
 
-    // Awakeはオブジェクト生成時に呼ばれるメソッド
     void Awake()
     {
         // シングルトンのセットアップ
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // シーン切り替え時に破棄しない
+            DontDestroyOnLoad(gameObject);  // シーン切り替え時に破棄しない
         }
         else
         {
-            Destroy(gameObject);           // すでにInstanceがあれば自分は破棄
+            Destroy(gameObject);  // 2つ以上あったら自分を破棄
         }
 
-        // 最初はメッセージ非表示にしておく
+        // 最初は文字を非表示にしておく
         if (messageText != null)
             messageText.gameObject.SetActive(false);
     }
 
-    // 画面に文字を表示する関数（duration秒だけ表示）
+    // 文字を画面に表示するメソッド（duration秒だけ表示）
     public void ShowMessage(string message, float duration = 2f)
     {
-        // すでに表示中のメッセージがあれば一旦止める
+        // すでにコルーチンが動いていたら停止
+
         StopAllCoroutines();
         StartCoroutine(DisplayMessageCoroutine(message, duration));
     }
 
-    // 指定秒数だけ文字を表示し、その後非表示にするコルーチン
+    // コルーチン：文字を表示して一定時間後に非表示にする
     private System.Collections.IEnumerator DisplayMessageCoroutine(string message, float duration)
     {
-        messageText.text = message;               // 表示する文字をセット
-        messageText.gameObject.SetActive(true);  // テキストを画面に表示
+        messageText.text = message;               // メッセージをセット
+        messageText.gameObject.SetActive(true);  // 表示ON
 
-        yield return new WaitForSeconds(duration); // 指定秒数待つ
+        yield return new WaitForSeconds(duration);  // duration秒待つ
 
-        messageText.gameObject.SetActive(false); // テキストを非表示にする
+        messageText.gameObject.SetActive(false);    // 表示OFF
     }
 
-    // レース開始処理
-    public void StartRace()
+    // レース開始時の処理
+    public void Start()
     {
-        raceStartTime = Time.time;    // 現在時間を記録（レース開始時間）
-        raceOngoing = true;           // レース中フラグを立てる
-        ShowMessage("スタート！");    // スタートメッセージを表示
+        raceStartTime = Time.time;    // 現在時間を保存
+        raceOngoing = true;           // レース中フラグON
+        ShowMessage("Ready,Go");    // スタートメッセージ表示
         Debug.Log("レース開始: " + raceStartTime);
     }
 
-    // レース終了処理
-    public void FinishRace()
+    // レース終了時の処理
+    public void Finish()
     {
-        if (!raceOngoing) return;     // レース中でなければ何もしない
+        if (!raceOngoing) return;     // レース中でなければ処理しない
 
-        float finishTime = Time.time - raceStartTime; // 経過時間を計算
-        raceOngoing = false;          // レース終了フラグを立てる
-        ShowMessage("ゴール！");      // ゴールメッセージを表示
+        float finishTime = Time.time - raceStartTime;  // 経過時間計算
+        raceOngoing = false;          // レース中フラグOFF
+        ShowMessage("Finish！！");      // ゴールメッセージ表示
         Debug.Log("レース終了！タイム: " + finishTime + "秒");
     }
 }

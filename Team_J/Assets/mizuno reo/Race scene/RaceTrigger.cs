@@ -6,21 +6,19 @@ public class RaceTrigger : MonoBehaviour
     public enum TriggerType { Start, Goal }
     public TriggerType triggerType;
 
-    // プレイヤーがトリガーに入ったときの処理
+    // プレイヤーがトリガーに入った時に呼ばれる
     private void OnTriggerEnter(Collider other)
     {
-        // プレイヤーのタグを持つオブジェクトだけ反応
+        // プレイヤーのタグを持つオブジェクトだけ処理
         if (other.CompareTag("Player"))
         {
             if (triggerType == TriggerType.Start)
             {
-                // スタートラインに入ったらレース開始処理を呼ぶ
-                RaceManager.Instance.StartRace();
+                RaceManager.Instance.Start();   // スタート処理呼び出し
             }
             else if (triggerType == TriggerType.Goal)
             {
-                // ゴールラインに入ったらレース終了処理を呼ぶ
-                RaceManager.Instance.FinishRace();
+                RaceManager.Instance.Finish();  // ゴール処理呼び出し
             }
         }
     }
