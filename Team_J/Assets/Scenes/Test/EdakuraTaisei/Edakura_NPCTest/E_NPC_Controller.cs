@@ -13,11 +13,12 @@ public class E_NPC_Controller : MonoBehaviour
 
     public   float m_fSightAngle;     // 前方視界範囲
     public   float Detection_Value;   // 発覚値(視界内に入ると上昇)
-    private  bool m_IsDetection;
-    Vector2  posDelta;              // NPCからプレイヤーへのベクトル
+    private  bool m_IsDetection;      //発覚できたかそうでないか
+
+    Vector2  posDelta;             // NPCからプレイヤーへのベクトル
     private  float TargetAngle;    //
     private  float TimeElapsed;    // 経過時間
-    private  float TimeOut;        //
+    private  float TimeOut;        // 実行間隔
 
     Transform playerTr; // プレイヤーのTransform
     [SerializeField] float NPC_Speed = 2.0f; // 敵の動くスピード
