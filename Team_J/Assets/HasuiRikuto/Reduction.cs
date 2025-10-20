@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CaughtScene : MonoBehaviour
+public class Reduction : MonoBehaviour
 {
     void Start()
     {
