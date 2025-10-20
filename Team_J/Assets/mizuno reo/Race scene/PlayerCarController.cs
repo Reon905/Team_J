@@ -36,8 +36,8 @@ public class PlayerCarController : MonoBehaviour
 
     void Update()
     {
-        // スペースキーを押している間は加速
-        if (Input.GetKey(KeyCode.KeypadEnter))
+        // エンターキーを押している間は加速
+        if (Input.GetKey(KeyCode.W))  //キー入力
         {
             currentSpeed += acceleration * Time.deltaTime;
         }
@@ -60,8 +60,8 @@ public class PlayerCarController : MonoBehaviour
         }
     }
 }
-
-/*using UnityEngine.UI;
+/*
+using UnityEngine.UI;
 
 public class PlayerCarController : MonoBehaviour
 {
@@ -97,5 +97,4 @@ public class PlayerCarController : MonoBehaviour
         rb.linearVelocity = new Vector2(0, currentSpeed);
     }
 }
-
 */
