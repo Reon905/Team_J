@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item3 : MonoBehaviour
 {
     //アイテムの金額
     public int price;
@@ -16,9 +16,9 @@ public class Item : MonoBehaviour
 
     void Start()
     {
-        //2000円〜4000円の範囲でランダムな値を設定
-        price = Random.Range(2000, 4001);
-        Debug.Log("アイテムの金額は " + price + " 円です。");
+        //5000円〜10000円の範囲でランダムな値を設定
+        price = Random.Range(5000, 10001);
+        Debug.Log("アイテムの金額は " + price + " 円です、ポイント 60pt");
     }
 
     void OnTriggerEnter(Collider other)
@@ -29,15 +29,15 @@ public class Item : MonoBehaviour
             //金額を加算
             totalMoney += price;
 
-            //固定の40ポイントを加算
-            totalPoints += 40;
+            //固定の60ポイントを加算
+            totalPoints += 60;
 
             itemCount++;
 
             Debug.Log("アイテムを取得！ 金額 +" + price + "円、ポイント +60pt");
             Debug.Log("現在の合計：金額 " + totalMoney + "円 ／ ポイント " + totalPoints + "pt");
 
-            // このアイテムを削除
+            //このアイテムを削除
             Destroy(gameObject);
         }
     }

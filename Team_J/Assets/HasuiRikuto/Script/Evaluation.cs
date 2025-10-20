@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rank : MonoBehaviour
+public class Evaluation : MonoBehaviour
 {
     public static string currentRank = "D"; //Œ»İ‚Ìƒ‰ƒ“ƒN‚ğ•Û
 

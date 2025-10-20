@@ -115,9 +115,9 @@ TextureImporter:
       name: BONUS_0
       rect:
         serializedVersion: 2
-        x: 79
-        y: 379
-        width: 822
+        x: 81
+        y: 377
+        width: 818
         height: 242
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

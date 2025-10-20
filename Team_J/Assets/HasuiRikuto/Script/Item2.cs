@@ -18,7 +18,7 @@ public class Item2 : MonoBehaviour
     {
         //1000円〜2000円の範囲でランダムな値を設定
         price = Random.Range(1000, 2001);
-        Debug.Log("アイテムの金額は " + price + " 円です。");
+        Debug.Log("アイテムの金額は " + price + " 円です、ポイント 20pt");
     }
 
     void OnTriggerEnter(Collider other)
@@ -34,7 +34,7 @@ public class Item2 : MonoBehaviour
 
             itemCount++;
 
-            Debug.Log("アイテムを取得！ 金額 +" + price + "円、ポイント +60pt");
+            Debug.Log("アイテムを取得！ 金額 +" + price + "円、ポイント +20pt");
             Debug.Log("現在の合計：金額 " + totalMoney + "円 ／ ポイント " + totalPoints + "pt");
 
             //このアイテムを削除
