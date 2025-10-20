@@ -66,7 +66,7 @@ public class RaceManager : MonoBehaviour
 
         float finishTime = Time.time - raceStartTime;  // 経過時間計算
         raceOngoing = false;          // レース中フラグOFF
-        ShowMessage("Finish！！");      // ゴールメッセージ表示
+        ShowMessage("Finish!!");      // ゴールメッセージ表示
         Debug.Log("レース終了！タイム: " + finishTime + "秒");
     }
 }

@@ -6,8 +6,8 @@ public class RaceTrigger : MonoBehaviour
     public enum TriggerType { Start, Goal }
     public TriggerType triggerType;
 
-    // プレイヤーがトリガーに入った時に呼ばれる
-    private void OnTriggerEnter(Collider other)
+    // プレイヤーがトリガーに入った時に呼ばれる（2D対応）
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // プレイヤーのタグを持つオブジェクトだけ処理
         if (other.CompareTag("Player"))
