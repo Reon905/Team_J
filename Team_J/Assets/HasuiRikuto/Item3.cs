@@ -11,6 +11,9 @@ public class Item3 : MonoBehaviour
     //プレイヤーの合計ポイント
     public static int totalPoints = 0;
 
+    //アイテムカウント
+    public static int itemCount = 0;
+
     void Start()
     {
         //5000円〜10000円の範囲でランダムな値を設定
@@ -28,6 +31,8 @@ public class Item3 : MonoBehaviour
 
             //固定の60ポイントを加算
             totalPoints += 60;
+
+            itemCount++;
 
             Debug.Log("アイテムを取得！ 金額 +" + price + "円、ポイント +60pt");
             Debug.Log("現在の合計：金額 " + totalMoney + "円 ／ ポイント " + totalPoints + "pt");
