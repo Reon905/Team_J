@@ -300,7 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217fc6fc4a443a348b2214aa1680933a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Result Scene
+  fadeImage: {fileID: 0}
+  fadeDuration: 1.5
+  nextSceneName: Scen_Customize
 --- !u!1 &549108006
 GameObject:
   m_ObjectHideFlags: 0

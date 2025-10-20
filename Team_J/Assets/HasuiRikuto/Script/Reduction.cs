@@ -5,13 +5,13 @@ public class Reduction : MonoBehaviour
     void Start()
     {
         // --- テスト用に数値を代入 ---
-        Item.totalMoney = 1034;
-        Item2.totalMoney = 2030;
-        Item3.totalMoney = 3042;
+        //Item.totalMoney = 1034;
+        //Item2.totalMoney = 2030;
+        //Item3.totalMoney = 3042;
 
-        Item.totalPoints = 60;
-        Item2.totalPoints = 40;
-        Item3.totalPoints = 60;
+        //Item.totalPoints = 60;
+        //Item2.totalPoints = 40;
+        //Item3.totalPoints = 60;
 
         Debug.Log("テスト初期値：");
         Debug.Log($"Item1 → {Item.totalMoney}円／{Item.totalPoints}pt");

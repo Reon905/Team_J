@@ -25,8 +25,8 @@ public class ResultScene : MonoBehaviour
              totalPoints + "pt\n";
 
         //表示
-        Debug.Log("合計アイテム: " + itemCount + " 個");
-        Debug.Log("合計ポイント: " + totalPoints + " pt");
-        Debug.Log("合計金額: " + totalMoney + " 円");
+        Debug.Log("合計アイテム: " + itemCount + "個");
+        Debug.Log("合計ポイント: " + totalPoints + "pt");
+        Debug.Log("合計金額: " + totalMoney + "円");
     }
 }
