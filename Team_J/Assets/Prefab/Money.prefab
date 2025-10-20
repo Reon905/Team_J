@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3320286071787881175}
   - component: {fileID: 4099672195302828622}
-  - component: {fileID: 1025893231806091743}
+  - component: {fileID: 7185532084301931480}
   m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1025893231806091743
+--- !u!114 &7185532084301931480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

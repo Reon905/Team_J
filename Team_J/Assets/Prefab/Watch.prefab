@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6182716772922064711}
   - component: {fileID: 1880526936203713111}
-  - component: {fileID: 5254342771643795188}
+  - component: {fileID: 8730401171959142218}
   m_Layer: 0
   m_Name: Watch
   m_TagString: Untagged
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5254342771643795188
+--- !u!114 &8730401171959142218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
