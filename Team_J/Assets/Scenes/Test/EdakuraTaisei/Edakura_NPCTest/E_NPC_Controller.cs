@@ -11,13 +11,13 @@ public class E_NPC_Controller : MonoBehaviour
     // 視界の対象とするレイヤー（Playerや障害物など）
     public LayerMask m_TargetLayer; // これを設定することにより、自身(NPC)のコライダーに反応しなくなる
 
-    public   float m_fSightAngle;     //前方視界範囲
-    public   float Detection_Value;   //発覚値(視界内に入ると上昇)
+    public   float m_fSightAngle;     // 前方視界範囲
+    public   float Detection_Value;   // 発覚値(視界内に入ると上昇)
     private  bool m_IsDetection;
-    Vector2  posDelta;              //NPCからプレイヤーへのベクトル
+    Vector2  posDelta;              // NPCからプレイヤーへのベクトル
     private  float TargetAngle;    //
-    private  float TimeElapsed;
-    private  float TimeOut;
+    private  float TimeElapsed;    // 経過時間
+    private  float TimeOut;        //
 
     Transform playerTr; // プレイヤーのTransform
     [SerializeField] float NPC_Speed = 2.0f; // 敵の動くスピード
@@ -36,6 +36,8 @@ public class E_NPC_Controller : MonoBehaviour
     {
         TimeElapsed += Time.deltaTime;
 
+
+        //プレイヤーへの移動
         if (m_IsDetection == true)
         {
             // プレイヤーとの距離が0.1f未満になったらそれ以上実行しない
