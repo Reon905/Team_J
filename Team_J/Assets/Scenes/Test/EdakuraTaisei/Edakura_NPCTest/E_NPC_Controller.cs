@@ -19,8 +19,14 @@ public class E_NPC_Controller : MonoBehaviour
     private  float TimeElapsed;
     private  float TimeOut;
 
+    Transform playerTr; // プレイヤーのTransform
+    [SerializeField] float NPC_Speed = 2.0f; // 敵の動くスピード
+
     private void Start()
     {
+        // プレイヤーのTransformを取得（プレイヤーのタグをPlayerに設定必要）
+        playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+
         m_fSightAngle = NPC_Constants.DEFAULT_SIGHT_ANGLE;
         Detection_Value = NPC_Constants.DEFAULT_DETECTION_VALUE;
         TimeOut = 0.02f;
@@ -29,6 +35,22 @@ public class E_NPC_Controller : MonoBehaviour
     private void Update()
     {
         TimeElapsed += Time.deltaTime;
+
+        if (m_IsDetection == true)
+        {
+            // プレイヤーとの距離が0.1f未満になったらそれ以上実行しない
+            if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
+            {
+                m_IsDetection = false;
+                return;
+            }
+
+            // プレイヤーに向けて進む
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                new Vector2(playerTr.position.x, playerTr.position.y),
+                NPC_Speed * Time.deltaTime);
+        }
     }
 
     //NPCの視界判定
@@ -60,6 +82,9 @@ public class E_NPC_Controller : MonoBehaviour
                             if (Detection_Value > NPC_Constants.MAX_DETECTION_VALUE)
                             {
                                 Detection_Value = 0.0f;
+
+                                m_IsDetection = true;
+
                                 Debug.Log("障害物なし、視界範囲内");
                             }
                         }
