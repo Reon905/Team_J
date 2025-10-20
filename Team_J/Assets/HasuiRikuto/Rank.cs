@@ -3,22 +3,22 @@ using UnityEngine.UI;
 
 public class Rank : MonoBehaviour
 {
-    public static string currentRank = "D"; // ← 現在のランクを保持
+    public static string currentRank = "D"; //現在のランクを保持
 
     public Text rankText;
 
     void Start()
     {
-        // Item, Item2, Item3 の合計ポイントを取得
+        //Item,Item2,Item3の合計ポイントを取得
         int totalPoints = Item.totalPoints + Item2.totalPoints + Item3.totalPoints;
 
-        // ランクを判定して設定
+        //ランクを判定して設定
         currentRank = GetRank(totalPoints);
 
-        // デバッグ表示
+        //デバッグ表示
         Debug.Log("合計ポイント: " + totalPoints + "pt → ランク: " + currentRank);
 
-        // 画面にも表示
+        //画面にも表示
         if (rankText != null)
         {
             rankText.text = currentRank;
@@ -29,7 +29,7 @@ public class Rank : MonoBehaviour
         }
     }
 
-    // ポイントに応じてランクを返す関数
+    //ポイントに応じてランクを返す関数
     string GetRank(int totalPoints)
     {
         if (totalPoints >= 250)
