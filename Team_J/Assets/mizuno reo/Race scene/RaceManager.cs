@@ -1,72 +1,115 @@
-using TMPro;           // TextMeshProの名前空間
+//ReceManager.cs
+using TMPro;         // TextMeshPro 用（メッセージ表示）
 using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
-    // シングルトンインスタンス（どこからでもアクセス可能に）
-    public static RaceManager Instance;
+    public static RaceManager Instance;  // シングルトン：他のスクリプトからアクセスしやすくする
 
-    // 文字表示用TextMeshProUGUIをInspectorでセット
-    public TextMeshProUGUI messageText;
+    public TextMeshProUGUI messageText;      // カウントダウンやゴールなどの表示テキスト（インスペクターで設定）
+    public PlayerCarController playerCar;    // 操作対象の車（インスペクターで設定）
 
-    private float raceStartTime;   // レース開始時間を記録
-    private bool raceOngoing = false;  // レース中かどうかのフラグ
+    private float raceStartTime;             // レース開始時間（タイマーとして使用）
+    private bool raceOngoing = false;        // レース中かどうか
+
+    private Coroutine messageCoroutine;      // メッセージ表示コルーチンを管理するための変数
 
     void Awake()
     {
-        // シングルトンのセットアップ
+        // シングルトンの初期化
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // シーン切り替え時に破棄しない
+            DontDestroyOnLoad(gameObject);  // シーンをまたいでも残る
         }
         else
         {
-            Destroy(gameObject);  // 2つ以上あったら自分を破棄
+            Destroy(gameObject);  // 2つ以上あったら古いほうを消す
         }
 
-        // 最初は文字を非表示にしておく
+        // 最初はメッセージ非表示
         if (messageText != null)
             messageText.gameObject.SetActive(false);
     }
 
-    // 文字を画面に表示するメソッド（duration秒だけ表示）
-    public void ShowMessage(string message, float duration = 2f)
+    void Start()
     {
-        // すでにコルーチンが動いていたら停止
-
-        StopAllCoroutines();
-        StartCoroutine(DisplayMessageCoroutine(message, duration));
+        // ゲーム開始時にカウントダウンを始める
+        StartCoroutine(RaceStartCoroutine());
     }
 
-    // コルーチン：文字を表示して一定時間後に非表示にする
-    private System.Collections.IEnumerator DisplayMessageCoroutine(string message, float duration)
+    public void StartRace()
     {
-        messageText.text = message;               // メッセージをセット
-        messageText.gameObject.SetActive(true);  // 表示ON
+        StartCoroutine(RaceStartCoroutine());
+    }
+    // カウントダウンしてからレース開始する処理
+    private System.Collections.IEnumerator RaceStartCoroutine()
+    {
+        // 車の操作を無効化（止める）
+        if (playerCar != null)
+            playerCar.DisableControl();
 
-        yield return new WaitForSeconds(duration);  // duration秒待つ
+        // カウントダウン表示（1秒ずつ）
+        string[] countdownTexts = { "3", "2", "1" };
 
-        messageText.gameObject.SetActive(false);    // 表示OFF
+        foreach (string t in countdownTexts)
+        {
+            ShowMessage(t, 1f);
+            yield return new WaitForSeconds(1f);
+        }
+
+        // GO！表示
+        ShowMessage("GO!", 1f);
+
+        // 車の操作を有効化（ここでやっと車が動ける）
+        if (playerCar != null)
+        {
+            playerCar.EnableControl();
+        }
+        else
+        {
+            Debug.LogError("playerCar が RaceManager にセットされていません！");
+        }
+
+        // タイマー開始
+        raceStartTime = Time.time;
+        raceOngoing = true;
     }
 
-    // レース開始時の処理
-    public void Start()
-    {
-        raceStartTime = Time.time;    // 現在時間を保存
-        raceOngoing = true;           // レース中フラグON
-        ShowMessage("Ready,Go");    // スタートメッセージ表示
-        Debug.Log("レース開始: " + raceStartTime);
-    }
-
-    // レース終了時の処理
+    // ゴール時に呼び出す（トリガーから）
     public void Finish()
     {
-        if (!raceOngoing) return;     // レース中でなければ処理しない
+        if (!raceOngoing) return;
 
-        float finishTime = Time.time - raceStartTime;  // 経過時間計算
-        raceOngoing = false;          // レース中フラグOFF
-        ShowMessage("Finish!!");      // ゴールメッセージ表示
+        float finishTime = Time.time - raceStartTime;
+        raceOngoing = false;
+
+        ShowMessage("Finish!!");
         Debug.Log("レース終了！タイム: " + finishTime + "秒");
+    }
+
+    // メッセージを画面に表示する（数秒間）
+    public void ShowMessage(string message, float duration = 2f)
+    {
+        // 前のメッセージが残ってたら止める
+        if (messageCoroutine != null)
+            StopCoroutine(messageCoroutine);
+
+        messageCoroutine = StartCoroutine(DisplayMessageCoroutine(message, duration));
+    }
+
+    // メッセージ表示コルーチン（時間経過後に非表示にする）
+    private System.Collections.IEnumerator DisplayMessageCoroutine(string message, float duration)
+    {
+        if (messageText == null)
+        {
+            Debug.LogWarning("messageText が設定されていません！");
+            yield break;
+        }
+
+        messageText.text = message;
+        messageText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        messageText.gameObject.SetActive(false);
     }
 }

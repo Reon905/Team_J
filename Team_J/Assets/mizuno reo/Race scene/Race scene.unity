@@ -873,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 1279905588}
+  playerCar: {fileID: 1077696837}
 --- !u!1 &1077696836
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +910,7 @@ MonoBehaviour:
   maxSpeed: 50
   deceleration: 10
   speedSlider: {fileID: 0}
+  canDrive: 0
 --- !u!61 &1077696838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1046,7 +1048,7 @@ Transform:
   m_GameObject: {fileID: 1077696836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.3, y: -2.28, z: 0}
+  m_LocalPosition: {x: -4.38, y: -1.33, z: 0}
   m_LocalScale: {x: 1.6653804, y: 3.3014822, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1714,8 +1716,8 @@ Transform:
   m_GameObject: {fileID: 1727534188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1135, y: -1.7752, z: 0}
-  m_LocalScale: {x: 13.799171, y: 1.2079983, z: 1}
+  m_LocalPosition: {x: 0.2155, y: -1.7752, z: 0}
+  m_LocalScale: {x: 14.003399, y: 1.2079983, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1962726790}
