@@ -84,8 +84,29 @@ public class RaceManager : MonoBehaviour
         float finishTime = Time.time - raceStartTime;
         raceOngoing = false;
 
-        ShowMessage("Finish!!");
+        //車を止める(操作を無効化)
+        if(playerCar != null)
+        {
+            playerCar.DisableControl(); //入力を止める
+            StartCoroutine(SmoothStop(playerCar)); //ゆっくり止めるようにする
+        }
+       
+        ShowMessage($"Finish!!\nTime: {finishTime:F2} 秒", 3f); //メッセージ表示
         Debug.Log("レース終了！タイム: " + finishTime + "秒");
+    }
+
+    private System.Collections.IEnumerator SmoothStop(PlayerCarController car)
+    {
+        Rigidbody2D rb = car.GetComponent<Rigidbody2D>();
+        if (rb == null) yield break;
+
+        while(rb.linearVelocity.magnitude > 0.1f)
+        {
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity,Vector2.zero, 1f * Time.deltaTime);
+        }
+
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
     }
 
     // メッセージを画面に表示する（数秒間）
