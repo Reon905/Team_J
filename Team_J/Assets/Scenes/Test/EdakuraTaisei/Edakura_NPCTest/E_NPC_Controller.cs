@@ -40,6 +40,9 @@ public class E_NPC_Controller : MonoBehaviour
     private float PatrolTargetAngle;    // WayPointへの角度
     private Vector2 Patrolvec;          // Patrol向き用の変数
 
+    NavMeshAgent2D agent;               //NavMeshAgent2Dを使用するための変数
+    [SerializeField] Transform target;  //追跡するターゲット
+
 
     // 初期状態をPatrolにしておく
     public NPC_State _state = NPC_State.Patrol;
@@ -57,6 +60,8 @@ public class E_NPC_Controller : MonoBehaviour
 
         // 巡回を開始するコルーチンを呼び出す
         StartCoroutine(PatrolRoutine(GetTransform()));
+
+        agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
     }
 
     private void Update()
@@ -67,12 +72,14 @@ public class E_NPC_Controller : MonoBehaviour
         // 状態がChaseの場合
         if (_state == NPC_State.Chase)
         {
-            // Playerへの角度を求める
-            ChaseTargetAngle =  Mathf.Atan2(posDelta.y, posDelta.x) * Mathf.Rad2Deg;
-            // Quaternion.EulerでPlayerの方向を向く
-            transform.rotation = Quaternion.Euler(0, 0, ChaseTargetAngle);
-            // プレイヤーへの移動
-            NPC_rbody.linearVelocity = posDelta.normalized * NPC_Speed;
+            //// Playerへの角度を求める
+            //ChaseTargetAngle =  Mathf.Atan2(posDelta.y, posDelta.x) * Mathf.Rad2Deg;
+            //// Quaternion.EulerでPlayerの方向を向く
+            //transform.rotation = Quaternion.Euler(0, 0, ChaseTargetAngle);
+            //// プレイヤーへの移動
+            //NPC_rbody.linearVelocity = posDelta.normalized * NPC_Speed;
+
+            agent.destination = target.position; //agentの目的地をtargetの座標にする
         }
     }
 
