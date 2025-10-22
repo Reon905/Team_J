@@ -7,6 +7,8 @@ public static class NPC_Constants
     public static float DEFAULT_SIGHT_ANGLE = 30.0f;    //NPCの視界範囲
     public static float DEFAULT_DETECTION_VALUE = 0.0f; //初期発覚値
     public static float MAX_DETECTION_VALUE = 3.5f;     //最大発覚値
+
+    public static float CHASE_TIMER = 20.0f;    //チェイス時間
 }
 public class E_NPC_Controller : MonoBehaviour
 {
@@ -35,8 +37,9 @@ public class E_NPC_Controller : MonoBehaviour
     private int currentPointIndex = 0;    // 次の目的地を示すインデックス
 
     [SerializeField] float NPC_Speed = 2.0f; // 敵の追跡速度
-
     private float ChaseTargetAngle;     // Chase時のプレイヤーへの角度
+    public float ChaseTimer;    // Chase時間
+    
     private float PatrolTargetAngle;    // WayPointへの角度
     private Vector2 Patrolvec;          // Patrol向き用の変数
 
@@ -56,6 +59,7 @@ public class E_NPC_Controller : MonoBehaviour
 
         m_fSightAngle = NPC_Constants.DEFAULT_SIGHT_ANGLE;
         Detection_Value = NPC_Constants.DEFAULT_DETECTION_VALUE;
+        ChaseTimer = NPC_Constants.CHASE_TIMER;
         TimeOut = 0.02f;
 
         // 巡回を開始するコルーチンを呼び出す
@@ -72,6 +76,7 @@ public class E_NPC_Controller : MonoBehaviour
         // 状態がChaseの場合
         if (_state == NPC_State.Chase)
         {
+            ChaseTimer -= Time.deltaTime;
             //// Playerへの角度を求める
             //ChaseTargetAngle =  Mathf.Atan2(posDelta.y, posDelta.x) * Mathf.Rad2Deg;
             //// Quaternion.EulerでPlayerの方向を向く
@@ -79,6 +84,12 @@ public class E_NPC_Controller : MonoBehaviour
             //// プレイヤーへの移動
             //NPC_rbody.linearVelocity = posDelta.normalized * NPC_Speed;
 
+            if (ChaseTimer < 0.0f)
+            {
+                _state = NPC_State.Patrol;
+                ChaseTimer = NPC_Constants.CHASE_TIMER;
+                StartCoroutine(PatrolRoutine(GetTransform()));
+            }
             agent.destination = target.position; //agentの目的地をtargetの座標にする
         }
     }
