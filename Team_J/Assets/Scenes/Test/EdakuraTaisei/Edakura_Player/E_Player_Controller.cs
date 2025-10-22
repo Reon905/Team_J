@@ -1,6 +1,7 @@
 //using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public class E_Player_Controller : MonoBehaviour
 
     Rigidbody2D rbody;                               //Rigidbody2D型の変数宣言
     public float Speed = Constants.PlayerSpeed;      //Playerの移動速度
+    private float MoveDirection;
 
     Vector2 PlayerVector;                            //キー入力の値を格納
 
@@ -47,25 +49,27 @@ public class E_Player_Controller : MonoBehaviour
             Speed = Constants.PlayerSpeed;       //押されていない場合は元のスピードに戻す    
         }
 
+        
+
         //向きの調整
         if (PlayerVector.x > 0.0f)
         {
-            Debug.Log("右移動");
+            //Debug.Log("右移動");
             transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         else if (PlayerVector.x < 0.0f)
         {
-            Debug.Log("左移動");
+            //Debug.Log("左移動");
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (PlayerVector.y > 0.0f)
         {
-            Debug.Log("上移動");
+            //Debug.Log("上移動");
             transform.rotation = Quaternion.Euler(0, 0, -90);
         }
         else if (PlayerVector.y < 0.0f)
         {
-            Debug.Log("下移動");
+            //Debug.Log("下移動");
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 

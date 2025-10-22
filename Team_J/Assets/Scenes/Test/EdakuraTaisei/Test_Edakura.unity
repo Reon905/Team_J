@@ -863,7 +863,6 @@ MonoBehaviour:
     m_Bits: 192
   m_fSightAngle: 30
   Detection_Value: 0
-  posDelta: {x: 0, y: 0}
   patrolPoints:
   - {fileID: 89548907}
   - {fileID: 539243739}
@@ -877,8 +876,9 @@ MonoBehaviour:
   - {fileID: 539243739}
   - {fileID: 89548907}
   P_moveSpeed: 6
-  waitTime: 1
-  NPC_Speed: 2
+  P_waitTime: 1
+  TurnSpeed: 1.5
+  NPC_Speed: 10
   _state: 0
 --- !u!58 &1057205353
 CircleCollider2D:
