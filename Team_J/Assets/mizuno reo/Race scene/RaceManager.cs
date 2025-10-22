@@ -1,136 +1,242 @@
-//ReceManager.cs
-using TMPro;         // TextMeshPro —piƒƒbƒZ[ƒW•\¦j
+ï»¿//ReceManager.cs
 using UnityEngine;
+using TMPro;   // TextMeshPro ã‚’ä½¿ã†ãŸã‚
 
 public class RaceManager : MonoBehaviour
 {
-    public static RaceManager Instance;  // ƒVƒ“ƒOƒ‹ƒgƒ“F‘¼‚ÌƒXƒNƒŠƒvƒg‚©‚çƒAƒNƒZƒX‚µ‚â‚·‚­‚·‚é
+    // ======================================================
+    // ğŸ”¸ ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ï¼ˆä»–ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ç°¡å˜ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼‰
+    // ======================================================
+    public static RaceManager Instance;
 
-    public TextMeshProUGUI messageText;      // ƒJƒEƒ“ƒgƒ_ƒEƒ“‚âƒS[ƒ‹‚È‚Ç‚Ì•\¦ƒeƒLƒXƒgiƒCƒ“ƒXƒyƒNƒ^[‚Åİ’èj
-    public PlayerCarController playerCar;    // ‘€ì‘ÎÛ‚ÌÔiƒCƒ“ƒXƒyƒNƒ^[‚Åİ’èj
+    // ======================================================
+    // ğŸ”¸ ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ã§è¨­å®šã™ã‚‹é …ç›®
+    // ======================================================
+    public TextMeshProUGUI messageText;     // ã€Œ3ãƒ»2ãƒ»1ãƒ»GO!ã€ã€ŒFinish!!ã€ãªã©ã‚’è¡¨ç¤ºã™ã‚‹UI
+    public PlayerCarController playerCar;   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è»Šï¼ˆã‚¹ã‚¯ãƒªãƒ—ãƒˆä»˜ãã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‰
+    public RivalCarController[] rivals;     // ãƒ©ã‚¤ãƒãƒ«è»Šï¼ˆè¤‡æ•°å°å¯¾å¿œï¼‰
 
-    private float raceStartTime;             // ƒŒ[ƒXŠJnŠÔiƒ^ƒCƒ}[‚Æ‚µ‚Äg—pj
-    private bool raceOngoing = false;        // ƒŒ[ƒX’†‚©‚Ç‚¤‚©
+    // ======================================================
+    // ğŸ”¸ å†…éƒ¨ã§ä½¿ã†å¤‰æ•°
+    // ======================================================
+    private float raceStartTime;     // ãƒ¬ãƒ¼ã‚¹ãŒé–‹å§‹ã•ã‚ŒãŸç¬é–“ã®æ™‚é–“
+    private bool raceOngoing = false; // ç¾åœ¨ãƒ¬ãƒ¼ã‚¹ä¸­ã‹ã©ã†ã‹
+    private RaceState currentState = RaceState.Waiting; // çŠ¶æ…‹ã‚’ç®¡ç†
 
-    private Coroutine messageCoroutine;      // ƒƒbƒZ[ƒW•\¦ƒRƒ‹[ƒ`ƒ“‚ğŠÇ—‚·‚é‚½‚ß‚Ì•Ï”
-
-    void Awake()
+    // ======================================================
+    // ğŸ”¸ ãƒ¬ãƒ¼ã‚¹çŠ¶æ…‹ã‚’è¡¨ã™åˆ—æŒ™å‹
+    // ======================================================
+    private enum RaceState
     {
-        // ƒVƒ“ƒOƒ‹ƒgƒ“‚Ì‰Šú‰»
+        Waiting,   // ã‚¹ã‚¿ãƒ¼ãƒˆå‰
+        Running,   // ãƒ¬ãƒ¼ã‚¹ä¸­
+        Finished   // ã‚´ãƒ¼ãƒ«å¾Œ
+    }
+
+    // ======================================================
+    // ğŸ”¸ Awakeï¼ˆæœ€åˆã«å‘¼ã°ã‚Œã‚‹ï¼‰â€” ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³è¨­å®š
+    // ======================================================
+    private void Awake()
+    {
+        // ã¾ã ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã—ãªã„ãªã‚‰è‡ªåˆ†ã‚’ç™»éŒ²
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // ƒV[ƒ“‚ğ‚Ü‚½‚¢‚Å‚àc‚é
+            DontDestroyOnLoad(gameObject); // ã‚·ãƒ¼ãƒ³ãŒå¤‰ã‚ã£ã¦ã‚‚æ¶ˆãˆãªã„ã‚ˆã†ã«ã™ã‚‹
         }
         else
         {
-            Destroy(gameObject);  // 2‚ÂˆÈã‚ ‚Á‚½‚çŒÃ‚¢‚Ù‚¤‚ğÁ‚·
+            Destroy(gameObject); // ã™ã§ã«ã‚ã‚‹ãªã‚‰é‡è¤‡ã‚’é˜²ããŸã‚å‰Šé™¤
         }
 
-        // Å‰‚ÍƒƒbƒZ[ƒW”ñ•\¦
+        // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ã‚­ã‚¹ãƒˆãŒã‚ã‚‹ãªã‚‰éè¡¨ç¤ºã«ã—ã¦ãŠã
         if (messageText != null)
             messageText.gameObject.SetActive(false);
     }
 
-    void Start()
+    // ======================================================
+    // ğŸ”¸ Start â€” ã‚²ãƒ¼ãƒ èµ·å‹•æ™‚ã«å‘¼ã°ã‚Œã‚‹
+    // ======================================================
+    private void Start()
     {
-        // ƒQ[ƒ€ŠJn‚ÉƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğn‚ß‚é
-        StartCoroutine(RaceStartCoroutine());
+        // æœ€åˆã¯ã‚¹ã‚¿ãƒ¼ãƒˆå‰çŠ¶æ…‹
+        currentState = RaceState.Waiting;
+
+        // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’é–‹å§‹
+        StartCountdown();
     }
 
-    public void StartRace()
+    // ======================================================
+    // ğŸ”¸ ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³å‡¦ç†ï¼ˆã‚³ãƒ«ãƒ¼ãƒãƒ³ã‚’ä½¿ã‚ãªã„ç‰ˆï¼‰
+    // ======================================================
+    private float countdownTimer = 3f; // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã®ç§’æ•°
+    private bool countdownActive = true;
+
+    private void Update()
     {
-        StartCoroutine(RaceStartCoroutine());
+        // ã‚¹ã‚¿ãƒ¼ãƒˆå‰ã®ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ä¸­ã ã‘å‹•ä½œ
+        if (countdownActive)
+        {
+            // æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ã€æ®‹ã‚Šæ™‚é–“ã‚’æ¸›ã‚‰ã™
+            countdownTimer -= Time.deltaTime;
+
+            // å°æ•°ç‚¹ã‚’åˆ‡ã‚Šä¸Šã’ã¦ã€Œ3ã€ã€Œ2ã€ã€Œ1ã€ã‚’è¡¨ç¤º
+            int displayNum = Mathf.CeilToInt(countdownTimer);
+            if (displayNum > 0)
+            {
+                ShowMessage(displayNum.ToString(), 0.2f);
+            }
+            else
+            {
+                // 0ä»¥ä¸‹ã«ãªã£ãŸã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆï¼
+                countdownActive = false;
+                StartRace();
+            }
+        }
+
+        // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã®æ™‚é–“ç®¡ç†
+        HandleMessageDisplay();
     }
-    // ƒJƒEƒ“ƒgƒ_ƒEƒ“‚µ‚Ä‚©‚çƒŒ[ƒXŠJn‚·‚éˆ—
-    private System.Collections.IEnumerator RaceStartCoroutine()
+
+    // ======================================================
+    // ğŸ”¸ ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–‹å§‹ãƒ¡ã‚½ãƒƒãƒ‰
+    // ======================================================
+    private void StartCountdown()
     {
-        // Ô‚Ì‘€ì‚ğ–³Œø‰»i~‚ß‚éj
+        countdownTimer = 3f;
+        countdownActive = true;
+
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒ©ã‚¤ãƒãƒ«ã®æ“ä½œã‚’ç¦æ­¢ï¼ˆå‹•ã‹ãªã„ã‚ˆã†ã«ï¼‰
         if (playerCar != null)
             playerCar.DisableControl();
 
-        // ƒJƒEƒ“ƒgƒ_ƒEƒ“•\¦i1•b‚¸‚Âj
-        string[] countdownTexts = { "3", "2", "1" };
-
-        foreach (string t in countdownTexts)
+        if (rivals != null)
         {
-            ShowMessage(t, 1f);
-            yield return new WaitForSeconds(1f);
+            foreach (var r in rivals)
+                r.DisableControl();
         }
-
-        // GOI•\¦
-        ShowMessage("GO!", 1f);
-
-        // Ô‚Ì‘€ì‚ğ—LŒø‰»i‚±‚±‚Å‚â‚Á‚ÆÔ‚ª“®‚¯‚éj
-        if (playerCar != null)
-        {
-            playerCar.EnableControl();
-        }
-        else
-        {
-            Debug.LogError("playerCar ‚ª RaceManager ‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
-        }
-
-        // ƒ^ƒCƒ}[ŠJn
-        raceStartTime = Time.time;
-        raceOngoing = true;
     }
 
-    // ƒS[ƒ‹‚ÉŒÄ‚Ño‚·iƒgƒŠƒK[‚©‚çj
+    // ======================================================
+    // ğŸ”¸ ãƒ¬ãƒ¼ã‚¹é–‹å§‹å‡¦ç†
+    // ======================================================
+    public void StartRace()
+    {
+        ShowMessage("GO!", 1f);            // GO!è¡¨ç¤º
+        raceStartTime = Time.time;          // ã‚¿ã‚¤ãƒãƒ¼é–‹å§‹
+        raceOngoing = true;                 // ãƒ¬ãƒ¼ã‚¹ä¸­ãƒ•ãƒ©ã‚°ON
+        currentState = RaceState.Running;   // çŠ¶æ…‹å¤‰æ›´
+
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ“ä½œå¯èƒ½ã«ã™ã‚‹
+        if (playerCar != null)
+            playerCar.EnableControl();
+
+        // ãƒ©ã‚¤ãƒãƒ«ãŸã¡ã‚‚å‹•ã‘ã‚‹ã‚ˆã†ã«
+        if (rivals != null)
+        {
+            foreach (var r in rivals)
+            {
+                r.EnableControl();
+
+                // ğŸ‘‡ ãƒ©ãƒ³ãƒ€ãƒ ãªé€Ÿåº¦ã‚’ä¸ãˆã‚‹ï¼ˆå€‹æ€§ã‚’å‡ºã™ï¼‰
+                r.SetRandomSpeed();
+            }
+        }
+    }
+
+    // ======================================================
+    // ğŸ”¸ ã‚´ãƒ¼ãƒ«æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
+    // ======================================================
     public void Finish()
     {
+        // ã¾ã ãƒ¬ãƒ¼ã‚¹ä¸­ã§ãªã‘ã‚Œã°ç„¡è¦–
         if (!raceOngoing) return;
 
+        // çµŒéæ™‚é–“ã‚’è¨ˆç®—
         float finishTime = Time.time - raceStartTime;
+
+        // ãƒ•ãƒ©ã‚°ã‚’OFF
         raceOngoing = false;
+        currentState = RaceState.Finished;
 
-        //Ô‚ğ~‚ß‚é(‘€ì‚ğ–³Œø‰»)
-        if(playerCar != null)
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ­¢ã‚ã‚‹
+        if (playerCar != null)
         {
-            playerCar.DisableControl(); //“ü—Í‚ğ~‚ß‚é
-            StartCoroutine(SmoothStop(playerCar)); //‚ä‚Á‚­‚è~‚ß‚é‚æ‚¤‚É‚·‚é
+            playerCar.DisableControl();
+            StopCar(playerCar);
         }
-       
-        ShowMessage($"Finish!!\nTime: {finishTime:F2} •b", 3f); //ƒƒbƒZ[ƒW•\¦
-        Debug.Log("ƒŒ[ƒXI—¹Iƒ^ƒCƒ€: " + finishTime + "•b");
+
+        // ãƒ©ã‚¤ãƒãƒ«ã‚‚æ­¢ã‚ã‚‹
+        if (rivals != null)
+        {
+            foreach (var r in rivals)
+            {
+                r.DisableControl();
+                StopCar(r);
+            }
+        }
+
+        // ã‚¿ã‚¤ãƒ ã‚’è¡¨ç¤º
+        ShowMessage($"Finish!!\nTime: {finishTime:F2} ç§’", 3f);
+        Debug.Log("ãƒ¬ãƒ¼ã‚¹çµ‚äº†ï¼ã‚¿ã‚¤ãƒ : " + finishTime + "ç§’");
     }
 
-    private System.Collections.IEnumerator SmoothStop(PlayerCarController car)
+    // ======================================================
+    // ğŸ”¸ è»Šã‚’ç‰©ç†çš„ã«åœæ­¢ã•ã›ã‚‹å‡¦ç†
+    // ======================================================
+    private void StopCar(MonoBehaviour car)
     {
+        // Rigidbody2D ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—
         Rigidbody2D rb = car.GetComponent<Rigidbody2D>();
-        if (rb == null) yield break;
-
-        while(rb.linearVelocity.magnitude > 0.1f)
+        if (rb != null)
         {
-            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity,Vector2.zero, 1f * Time.deltaTime);
-        }
+            // ç§»å‹•é€Ÿåº¦ã‚’ã‚¼ãƒ­ã«
+            rb.linearVelocity = Vector2.zero;
 
-        rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+            // å›è»¢ï¼ˆã‚¹ãƒ”ãƒ³ï¼‰ã‚‚æ­¢ã‚ã‚‹
+            rb.angularVelocity = 0f;
+        }
     }
 
-    // ƒƒbƒZ[ƒW‚ğ‰æ–Ê‚É•\¦‚·‚éi”•bŠÔj
-    public void ShowMessage(string message, float duration = 2f)
+    // ======================================================
+    // ğŸ”¸ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå‡¦ç†ï¼ˆæ™‚é–“çµŒéã§æ¶ˆãˆã‚‹ï¼‰
+    // ======================================================
+    private float messageDisplayTime = 0f; // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã—ãŸæ™‚é–“
+    private float messageDuration = 0f;    // è¡¨ç¤ºæ™‚é–“ã®é•·ã•
+    private string currentMessage = "";    // ä»Šè¡¨ç¤ºã—ã¦ã„ã‚‹å†…å®¹
+
+    public void ShowMessage(string message, float duration = 1f)
     {
-        // ‘O‚ÌƒƒbƒZ[ƒW‚ªc‚Á‚Ä‚½‚ç~‚ß‚é
-        if (messageCoroutine != null)
-            StopCoroutine(messageCoroutine);
+        // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸UIãŒè¨­å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
+        if (messageText == null) return;
 
-        messageCoroutine = StartCoroutine(DisplayMessageCoroutine(message, duration));
-    }
+        // åŒã˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä½•åº¦ã‚‚å‡ºã•ãªã„ã‚ˆã†ã«
+        if (message == currentMessage) return;
 
-    // ƒƒbƒZ[ƒW•\¦ƒRƒ‹[ƒ`ƒ“iŠÔŒo‰ßŒã‚É”ñ•\¦‚É‚·‚éj
-    private System.Collections.IEnumerator DisplayMessageCoroutine(string message, float duration)
-    {
-        if (messageText == null)
-        {
-            Debug.LogWarning("messageText ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
-            yield break;
-        }
+        currentMessage = message;
 
+        // ãƒ†ã‚­ã‚¹ãƒˆã‚’æ›´æ–°ã—ã¦è¡¨ç¤º
         messageText.text = message;
         messageText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(duration);
-        messageText.gameObject.SetActive(false);
+
+        // æ™‚é–“ã‚’è¨˜éŒ²
+        messageDuration = duration;
+        messageDisplayTime = Time.time;
+    }
+
+    // ======================================================
+    // ğŸ”¸ Updateã§å‘¼ã°ã‚Œã‚‹ã€Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ™‚é–“ç®¡ç†ã€
+    // ======================================================
+    private void HandleMessageDisplay()
+    {
+        if (messageText == null) return;
+
+        // è¡¨ç¤ºä¸­ã§ã€ã‹ã¤ä¸€å®šæ™‚é–“çµŒéã—ãŸã‚‰éè¡¨ç¤ºã«ã™ã‚‹
+        if (messageText.gameObject.activeSelf &&
+            (Time.time - messageDisplayTime > messageDuration))
+        {
+            messageText.gameObject.SetActive(false);
+            currentMessage = ""; // çŠ¶æ…‹ãƒªã‚»ãƒƒãƒˆ
+        }
     }
 }
