@@ -556,7 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217fc6fc4a443a348b2214aa1680933a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 
+  nextSceneName: Indoor Scene
+  resetDataOnLoad: 1
 --- !u!4 &819594874
 Transform:
   m_ObjectHideFlags: 0

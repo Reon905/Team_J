@@ -1,32 +1,24 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultScene : MonoBehaviour
+public class Result : MonoBehaviour
 {
     public Text resultText;
 
     void Start()
     {
-        //ŠeƒAƒCƒeƒ€‚Ìƒ|ƒCƒ“ƒg‚ğ‡Z  ƒŒ[ƒX‡ˆÊ‚Å‚à‚ç‚¦‚éƒ|ƒCƒ“ƒg–¢‰ÁZ
+        // ã™ã§ã«æ¸›å°‘æ¸ˆã¿ã®å€¤ã‚’è¡¨ç¤º
         int totalPoints = Item.totalPoints + Item2.totalPoints + Item3.totalPoints;
-
-        //ŠeƒAƒCƒeƒ€‚Ì‹àŠz‚ğ‡Z 
         int totalMoney = Item.totalMoney + Item2.totalMoney + Item3.totalMoney;
-
-        //ƒAƒCƒeƒ€‚Ìæ“¾”
         int itemCount = Item.itemCount + Item2.itemCount + Item3.itemCount;
 
-
-        //‰æ–Ê‚É•\¦
         resultText.text =
+            $": {itemCount}å€‹\n" +
+            $": {totalMoney}å††\n" +
+            $": {totalPoints}pt";
 
-             itemCount + "ŒÂ\n" +
-             totalMoney + "‰~\n" +
-             totalPoints + "pt\n";
-
-        //•\¦
-        Debug.Log("‡ŒvƒAƒCƒeƒ€: " + itemCount + "ŒÂ");
-        Debug.Log("‡Œvƒ|ƒCƒ“ƒg: " + totalPoints + "pt");
-        Debug.Log("‡Œv‹àŠz: " + totalMoney + "‰~");
+        Debug.Log($"[Result] : {itemCount}å€‹");
+        Debug.Log($"[Result] : {totalPoints}pt");
+        Debug.Log($"[Result] : {totalMoney}å††");
     }
 }

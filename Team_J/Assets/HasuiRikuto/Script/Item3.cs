@@ -1,44 +1,89 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Item3 : MonoBehaviour
 {
-    //アイテムの金額
     public int price;
-
-    //プレイヤーの合計金額
     public static int totalMoney = 0;
-
-    //プレイヤーの合計ポイント
     public static int totalPoints = 0;
-
-    //アイテムカウント
     public static int itemCount = 0;
+
+    public Sprite itemSprite;
+    public Sprite openedSprite;
+    private SpriteRenderer spriteRenderer;
+    private ItemManager itemManager;
+
+    public Text messageText;
+    public float holdTime = 2.0f;
+    private float holdTimer = 0f;
+    private bool playerInRange = false;
+    private bool isOpened = false;
 
     void Start()
     {
-        //5000円〜10000円の範囲でランダムな値を設定
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer && itemSprite) spriteRenderer.sprite = itemSprite;
+        itemManager = GetComponent<ItemManager>();
+
         price = Random.Range(5000, 10001);
-        Debug.Log("アイテムの金額は " + price + " 円です、ポイント 60pt");
+        if (messageText != null) messageText.text = "";
     }
 
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        //プレイヤーに触れたら処理
+        if (playerInRange && !isOpened)
+        {
+            if (messageText != null && holdTimer <= 0)
+                messageText.text = "Enterで開錠";
+
+            if (Input.GetKey(KeyCode.Return))
+            {
+                holdTimer += Time.deltaTime;
+                if (messageText != null) messageText.text = "取得中…";
+
+                if (holdTimer >= holdTime)
+                    OpenItem();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                holdTimer = 0f;
+                if (messageText != null) messageText.text = "Enterで開錠";
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.CompareTag("Player"))
         {
-            //金額を加算
-            totalMoney += price;
-
-            //固定の60ポイントを加算
-            totalPoints += 60;
-
-            itemCount++;
-
-            Debug.Log("アイテムを取得！ 金額 +" + price + "円、ポイント +60pt");
-            Debug.Log("現在の合計：金額 " + totalMoney + "円 ／ ポイント " + totalPoints + "pt");
-
-            //このアイテムを削除
-            Destroy(gameObject);
+            playerInRange = true;
+            if (!isOpened && messageText != null)
+                messageText.text = "Enterで開錠";
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            holdTimer = 0f;
+            if (messageText != null) messageText.text = "";
+        }
+    }
+
+    void OpenItem()
+    {
+        isOpened = true;
+        totalMoney += price;
+        totalPoints += 60;
+        itemCount++;
+
+        if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
+        if (messageText != null) messageText.text = "取得完了！";
+
+        if (itemManager != null)
+            itemManager.CollectItem(); // 取得済み登録＆削除
     }
 }

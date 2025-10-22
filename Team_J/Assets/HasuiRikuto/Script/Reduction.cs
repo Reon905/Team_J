@@ -1,43 +1,31 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Reduction : MonoBehaviour
 {
-    void Start()
+    // å„ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—ã®é‡‘é¡ãƒ»ãƒã‚¤ãƒ³ãƒˆã‚’å€‹åˆ¥ã«8å‰²æ¸›å°‘ã•ã›ã‚‹
+    public void ReduceAll()
     {
-        // --- ƒeƒXƒg—p‚É”’l‚ğ‘ã“ü ---
-        //Item.totalMoney = 1034;
-        //Item2.totalMoney = 2030;
-        //Item3.totalMoney = 3042;
-
-        //Item.totalPoints = 60;
-        //Item2.totalPoints = 40;
-        //Item3.totalPoints = 60;
-
-        Debug.Log("ƒeƒXƒg‰Šú’lF");
-        Debug.Log($"Item1 ¨ {Item.totalMoney}‰~^{Item.totalPoints}pt");
-        Debug.Log($"Item2 ¨ {Item2.totalMoney}‰~^{Item2.totalPoints}pt");
-        Debug.Log($"Item3 ¨ {Item3.totalMoney}‰~^{Item3.totalPoints}pt");
-
-        //ƒAƒCƒeƒ€8Š„Œ¸Šz ƒ|ƒCƒ“ƒg‚SŠ„Œ¸­
+        // --- Item ---
+        int oldMoney1 = Item.totalMoney;
+        int oldPoints1 = Item.totalPoints;
         Item.totalMoney = Mathf.FloorToInt(Item.totalMoney * 0.2f);
-        Item.totalPoints = Mathf.FloorToInt(Item.totalPoints * 0.6f);
+        Item.totalPoints = Mathf.FloorToInt(Item.totalPoints * 0.2f);
+        Debug.Log($"ã€Itemã€‘é‡‘é¡ {oldMoney1} â†’ {Item.totalMoney} ï¼ ãƒã‚¤ãƒ³ãƒˆ {oldPoints1} â†’ {Item.totalPoints}");
 
+        // --- Item2 ---
+        int oldMoney2 = Item2.totalMoney;
+        int oldPoints2 = Item2.totalPoints;
         Item2.totalMoney = Mathf.FloorToInt(Item2.totalMoney * 0.2f);
-        Item2.totalPoints = Mathf.FloorToInt(Item2.totalPoints * 0.6f);
+        Item2.totalPoints = Mathf.FloorToInt(Item2.totalPoints * 0.2f);
+        Debug.Log($"ã€Item2ã€‘é‡‘é¡ {oldMoney2} â†’ {Item2.totalMoney} ï¼ ãƒã‚¤ãƒ³ãƒˆ {oldPoints2} â†’ {Item2.totalPoints}");
 
+        // --- Item3 ---
+        int oldMoney3 = Item3.totalMoney;
+        int oldPoints3 = Item3.totalPoints;
         Item3.totalMoney = Mathf.FloorToInt(Item3.totalMoney * 0.2f);
-        Item3.totalPoints = Mathf.FloorToInt(Item3.totalPoints * 0.6f);
+        Item3.totalPoints = Mathf.FloorToInt(Item3.totalPoints * 0.2f);
+        Debug.Log($"ã€Item3ã€‘é‡‘é¡ {oldMoney3} â†’ {Item3.totalMoney} ï¼ ãƒã‚¤ãƒ³ãƒˆ {oldPoints3} â†’ {Item3.totalPoints}");
 
-        // --- ƒRƒ“ƒ\[ƒ‹‚ÅŒ‹‰ÊŠm”F ---
-        Debug.Log("•ß‚Ü‚Á‚½Œãi8Š„Œ¸Šz@ƒ|ƒCƒ“ƒg‚SŠ„Œ¸­jF");
-        Debug.Log($"Item1 ¨ {Item.totalMoney}‰~^{Item.totalPoints}pt");
-        Debug.Log($"Item2 ¨ {Item2.totalMoney}‰~^{Item2.totalPoints}pt");
-        Debug.Log($"Item3 ¨ {Item3.totalMoney}‰~^{Item3.totalPoints}pt");
-
-        // --- ‡Œv‚àŠm”F ---
-        int totalMoney = Item.totalMoney + Item2.totalMoney + Item3.totalMoney;
-        int totalPoints = Item.totalPoints + Item2.totalPoints + Item3.totalPoints;
-
-        Debug.Log($"‡ŒvF{totalMoney}‰~ ^ {totalPoints}pt");
+        Debug.Log("âœ… å„ã‚¢ã‚¤ãƒ†ãƒ ã®é‡‘é¡ãƒ»ãƒã‚¤ãƒ³ãƒˆã‚’8å‰²æ¸›å°‘ã•ã›ã¾ã—ãŸã€‚");
     }
 }
