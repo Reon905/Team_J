@@ -5,18 +5,25 @@ using UnityEngine.UI;
 public class PlayerCarController : MonoBehaviour
 {
     // ▼ 公開変数（Inspectorで調整可能）
-    public float acceleration = 5f;   // 加速度：Wキーを押している間に速度がどれだけ増えるか
-    public float maxSpeed = 20f;      // 最大速度：この値以上には加速しない
-    public float deceleration = 3f;   // 減速度：Wキーを離したときにどれだけ減速するか
+    public float acceleration = 5f;      // 加速度：Wキーを押している間に速度がどれだけ増えるか
+    public float maxSpeed = 20f;         // 最大速度：この値以上には加速しない
+    public float deceleration = 3f;      // 減速度：Wキーを離したときにどれだけ減速するか
 
-    private float currentSpeed = 0f;  // 現在の速度（内部で管理）
+    private float currentSpeed = 0f;     // 現在の速度（内部で管理）
+    private Rigidbody2D rb;              // Rigidbody2D：物理演算で移動させるためのコンポーネント
 
-    private Rigidbody2D rb;           // Rigidbody2D：物理演算で移動させるためのコンポーネント
+    public Slider speedSlider;           // UIスライダー：スピードゲージ用（Inspectorでドラッグして設定）
 
-    public Slider speedSlider;        // UIスライダー：スピードゲージ用（Inspectorでドラッグして設定）
+    public bool canDrive = false;        // このフラグが true のときだけ車は動ける（カウントダウンが終わるまで false）
 
-    public bool canDrive = false;     // このフラグが true のときだけ車は動ける（カウントダウンが終わるまで false）
+    //ブーストゲージ追加
+    public float boostMultiplier = 2f;     //ブースト中の加速倍率
+    public float boostDuration = 2f;       //ブーストの持続時間
+    public float boostCooldown = 5f;       //ブースト俄然回復するまでの時間
 
+    public Slider boostSlidet;             //ブーストゲージ用スライダーUI
+    private float boostTimeRemaining = 0f; //残りブースト時間
+    private bool isBoosting = false;       //ブースト中フラグ
     void Start()
     {
         // Rigidbody2D を取得（Unity の物理制御で使う）
@@ -28,8 +35,17 @@ public class PlayerCarController : MonoBehaviour
             speedSlider.minValue = 0f;
             speedSlider.maxValue = maxSpeed;
         }
-    }
 
+        //ブーストゲージ初期化
+        if (boostSlidet != null)
+        {
+            boostSlidet.minValue = 0f;
+            boostSlidet.minValue = boostDuration;
+            boostTimeRemaining = boostDuration;   //最初は満タン
+            boostSlidet.value = boostTimeRemaining;
+        }
+    }
+    
     void Update()
     {
         // デバッグ表示：現在の canDrive の状態をログ出力
@@ -42,9 +58,17 @@ public class PlayerCarController : MonoBehaviour
             return;                      // ここで処理終了
         }
 
+        //ブースト発動処理
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            isBoosting = true;
+        }
+
         // Wキーを押している間は加速
         if (Input.GetKey(KeyCode.W))
         {
+            //ブースト中は加速度アップ
+            float appliedAccleration = isBoosting ? acceleration * boostMultiplier : acceleration;
             currentSpeed += acceleration * Time.deltaTime;
         }
         else
@@ -63,6 +87,34 @@ public class PlayerCarController : MonoBehaviour
         if (speedSlider != null)
         {
             speedSlider.value = currentSpeed;
+        }
+
+        //ブーストゲージの処理
+        if (isBoosting )
+        {
+            //ブースト中は時間を減らしていく
+            boostTimeRemaining -= Time.deltaTime;
+
+            if (boostTimeRemaining <=0f)
+            {
+                boostTimeRemaining = 0f;
+                isBoosting  = false;  //ブースト終了
+            }
+        }
+        else
+        {
+            //ブースト未使用中はゲージ回復
+            if (boostTimeRemaining < boostDuration)
+            {
+                boostTimeRemaining += (boostDuration / boostCooldown) * Time.deltaTime;
+                boostTimeRemaining = Mathf.Min(boostTimeRemaining, boostDuration);
+            }
+        }
+
+        //ブーストゲージの更新
+        if(boostSlidet != null)
+        {
+
         }
     }
 
