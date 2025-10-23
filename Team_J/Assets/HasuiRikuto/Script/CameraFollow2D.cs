@@ -35,6 +35,6 @@ public class CameraFollow2D : MonoBehaviour
         Vector3 targetPos = player.position + offset;
         transform.position = targetPos;
 
-        Debug.Log("カメラ位置更新中 → " + transform.position);
+        //Debug.Log("カメラ位置更新中 → " + transform.position);
     }
 }

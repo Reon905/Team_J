@@ -34,7 +34,7 @@ public class Item3 : MonoBehaviour
         if (playerInRange && !isOpened)
         {
             if (messageText != null && holdTimer <= 0)
-                messageText.text = "Enterで開錠";
+                messageText.text = "Enterを長押しで開錠";
 
             if (Input.GetKey(KeyCode.Return))
             {
@@ -48,7 +48,7 @@ public class Item3 : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Return))
             {
                 holdTimer = 0f;
-                if (messageText != null) messageText.text = "Enterで開錠";
+                if (messageText != null) messageText.text = "Enterを長押しで開錠";
             }
         }
     }
@@ -59,7 +59,7 @@ public class Item3 : MonoBehaviour
         {
             playerInRange = true;
             if (!isOpened && messageText != null)
-                messageText.text = "Enterで開錠";
+                messageText.text = "Enterを長押しで開錠";
         }
     }
 
