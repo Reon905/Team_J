@@ -45,12 +45,13 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     {
         NPC_rbody = GetComponent<Rigidbody2D>();
 
+        //各種変数を初期化
         m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
         Detection_Value = Constants.DEFAULT_DETECTION_VALUE;
         TimeOut = 0.02f;
 
         agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
-        agent.speed = P_moveSpeed;  //巡回速度に合わせる
+        agent.speed = P_moveSpeed;              //巡回速度に合わせる
     }
 
     private void Update()
@@ -61,10 +62,12 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
         // 状態がPatrolの場合
         if (_state == NPC_State.Patrol)
         {
+            //パトロール関数の予備出し
             PatrolUpdate();
         }//Chaseの場合
         else if (_state == NPC_State.Chase)
         {
+            //Chase関数の呼び出し
             ChaseUpdate();
         }
     }
@@ -151,7 +154,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
             {
                 // 接触した時の処理
                 Debug.Log("Playerと接触");
-
+                //Playerの状態をDetectionに切り替え
                 GameStateManager.instance.currentPlayerState = PlayerState.Detection;
                 _state = NPC_State.Chase;       // 状態をChaseに切り替え
             }
@@ -159,6 +162,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
             {
                 //Chase中に衝突したらSceneを切り替える
                 SceneManager.LoadScene("Caught Scene");
+                //次のプレイのためにPlayerの状態をNoDetectionにする
                 GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
 
             }
@@ -169,18 +173,24 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     //巡回用関数
     private void PatrolUpdate()
     {
-        if (isWaiting) return; // ← 停止中は何もしない！
+        if (isWaiting) return; // 停止中は何もしない
 
+        // 現在位置と目的の巡回ポイント座標の取得
         Vector2 currentPos = transform.position;
         Vector2 patrolPos = patrolPoints[currentPointIndex].position;
 
+        //Agentの移動速度を巡回速度に設定
         agent.speed = P_moveSpeed;
+        
+        //現在の目的地の設定
         agent.destination = patrolPos;
 
+        //巡回ポイントへのベクトルを計算
         Vector2 diff = patrolPos - currentPos;
         Vector2 moveDirection = diff.normalized;
 
         // 到着判定
+        //一定距離以下になったら次の地点へ行く前に待機
         if (Vector2.Distance(currentPos, patrolPos) < 0.1f)
         {
             StartCoroutine(WaitBeforeNextPoint());
@@ -189,19 +199,26 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
         // 向き変更
         if (moveDirection != Vector2.zero)
         {
+            // 回転処理のための角度を求める
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime * 1.5f);
+            //Lerp(補完処理)でなめらかに回転させる
+            transform.rotation = Quaternion.Lerp(transform.rotation,
+                Quaternion.Euler(0, 0, angle),
+                Time.deltaTime * 1.5f
+                );
         }
     }
 
     //巡回時WayPoint到達時の一時停止
     private IEnumerator WaitBeforeNextPoint()
     {
+        //待機中フラグ
         isWaiting = true;
         agent.speed = 0; // 移動停止（物理的に止まる）
-
+        
+        //経過時間を初期化
         float Elapsed = 0.0f;
-
+        //指定時間が経過するまで待機
         while (Elapsed < P_waitTime)
         {
             //もし途中でChase状態になったら待機を中断
@@ -212,6 +229,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
                 yield break; //コルーチンを即終了
             }
 
+            //経過時間を加算して次のフレームまで待つ
             Elapsed += Time.deltaTime;
             yield return null;
 
@@ -219,6 +237,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
 
         //待機完了後　次のポイントへ
         currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+        // スピードを元に戻す
         agent.speed = P_moveSpeed;
         isWaiting = false;
     }
@@ -226,14 +245,25 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     //チェイス用関数
     private void ChaseUpdate()
     {
+        //追跡速度に設定
         agent.speed = Chase_Speed;
+        //Agentの目的地をプレイヤーの現在位置に設定
         agent.destination = target.position;
 
+        //プレイヤー方向のベクトルを計算
         Vector2 moveDirection = (target.position - transform.position).normalized;
+        
+        //NPCが停止していない場合、移動方向を向くように回転
         if (moveDirection != Vector2.zero)
         {
+            //ベクトルから角度へ変換
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime * TurnSpeed);
+            
+            //なめらかに回転
+            transform.rotation = Quaternion.Lerp(transform.rotation,
+                Quaternion.Euler(0, 0, angle),
+                Time.deltaTime * TurnSpeed
+                );
         }
     }
 

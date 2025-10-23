@@ -1,6 +1,6 @@
 //PlayerState.cs
 public enum PlayerState
 {
-    NoDetection,
-    Detection
+    NoDetection,    //ñ¢î≠äo
+    Detection       //î≠äoçœÇ›
 }

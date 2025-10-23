@@ -13,7 +13,7 @@ public class E_Player_Controller : MonoBehaviour
     public InputAction DashAction;      //ダッシュ用
 
     Rigidbody2D rbody;                               //Rigidbody2D型の変数宣言
-    public float Speed = 6.0f;      //Playerの移動速度
+    public float Speed = 6.0f;                       //Playerの移動速度
 
     Vector2 PlayerVector;                            //キー入力の値を格納
 
