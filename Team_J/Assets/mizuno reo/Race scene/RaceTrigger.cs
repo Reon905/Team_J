@@ -14,7 +14,10 @@ public class RaceTrigger : MonoBehaviour
         {
             if (triggerType == TriggerType.Start)
             {
-                RaceManager.Instance.StartRace();   // スタート処理呼び出し
+                if (!RaceManager.Instance.IsCountdownActive())
+                {
+                    RaceManager.Instance.StartRace();   // スタート処理呼び出し
+                }
             }
             else if (triggerType == TriggerType.Goal)
             {

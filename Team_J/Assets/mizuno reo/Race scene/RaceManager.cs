@@ -8,7 +8,10 @@ public class RaceManager : MonoBehaviour
     // 🔸 シングルトン（他のスクリプトから簡単にアクセスできるようにする）
     // ======================================================
     public static RaceManager Instance;
-
+    public bool IsCountdownActive()
+    {
+        return countdownActive;
+    }
     // ======================================================
     // 🔸 インスペクターで設定する項目
     // ======================================================
@@ -22,7 +25,7 @@ public class RaceManager : MonoBehaviour
     private float raceStartTime;     // レースが開始された瞬間の時間
     private bool raceOngoing = false; // 現在レース中かどうか
     private RaceState currentState = RaceState.Waiting; // 状態を管理
-
+   
     // ======================================================
     // 🔸 レース状態を表す列挙型
     // ======================================================
@@ -103,6 +106,7 @@ public class RaceManager : MonoBehaviour
     // ======================================================
     private void StartCountdown()
     {
+        Debug.Log("StartCountdown called - 操作禁止にします");
         countdownTimer = 3f;
         countdownActive = true;
 
@@ -122,6 +126,7 @@ public class RaceManager : MonoBehaviour
     // ======================================================
     public void StartRace()
     {
+        Debug.Log("StartRace called - 操作許可します");
         ShowMessage("GO!", 1f);            // GO!表示
         raceStartTime = Time.time;          // タイマー開始
         raceOngoing = true;                 // レース中フラグON
@@ -177,7 +182,7 @@ public class RaceManager : MonoBehaviour
         }
 
         // タイムを表示
-        ShowMessage($"Finish!!\nTime: {finishTime:F2} 秒", 3f);
+        ShowMessage($"Finish!!\nTime: {finishTime:F2} + 秒", 3f);
         Debug.Log("レース終了！タイム: " + finishTime + "秒");
     }
 
