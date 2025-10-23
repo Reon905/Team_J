@@ -143,7 +143,7 @@ public class RaceManager : MonoBehaviour
             {
                 r.EnableControl();
 
-                // 👇 ランダムな速度を与える（個性を出す）
+                //ランダムな速度を与える（個性を出す）
                 r.SetRandomSpeed();
             }
         }

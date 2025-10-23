@@ -47,6 +47,10 @@ public class RivalCarController : MonoBehaviour
     // ======================================================
     void Update()
     {
+        if (canDrive)
+        {
+            Debug.Log($"{gameObject.name} running at {currentSpeed}");
+        }
         // 動けない状態なら止める
         if (!canDrive)
         {
