@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 89548906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.78, y: 7.47, z: 0}
+  m_LocalPosition: {x: -8.83, y: 7.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3683,7 +3683,7 @@ Transform:
   m_GameObject: {fileID: 539243738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.52, y: 6.82, z: 0}
+  m_LocalPosition: {x: 5.07, y: 6.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3950,7 +3950,7 @@ Transform:
   m_GameObject: {fileID: 1057205348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 3.62, z: 0}
+  m_LocalPosition: {x: -6.5, y: 7.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3981,15 +3981,11 @@ MonoBehaviour:
   - {fileID: 817925627}
   - {fileID: 2003453868}
   - {fileID: 645202286}
-  - {fileID: 2003453868}
-  - {fileID: 817925627}
-  - {fileID: 785655301}
-  - {fileID: 539243739}
-  - {fileID: 89548907}
-  P_moveSpeed: 6
+  P_moveSpeed: 4
   P_waitTime: 1
   TurnSpeed: 1.5
-  NPC_Speed: 10
+  NPC_Speed: 8
+  ChaseTimer: 0
   target: {fileID: 4059016339153099600}
   _state: 0
 --- !u!58 &1057205353
@@ -4081,7 +4077,7 @@ GameObject:
   - component: {fileID: 1265911090}
   - component: {fileID: 1265911089}
   - component: {fileID: 1265911091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7706,7 +7702,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -7743,7 +7739,7 @@ Transform:
   m_GameObject: {fileID: 2003453867}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.24, y: 6.43, z: 0}
+  m_LocalPosition: {x: -5.93, y: -1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7792,7 +7788,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
