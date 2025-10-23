@@ -63,9 +63,10 @@ public class E_NPC_Controller : MonoBehaviour
         TimeOut = 0.02f;
 
         // 巡回を開始するコルーチンを呼び出す
-        StartCoroutine(PatrolRoutine(GetTransform()));
+        //StartCoroutine(PatrolRoutine(GetTransform()));
 
         agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
+        agent.speed = P_moveSpeed;  //巡回速度に合わせる
     }
 
     private void Update()
@@ -73,24 +74,54 @@ public class E_NPC_Controller : MonoBehaviour
         // タイム加算
         TimeElapsed += Time.deltaTime;
 
+        Vector2 currentPos = transform.position;
+        Vector2 moveDirection = Vector2.zero;
+
         // 状態がChaseの場合
         if (_state == NPC_State.Chase)
         {
             ChaseTimer -= Time.deltaTime;
-            //// Playerへの角度を求める
-            //ChaseTargetAngle =  Mathf.Atan2(posDelta.y, posDelta.x) * Mathf.Rad2Deg;
-            //// Quaternion.EulerでPlayerの方向を向く
-            //transform.rotation = Quaternion.Euler(0, 0, ChaseTargetAngle);
-            //// プレイヤーへの移動
-            //NPC_rbody.linearVelocity = posDelta.normalized * NPC_Speed;
 
             if (ChaseTimer < 0.0f)
             {
                 _state = NPC_State.Patrol;
                 ChaseTimer = NPC_Constants.CHASE_TIMER;
-                StartCoroutine(PatrolRoutine(GetTransform()));
+                currentPointIndex = 0;
             }
+            agent.speed = NPC_Speed;
             agent.destination = target.position; //agentの目的地をtargetの座標にする
+
+            moveDirection = (target.position - transform.position).normalized;
+        }
+        else if(_state == NPC_State.Patrol)
+        {
+            Vector2 patrolPos = patrolPoints[currentPointIndex].position;
+            agent.speed = P_moveSpeed; //巡回速度
+
+            Vector2 diff = patrolPos - currentPos;
+
+            Debug.Log($"currentPointIndex: {currentPointIndex}");
+            Debug.Log($"patrolPos: {patrolPos}, currentPos: {currentPos}");
+            Debug.Log($"diff magnitude: {diff.magnitude}");
+
+            moveDirection = diff.normalized;
+            Debug.Log($"Patrol moveDirection: {moveDirection}");
+
+            agent.destination = patrolPos;
+
+            //目的地に十分近づいたら次の巡回ポイントへ
+            if (Vector2.Distance(transform.position, patrolPos) < 0.1f)
+            {
+                currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+            }
+            Debug.Log($"Patrol moveDirection: {moveDirection}");
+        }
+
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime * TurnSpeed);
         }
     }
 
@@ -100,64 +131,64 @@ public class E_NPC_Controller : MonoBehaviour
         return transform;
     }
 
-    // NPCの巡回
-    private IEnumerator PatrolRoutine(Transform transform)
-    {
-        while (true)
-        {
-            Debug.Log("目的地を設定");
-            // 目的地を設定
-            Transform targetPoint = patrolPoints[currentPointIndex];
+    //// NPCの巡回
+    //private IEnumerator PatrolRoutine(Transform transform)
+    //{
+    //    while (true)
+    //    {
+    //        Debug.Log("目的地を設定");
+    //        // 目的地を設定
+    //        Transform targetPoint = patrolPoints[currentPointIndex];
 
 
-            // 目的地へのベクトルを求める
-            Patrolvec = (targetPoint.position - transform.position);
-            Debug.Log("ベクトルを求める"); 
+    //        // 目的地へのベクトルを求める
+    //        Patrolvec = (targetPoint.position - transform.position);
+    //        Debug.Log("ベクトルを求める"); 
     
-            // 目的地への角度を求める（ラジアンを角度に変換）
-            PatrolTargetAngle = Mathf.Atan2(Patrolvec.y, Patrolvec.x) * Mathf.Rad2Deg;
-            Debug.Log("角度を求める");
+    //        // 目的地への角度を求める（ラジアンを角度に変換）
+    //        PatrolTargetAngle = Mathf.Atan2(Patrolvec.y, Patrolvec.x) * Mathf.Rad2Deg;
+    //        Debug.Log("角度を求める");
 
-            // Quaternion.Eulerで目的地への角度を向く
-            Quaternion TargetRotation = Quaternion.Euler(0,0, PatrolTargetAngle);
-            Debug.Log("目的地への角度を向く");
+    //        // Quaternion.Eulerで目的地への角度を向く
+    //        Quaternion TargetRotation = Quaternion.Euler(0,0, PatrolTargetAngle);
+    //        Debug.Log("目的地への角度を向く");
 
             
 
-            // 目的地に近づくまで移動し続ける
-            while (Vector2.Distance(transform.position, targetPoint.position) > 0.1f)
-            {
-                // 状態がChaseの場合
-                if (_state == NPC_State.Chase)
-                {
-                    NPC_rbody.linearVelocity = Vector2.zero; // 念のため停止
-                    yield break;
-                }
-                transform.rotation = Quaternion.Lerp(transform.rotation, TargetRotation, Time.deltaTime * TurnSpeed);
+    //        // 目的地に近づくまで移動し続ける
+    //        while (Vector2.Distance(transform.position, targetPoint.position) > 0.1f)
+    //        {
+    //            // 状態がChaseの場合
+    //            if (_state == NPC_State.Chase)
+    //            {
+    //                NPC_rbody.linearVelocity = Vector2.zero; // 念のため停止
+    //                yield break;
+    //            }
+    //            transform.rotation = Quaternion.Lerp(transform.rotation, TargetRotation, Time.deltaTime * TurnSpeed);
 
-                // Rigidbodyでの移動に変更
-                Vector2 direction = (targetPoint.position - transform.position).normalized;
-                NPC_rbody.linearVelocity = direction * P_moveSpeed;
-                Debug.Log("目的地へ移動中");
+    //            // Rigidbodyでの移動に変更
+    //            Vector2 direction = (targetPoint.position - transform.position).normalized;
+    //            NPC_rbody.linearVelocity = direction * P_moveSpeed;
+    //            Debug.Log("目的地へ移動中");
 
-                yield return null;
-            }
+    //            yield return null;
+    //        }
 
-            // 目的地に到着したら停止
-            NPC_rbody.linearVelocity = Vector2.zero;
-            P_waitTime = Random.Range(0.5f, 3.0f);
+    //        // 目的地に到着したら停止
+    //        NPC_rbody.linearVelocity = Vector2.zero;
+    //        P_waitTime = Random.Range(0.5f, 3.0f);
 
-            Debug.Log("到着 一定時間停止");
-            // 目的地に到着したら一定時間待機
-            yield return new WaitForSeconds(P_waitTime);
+    //        Debug.Log("到着 一定時間停止");
+    //        // 目的地に到着したら一定時間待機
+    //        yield return new WaitForSeconds(P_waitTime);
 
-            Debug.Log("次の目的地を設定");
-            // 次の目的地を設定（最後の地点に達したら最初の地点に戻る）
-            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+    //        Debug.Log("次の目的地を設定");
+    //        // 次の目的地を設定（最後の地点に達したら最初の地点に戻る）
+    //        currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
 
-        }
+    //    }
         
-    }
+    //}
 
     // NPCの視界判定
     private void OnTriggerStay2D(Collider2D other)
@@ -189,7 +220,7 @@ public class E_NPC_Controller : MonoBehaviour
                             {
                                 Detection_Value = 0.0f;     // 発覚値を0に
 
-                                StopCoroutine(PatrolRoutine(GetTransform()));   //パトロール停止
+                                //StopCoroutine(PatrolRoutine(GetTransform()));   //パトロール停止
                                 _state = NPC_State.Chase;      // 状態をChaseに切り替え
 
                                 Debug.Log("障害物なし、視界範囲内");
@@ -236,7 +267,7 @@ public class E_NPC_Controller : MonoBehaviour
                 // 接触した時の処理
                 Debug.Log("Playerと接触");
 
-                StopCoroutine(PatrolRoutine(GetTransform())); // 巡回停止
+               // StopCoroutine(PatrolRoutine(GetTransform())); // 巡回停止
                 _state = NPC_State.Chase;       // 状態をChaseに切り替え
             }
             else if (_state == NPC_State.Chase)     // 状態がChaseの場合
@@ -246,9 +277,9 @@ public class E_NPC_Controller : MonoBehaviour
                 // Velocityを0にして速度をなくす(巡回時の停止時に移動してしまうため)
                 NPC_rbody.linearVelocity = Vector2.zero;
                 // 念のためコルーチンを停止
-                StopCoroutine(PatrolRoutine(GetTransform()));
+                //StopCoroutine(PatrolRoutine(GetTransform()));
                 // 巡回を開始するコルーチンを開始
-                StartCoroutine(PatrolRoutine(GetTransform()));
+                //StartCoroutine(PatrolRoutine(GetTransform()));
             }
 
         }
