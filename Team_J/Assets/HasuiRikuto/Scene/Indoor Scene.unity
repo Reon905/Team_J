@@ -7104,7 +7104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e7a1d8f50c8374da307bb4d54d3ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Outdoor Scene
+  nextSceneName: Scen_Customize
   timerText: {fileID: 2089055667}
   changeTime: 300
 --- !u!114 &2089055667
