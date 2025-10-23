@@ -1,15 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public static class NPC_Constants
-{
-    public static float DEFAULT_SIGHT_ANGLE = 30.0f;    //NPCの視界範囲
-    public static float DEFAULT_DETECTION_VALUE = 0.0f; //初期発覚値
-    public static float MAX_DETECTION_VALUE = 3.5f;     //最大発覚値
-
-    public static float CHASE_TIMER = 20.0f;    //チェイス時間
-}
 public class E_NPC_Controller : MonoBehaviour
 {
     // 視界の対象とするレイヤー（Playerや障害物など）
@@ -27,24 +20,23 @@ public class E_NPC_Controller : MonoBehaviour
     private float TimeOut;        // 実行間隔
 
 
-    public Transform[] patrolPoints;    // 巡回地点を格納する配列
+
     public enum NPC_State { Patrol, Chase };
 
     public float P_moveSpeed = 2f;      // Patrol移動速度
-    public float P_waitTime = 1f;       // Patrol待機時間
+    public float P_waitTime = 2f;       // Patrol待機時間
     public float TurnSpeed = 1.5f;      // 旋回速度
 
     private int currentPointIndex = 0;    // 次の目的地を示すインデックス
+    private bool isWaiting = false; // 停止中フラグ
 
-    [SerializeField] float NPC_Speed = 2.0f; // 敵の追跡速度
-    private float ChaseTargetAngle;     // Chase時のプレイヤーへの角度
-    public float ChaseTimer;    // Chase時間
+    [SerializeField] float Chase_Speed = 2.0f; // 敵の追跡速度
+    public float ChaseTimer;     // Chase時間(屋内屋外共有)
     
-    private float PatrolTargetAngle;    // WayPointへの角度
-    private Vector2 Patrolvec;          // Patrol向き用の変数
 
     NavMeshAgent2D agent;               //NavMeshAgent2Dを使用するための変数
     [SerializeField] Transform target;  //追跡するターゲット
+    public Transform[] patrolPoints;    // 巡回地点を格納する配列
 
 
     // 初期状態をPatrolにしておく
@@ -52,21 +44,27 @@ public class E_NPC_Controller : MonoBehaviour
 
     private void Start()
     {
-
-
         NPC_rbody = GetComponent<Rigidbody2D>();
 
-
-        m_fSightAngle = NPC_Constants.DEFAULT_SIGHT_ANGLE;
-        Detection_Value = NPC_Constants.DEFAULT_DETECTION_VALUE;
-        ChaseTimer = NPC_Constants.CHASE_TIMER;
+        m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
+        Detection_Value = Constants.DEFAULT_DETECTION_VALUE;
+        ChaseTimer = Constants.CHASE_TIMER;
         TimeOut = 0.02f;
-
-        // 巡回を開始するコルーチンを呼び出す
-        //StartCoroutine(PatrolRoutine(GetTransform()));
 
         agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
         agent.speed = P_moveSpeed;  //巡回速度に合わせる
+
+        //屋外に出たときにPlayerの状態がDetectionだったら、直ちにChaseを開始する
+        if (GameStateManager.instance.currentPlayerState == PlayerState.Detection)
+        {
+            _state = NPC_State.Chase;
+        }
+        else
+        {
+            Debug.Log("Detectionではない");
+        }
+
+
     }
 
     private void Update()
@@ -74,121 +72,22 @@ public class E_NPC_Controller : MonoBehaviour
         // タイム加算
         TimeElapsed += Time.deltaTime;
 
-        Vector2 currentPos = transform.position;
-        Vector2 moveDirection = Vector2.zero;
+        //Vector2 currentPos = transform.position;
+        //Vector2 moveDirection = Vector2.zero;
 
-        // 状態がChaseの場合
-        if (_state == NPC_State.Chase)
+        // 状態がPatrolの場合
+        if (_state == NPC_State.Patrol)
         {
-            ChaseTimer -= Time.deltaTime;
-
-            if (ChaseTimer < 0.0f)
-            {
-                _state = NPC_State.Patrol;
-                ChaseTimer = NPC_Constants.CHASE_TIMER;
-                currentPointIndex = 0;
-            }
-            agent.speed = NPC_Speed;
-            agent.destination = target.position; //agentの目的地をtargetの座標にする
-
-            moveDirection = (target.position - transform.position).normalized;
-        }
-        else if(_state == NPC_State.Patrol)
+            PatrolUpdate();
+        }//Chaseの場合
+        else if(_state == NPC_State.Chase)
         {
-            Vector2 patrolPos = patrolPoints[currentPointIndex].position;
-            agent.speed = P_moveSpeed; //巡回速度
-
-            Vector2 diff = patrolPos - currentPos;
-
-            Debug.Log($"currentPointIndex: {currentPointIndex}");
-            Debug.Log($"patrolPos: {patrolPos}, currentPos: {currentPos}");
-            Debug.Log($"diff magnitude: {diff.magnitude}");
-
-            moveDirection = diff.normalized;
-            Debug.Log($"Patrol moveDirection: {moveDirection}");
-
-            agent.destination = patrolPos;
-
-            //目的地に十分近づいたら次の巡回ポイントへ
-            if (Vector2.Distance(transform.position, patrolPos) < 0.1f)
-            {
-                currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
-            }
-            Debug.Log($"Patrol moveDirection: {moveDirection}");
-        }
-
-        if (moveDirection != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime * TurnSpeed);
+            ChaseUpdate();
         }
     }
 
-    // NPCのTransformコンポーネントを返す関数（PatrolRoutineの呼び出しに使う）
-    private Transform GetTransform()
-    {
-        return transform;
-    }
-
-    //// NPCの巡回
-    //private IEnumerator PatrolRoutine(Transform transform)
-    //{
-    //    while (true)
-    //    {
-    //        Debug.Log("目的地を設定");
-    //        // 目的地を設定
-    //        Transform targetPoint = patrolPoints[currentPointIndex];
 
 
-    //        // 目的地へのベクトルを求める
-    //        Patrolvec = (targetPoint.position - transform.position);
-    //        Debug.Log("ベクトルを求める"); 
-    
-    //        // 目的地への角度を求める（ラジアンを角度に変換）
-    //        PatrolTargetAngle = Mathf.Atan2(Patrolvec.y, Patrolvec.x) * Mathf.Rad2Deg;
-    //        Debug.Log("角度を求める");
-
-    //        // Quaternion.Eulerで目的地への角度を向く
-    //        Quaternion TargetRotation = Quaternion.Euler(0,0, PatrolTargetAngle);
-    //        Debug.Log("目的地への角度を向く");
-
-            
-
-    //        // 目的地に近づくまで移動し続ける
-    //        while (Vector2.Distance(transform.position, targetPoint.position) > 0.1f)
-    //        {
-    //            // 状態がChaseの場合
-    //            if (_state == NPC_State.Chase)
-    //            {
-    //                NPC_rbody.linearVelocity = Vector2.zero; // 念のため停止
-    //                yield break;
-    //            }
-    //            transform.rotation = Quaternion.Lerp(transform.rotation, TargetRotation, Time.deltaTime * TurnSpeed);
-
-    //            // Rigidbodyでの移動に変更
-    //            Vector2 direction = (targetPoint.position - transform.position).normalized;
-    //            NPC_rbody.linearVelocity = direction * P_moveSpeed;
-    //            Debug.Log("目的地へ移動中");
-
-    //            yield return null;
-    //        }
-
-    //        // 目的地に到着したら停止
-    //        NPC_rbody.linearVelocity = Vector2.zero;
-    //        P_waitTime = Random.Range(0.5f, 3.0f);
-
-    //        Debug.Log("到着 一定時間停止");
-    //        // 目的地に到着したら一定時間待機
-    //        yield return new WaitForSeconds(P_waitTime);
-
-    //        Debug.Log("次の目的地を設定");
-    //        // 次の目的地を設定（最後の地点に達したら最初の地点に戻る）
-    //        currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
-
-    //    }
-        
-    //}
 
     // NPCの視界判定
     private void OnTriggerStay2D(Collider2D other)
@@ -216,11 +115,18 @@ public class E_NPC_Controller : MonoBehaviour
                             Detection_Value += 0.1f;    // 発覚値を上昇させる
                             Debug.Log("発覚値上昇");
                             // 発覚値がMAX_DETECTION_VALUEを超えたら
-                            if (Detection_Value > NPC_Constants.MAX_DETECTION_VALUE)
+                            if (Detection_Value > Constants.MAX_DETECTION_VALUE)
                             {
                                 Detection_Value = 0.0f;     // 発覚値を0に
 
-                                //StopCoroutine(PatrolRoutine(GetTransform()));   //パトロール停止
+                                if(GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
+                                {
+                                    //Playerの状態をDetectionにする
+                                    GameStateManager.instance.currentPlayerState = PlayerState.Detection;
+                                }
+
+                                Debug.Log("Detection!!!");
+
                                 _state = NPC_State.Chase;      // 状態をChaseに切り替え
 
                                 Debug.Log("障害物なし、視界範囲内");
@@ -267,23 +173,100 @@ public class E_NPC_Controller : MonoBehaviour
                 // 接触した時の処理
                 Debug.Log("Playerと接触");
 
-               // StopCoroutine(PatrolRoutine(GetTransform())); // 巡回停止
+                GameStateManager.instance.currentPlayerState = PlayerState.Detection;
                 _state = NPC_State.Chase;       // 状態をChaseに切り替え
             }
             else if (_state == NPC_State.Chase)     // 状態がChaseの場合
             {
-                // Chase中に衝突時、追跡を終了
-                _state = NPC_State.Patrol;
-                // Velocityを0にして速度をなくす(巡回時の停止時に移動してしまうため)
-                NPC_rbody.linearVelocity = Vector2.zero;
-                // 念のためコルーチンを停止
-                //StopCoroutine(PatrolRoutine(GetTransform()));
-                // 巡回を開始するコルーチンを開始
-                //StartCoroutine(PatrolRoutine(GetTransform()));
+                //Chase中に衝突したらSceneを切り替える
+                SceneManager.LoadScene("Caught Scene");
+                GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
+
             }
 
         }
     }
 
+    private void PatrolUpdate()
+    {
+        if (isWaiting) return; // ← 停止中は何もしない
+
+        Vector2 currentPos = transform.position;
+        Vector2 patrolPos = patrolPoints[currentPointIndex].position;
+
+        agent.speed = P_moveSpeed;
+        agent.destination = patrolPos;
+
+        Vector2 diff = patrolPos - currentPos;
+        Vector2 moveDirection = diff.normalized;
+
+        // 到着判定
+        if (Vector2.Distance(currentPos, patrolPos) < 0.1f)
+        {
+            StartCoroutine(WaitBeforeNextPoint());
+        }
+
+        // 向き変更
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime * 1.5f);
+        }
+    }
+
+    private IEnumerator WaitBeforeNextPoint()
+    {
+        isWaiting = true;
+        agent.speed = 0; // 移動停止（物理的に止まる）
+
+        float Elapsed = 0.0f;
+
+        while (Elapsed < P_waitTime)
+        {
+            //もし途中でChase状態になったら待機を中断
+            if(_state == NPC_State.Chase)
+            {
+                isWaiting = false;
+
+                yield break; //コルーチンを即終了
+            }
+
+            Elapsed += Time.deltaTime;
+            yield return null;
+
+        }
+
+        //待機完了後　次のポイントへ
+        currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+        agent.speed = P_moveSpeed;
+        isWaiting = false;
+    }
+
+    private void ChaseUpdate()
+    {
+        agent.speed = Chase_Speed;
+        agent.destination = target.position;
+        ChaseTimer -= Time.deltaTime;
+
+        if (ChaseTimer < 0)
+        {
+            if(GameStateManager.instance.currentPlayerState == PlayerState.Detection)
+            {
+                //Playerの状態をNoDetectionにする
+                GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
+            }
+
+            Debug.Log("NoDetection!");
+            _state = NPC_State.Patrol;
+            ChaseTimer = Constants.CHASE_TIMER;
+        }
+
+        Vector2 moveDirection = (target.position - transform.position).normalized;
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime * TurnSpeed);
+        }
+    }
 
 }
