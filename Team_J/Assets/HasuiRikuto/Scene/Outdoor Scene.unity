@@ -301,8 +301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 269.75, y: 188.97}
-  m_SizeDelta: {x: 219.5, y: 49.06}
+  m_AnchoredPosition: {x: 270.46, y: 194.64}
+  m_SizeDelta: {x: 218.08, y: 37.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &154661201
 GameObject:
@@ -3391,7 +3391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: Scen_Customize
   timerText: {fileID: 124486649}
-  changeTime: 180
+  changeTime: 300
 --- !u!4 &1104895174
 Transform:
   m_ObjectHideFlags: 0
@@ -3604,7 +3604,7 @@ Transform:
   m_GameObject: {fileID: 1929141674}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14627075, y: -0.30725098, z: -3843}
+  m_LocalPosition: {x: -1.1, y: 0.3, z: -3843}
   m_LocalScale: {x: 216.61282, y: 64.28058, z: 42.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3863,8 +3863,8 @@ Transform:
   m_GameObject: {fileID: 2058239394}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19, y: -1.0899963, z: -3843}
-  m_LocalScale: {x: 217.06631, y: 42.7, z: 42.7}
+  m_LocalPosition: {x: 2.2, y: -1.5, z: -3843}
+  m_LocalScale: {x: 214.89566, y: 42.7, z: 42.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 124486651}

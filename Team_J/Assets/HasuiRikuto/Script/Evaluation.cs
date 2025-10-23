@@ -33,14 +33,14 @@ public class Evaluation : MonoBehaviour
     string GetRank(int totalPoints)
     {
         if (totalPoints >= 250)
-            return "S";
+            return "S       おめでとう！";
         else if (totalPoints >= 130)
-            return "A";
+            return "A  おめでとうあと少し！";
         else if (totalPoints >= 80)
-            return "B";
+            return "B  いい感じ！あと一歩！";
         else if (totalPoints >= 30)
-            return "C";
+            return "C    もう少し頑張ろう！";
         else
-            return "D";
+            return "D       頑張ろう！";
     }
 }
