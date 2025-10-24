@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class E_NPC_Controller : MonoBehaviour
 {
+    public Text ChaseTimeText;  //UnityからText表示場所を入れる
+
     // 視界の対象とするレイヤー（Playerや障害物など）
     public LayerMask m_TargetLayer; // これを設定することにより、自身(NPC)のコライダーに反応しなくなる
 
@@ -191,6 +194,12 @@ public class E_NPC_Controller : MonoBehaviour
 
     private void PatrolUpdate()
     {
+        if (ChaseTimeText != null)
+        {
+            ChaseTimeText.text = "盗め";
+
+        }
+
         if (isWaiting) return; // 停止中は何もしない
 
         //現在位置と目的の巡回ポイント座標の取得
@@ -263,8 +272,15 @@ public class E_NPC_Controller : MonoBehaviour
     //チェイス用関数
     private void ChaseUpdate()
     {
-        //追跡速度に設定
-        agent.speed = Chase_Speed;
+
+        if (ChaseTimeText != null)
+        {
+            ChaseTimeText.text = $"逃げきれ {Mathf.FloorToInt(ChaseTimer)}";
+
+        }
+
+            //追跡速度に設定
+            agent.speed = Chase_Speed;
 
         //Agentの目的地をプレイヤーの現在位置に設定
         agent.destination = target.position;
