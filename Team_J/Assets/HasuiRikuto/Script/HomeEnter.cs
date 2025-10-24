@@ -17,11 +17,15 @@ public class HomeEnter : MonoBehaviour
 
     void Update()
     {
-        // 範囲内かつEnterが押されたらシーン切替
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
+        if(GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
         {
-            SceneManager.LoadScene(nextSceneName);
+            // 範囲内かつEnterが押されたらシーン切替
+            if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(nextSceneName);
+            }
         }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -29,23 +33,30 @@ public class HomeEnter : MonoBehaviour
         // プレイヤーが範囲内に入ったら
         if (other.CompareTag("Player"))
         {
-            isPlayerInRange = true;
-            if (enterText != null)
+            if(GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
             {
-                enterText.text = "Enterで盗みに戻る";
-                enterText.gameObject.SetActive(true);
+                isPlayerInRange = true;
+                if (enterText != null)
+                {
+                    enterText.text = "Enterで盗みに戻る";
+                    enterText.gameObject.SetActive(true);
+                }
             }
+
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        // 範囲外に出たら非表示
-        if (other.CompareTag("Player"))
+        if (GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
         {
-            isPlayerInRange = false;
-            if (enterText != null)
-                enterText.gameObject.SetActive(false);
+            // 範囲外に出たら非表示
+            if (other.CompareTag("Player"))
+            {
+                isPlayerInRange = false;
+                if (enterText != null)
+                    enterText.gameObject.SetActive(false);
+            }
         }
     }
 }
