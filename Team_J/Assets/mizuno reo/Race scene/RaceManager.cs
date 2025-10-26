@@ -1,247 +1,302 @@
 ﻿//ReceManager.cs
+// RaceManager.cs
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using TMPro;   // TextMeshPro を使うため
+using UnityEngine.SceneManagement;
 
 public class RaceManager : MonoBehaviour
 {
     // ======================================================
-    // 🔸 シングルトン（他のスクリプトから簡単にアクセスできるようにする）
+    // 🔹 シングルトン設定
     // ======================================================
+    // 他のスクリプトから RaceManager にアクセスできるようにする
     public static RaceManager Instance;
-    public bool IsCountdownActive()
-    {
-        return countdownActive;
-    }
-    // ======================================================
-    // 🔸 インスペクターで設定する項目
-    // ======================================================
-    public TextMeshProUGUI messageText;     // 「3・2・1・GO!」「Finish!!」などを表示するUI
-    public PlayerCarController playerCar;   // プレイヤー車（スクリプト付きオブジェクト）
-    public RivalCarController[] rivals;     // ライバル車（複数台対応）
 
-    // ======================================================
-    // 🔸 内部で使う変数
-    // ======================================================
-    private float raceStartTime;     // レースが開始された瞬間の時間
-    private bool raceOngoing = false; // 現在レース中かどうか
-    private RaceState currentState = RaceState.Waiting; // 状態を管理
-   
-    // ======================================================
-    // 🔸 レース状態を表す列挙型
-    // ======================================================
-    private enum RaceState
-    {
-        Waiting,   // スタート前
-        Running,   // レース中
-        Finished   // ゴール後
-    }
-
-    // ======================================================
-    // 🔸 Awake（最初に呼ばれる）— シングルトン設定
-    // ======================================================
     private void Awake()
     {
-        // まだインスタンスが存在しないなら自分を登録
         if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // シーンが変わっても消えないようにする
-        }
+            Instance = this; // 最初に生成されたインスタンスを保持
         else
-        {
-            Destroy(gameObject); // すでにあるなら重複を防ぐため削除
-        }
-
-        // メッセージテキストがあるなら非表示にしておく
-        if (messageText != null)
-            messageText.gameObject.SetActive(false);
+            Destroy(gameObject); // すでに存在する場合は破棄
     }
 
+    [Header("UI関連")]
+    [SerializeField] private TextMeshProUGUI messageText; // 画面にメッセージを表示するUI
+
+    [Header("車両関連")]
+    public PlayerCarController playerCar; // プレイヤー車
+    public List<RivalCarController> rivals = new List<RivalCarController>(); // ライバル車リスト
+
     // ======================================================
-    // 🔸 Start — ゲーム起動時に呼ばれる
+    // 🔹 レース状態管理
     // ======================================================
+    private enum RaceState { Countdown, Racing, Finish, Done } // レース全体の状態
+    private RaceState raceState = RaceState.Countdown;
+
+    private enum FinishState { None, ShowRank, ShowPoints, ShowFinalResults, Done } // ゴール後の表示状態
+    private FinishState finishState = FinishState.None;
+
+    private float stateTimer = 0f; // レース内タイマー（フレームで経過時間計測）
+
+    // ======================================================
+    // 🔹 カウントダウン関連
+    // ======================================================
+    private float countdownInterval = 1.0f;  // 数字切り替え間隔（秒）
+    private float countdownTimer = 0f;       // 経過時間
+    private int countdownValue = 3;          // カウントダウン開始値
+    private bool countdownActive = false;    // カウントダウン中フラグ
+    private bool firstFrameShown = false;    // 初期フレームの一瞬スキップ対策
+
+    // ======================================================
+    // 🔹 リザルト関連
+    // ======================================================
+    private float raceStartTime;                     // レース開始時間
+    private List<GameObject> finishedCars = new List<GameObject>(); // ゴール済み車リスト
+    private List<string> finishOrder = new List<string>();         // ゴール順（名前）
+    private int playerRank;                           // プレイヤーの順位
+    private float playerPoints;                       // プレイヤーの獲得ポイント
+
+    private string currentMessage = "";   // 現在表示中のメッセージ
+    private float messageDisplayTime = 0f; // メッセージ表示経過時間
+    private float messageDuration = 0f;   // メッセージ表示時間
+
     private void Start()
     {
-        // 最初はスタート前状態
-        currentState = RaceState.Waiting;
-
-        // カウントダウンを開始
-        StartCountdown();
+        StartCountdown(); // シーン開始時にカウントダウン開始
     }
-
-    // ======================================================
-    // 🔸 カウントダウン処理（コルーチンを使わない版）
-    // ======================================================
-    private float countdownTimer = 3f; // カウントダウンの秒数
-    private bool countdownActive = true;
 
     private void Update()
     {
-        // スタート前のカウントダウン中だけ動作
-        if (countdownActive)
-        {
-            // 毎フレーム、残り時間を減らす
-            countdownTimer -= Time.deltaTime;
-
-            // 小数点を切り上げて「3」「2」「1」を表示
-            int displayNum = Mathf.CeilToInt(countdownTimer);
-            if (displayNum > 0)
-            {
-                ShowMessage(displayNum.ToString(), 0.2f);
-            }
-            else
-            {
-                // 0以下になったらスタート！
-                countdownActive = false;
-                StartRace();
-            }
-        }
-
-        // メッセージ表示の時間管理
-        HandleMessageDisplay();
+        HandleCountdown();      // カウントダウン処理
+        HandleFinishSequence(); // ゴール後のメッセージ・シーケンス
+        HandleMessageDisplay(); // メッセージ表示管理
     }
 
     // ======================================================
-    // 🔸 カウントダウン開始メソッド
+    // 🔹 カウントダウン開始
     // ======================================================
     private void StartCountdown()
     {
-        Debug.Log("StartCountdown called - 操作禁止にします");
-        countdownTimer = 3f;
+        countdownValue = 3;
+        countdownTimer = 0f;
         countdownActive = true;
+        raceState = RaceState.Countdown;
 
-        // プレイヤーとライバルの操作を禁止（動かないように）
-        if (playerCar != null)
-            playerCar.DisableControl();
-
+        // 車の操作を一時停止
+        if (playerCar != null) playerCar.DisableControl();
         if (rivals != null)
         {
-            foreach (var r in rivals)
-                r.DisableControl();
+            foreach (var r in rivals) r.DisableControl();
+        }
+
+        // 最初に「3」を即表示
+        ShowMessage("3", 1f);
+    }
+
+    // ======================================================
+    // 🔹 カウントダウン処理
+    // ======================================================
+    private void HandleCountdown()
+    {
+        // カウントダウン中以外は何もしない
+        if (raceState != RaceState.Countdown || !countdownActive) return;
+
+        countdownTimer += Time.unscaledDeltaTime; // 時間を加算（ゲームの時間スケールに依存しない）
+
+        // 初フレームの経過時間を無視して表示安定化
+        if (!firstFrameShown)
+        {
+            firstFrameShown = true;
+            countdownTimer = 0f;
+            return;
+        }
+
+        if (countdownTimer >= countdownInterval)
+        {
+            countdownTimer = 0f;
+            countdownValue--; // カウントを1減らす
+
+            if (countdownValue > 0)
+            {
+                ShowMessage("Lady…", countdownInterval); // 1 の代わりに「Lady…」を表示
+            }
+            else if (countdownValue == 0)
+            {
+                ShowMessage("GO!", 1f); // 最後にGOを表示
+                countdownActive = false;
+                StartRace(); // レース開始
+            }
         }
     }
 
     // ======================================================
-    // 🔸 レース開始処理
+    // 🔹 レース開始
     // ======================================================
     public void StartRace()
     {
-        Debug.Log("StartRace called - 操作許可します");
-        ShowMessage("GO!", 1f);            // GO!表示
-        raceStartTime = Time.time;          // タイマー開始
-        raceOngoing = true;                 // レース中フラグON
-        currentState = RaceState.Running;   // 状態変更
+        raceState = RaceState.Racing;
+        raceStartTime = Time.time;
 
-        // プレイヤーを操作可能にする
-        if (playerCar != null)
-            playerCar.EnableControl();
-
-        // ライバルたちも動けるように
+        // 車の操作を有効化
+        if (playerCar != null) playerCar.EnableControl();
         if (rivals != null)
         {
             foreach (var r in rivals)
             {
                 r.EnableControl();
-
-                //ランダムな速度を与える（個性を出す）
-                r.SetRandomSpeed();
+                r.SetRandomSpeed(); // ライバル車はランダム速度に
             }
         }
+
+        Debug.Log("レース開始！");
     }
 
     // ======================================================
-    // 🔸 ゴール時に呼び出される
+    // 🔹 ゴール処理
     // ======================================================
-    public void Finish()
+    public void RegisterFinish(GameObject car)
     {
-        // まだレース中でなければ無視
-        if (!raceOngoing) return;
+        if (finishedCars.Contains(car)) return; // 既に登録済みなら無視
 
-        // 経過時間を計算
-        float finishTime = Time.time - raceStartTime;
+        finishedCars.Add(car);
+        finishOrder.Add(car.name);
 
-        // フラグをOFF
-        raceOngoing = false;
-        currentState = RaceState.Finished;
+        int rank = finishOrder.Count;               // 現在の順位
+        float time = Time.time - raceStartTime;    // 経過時間（デバッグ用）
 
-        // プレイヤーを止める
-        if (playerCar != null)
+        if (car.CompareTag("Rival"))
         {
-            playerCar.DisableControl();
-            StopCar(playerCar);
+            Debug.Log($"Rival {car.name} が {rank} 位でゴール！");
+            return; // ライバルはここで処理終了
         }
 
-        // ライバルも止める
-        if (rivals != null)
+        if (car.CompareTag("Player"))
         {
-            foreach (var r in rivals)
+            playerRank = rank;
+            playerPoints = CalculatePoints(rank); // 順位に応じてポイント計算
+
+            // 操作を全車無効化
+            if (playerCar != null) playerCar.DisableControl();
+            if (rivals != null)
             {
-                r.DisableControl();
-                StopCar(r);
+                foreach (var r in rivals) r.DisableControl();
             }
-        }
 
-        // タイムを表示
-        ShowMessage($"Finish!!\nTime: {finishTime:F2} + 秒", 3f);
-        Debug.Log("レース終了！タイム: " + finishTime + "秒");
+            raceState = RaceState.Finish;
+            finishState = FinishState.ShowRank;
+            stateTimer = 0f;
+
+            // ポイントを保存
+            PlayerDataManager.AddPoints(playerPoints);
+            SaveResult(playerRank, (int)playerPoints);
+        }
     }
 
     // ======================================================
-    // 🔸 車を物理的に停止させる処理
+    // 🔹 ゴール後のメッセージ・シーケンス
     // ======================================================
-    private void StopCar(MonoBehaviour car)
+    private void HandleFinishSequence()
     {
-        // Rigidbody2D コンポーネントを取得
-        Rigidbody2D rb = car.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (raceState != RaceState.Finish) return;
+
+        stateTimer += Time.unscaledDeltaTime;
+
+        switch (finishState)
         {
-            // 移動速度をゼロに
-            rb.linearVelocity = Vector2.zero;
+            case FinishState.ShowRank:
+                ShowMessage($"Finish!!\nRanking {playerRank} !!", 2f);
+                if (stateTimer > 2f)
+                {
+                    finishState = FinishState.ShowPoints;
+                    stateTimer = 0f;
+                }
+                break;
 
-            // 回転（スピン）も止める
-            rb.angularVelocity = 0f;
+            case FinishState.ShowPoints:
+                ShowMessage($"{playerPoints}Get Points!! ", 2f);
+                if (stateTimer > 2f)
+                {
+                    finishState = FinishState.ShowFinalResults;
+                    stateTimer = 0f;
+                }
+                break;
+
+            case FinishState.ShowFinalResults:
+                ShowFinalResults(); // 「リザルトを表示中…」と表示
+                if (stateTimer > 3f)
+                {
+                    finishState = FinishState.Done;
+                    raceState = RaceState.Done;
+                    SceneManager.LoadScene("HasuiRikuto/Scene/Result Scene"); // リザルトシーンへ移動
+                }
+                break;
         }
     }
 
     // ======================================================
-    // 🔸 メッセージ表示処理（時間経過で消える）
+    // 🔹 メッセージ表示
     // ======================================================
-    private float messageDisplayTime = 0f; // メッセージを出した時間
-    private float messageDuration = 0f;    // 表示時間の長さ
-    private string currentMessage = "";    // 今表示している内容
-
-    public void ShowMessage(string message, float duration = 1f)
+    private void ShowMessage(string msg, float duration)
     {
-        // メッセージUIが設定されていなければ何もしない
-        if (messageText == null) return;
-
-        // 同じメッセージを何度も出さないように
-        if (message == currentMessage) return;
-
-        currentMessage = message;
-
-        // テキストを更新して表示
-        messageText.text = message;
-        messageText.gameObject.SetActive(true);
-
-        // 時間を記録
+        currentMessage = msg;
         messageDuration = duration;
-        messageDisplayTime = Time.time;
+        messageDisplayTime = 0f;
+
+        if (messageText != null)
+            messageText.text = msg;
     }
 
-    // ======================================================
-    // 🔸 Updateで呼ばれる「メッセージ時間管理」
-    // ======================================================
     private void HandleMessageDisplay()
     {
-        if (messageText == null) return;
+        if (string.IsNullOrEmpty(currentMessage)) return;
 
-        // 表示中で、かつ一定時間経過したら非表示にする
-        if (messageText.gameObject.activeSelf &&
-            (Time.time - messageDisplayTime > messageDuration))
+        messageDisplayTime += Time.unscaledDeltaTime;
+
+        if (messageDisplayTime >= messageDuration)
         {
-            messageText.gameObject.SetActive(false);
-            currentMessage = ""; // 状態リセット
+            if (messageText != null)
+                messageText.text = ""; // 表示を消す
+            currentMessage = "";
         }
     }
+
+    // ======================================================
+    // 🔹 ポイント計算（順位に応じて）
+    // ======================================================
+    private float CalculatePoints(int rank)
+    {
+        switch (rank)
+        {
+            case 1: return 100;
+            case 2: return  80;
+            case 3: return  30;
+            default: return 10;
+        }
+    }
+
+    // ======================================================
+    // 🔹 結果をPlayerPrefsに保存
+    // ======================================================
+    private void SaveResult(int rank, int points)
+    {
+        PlayerPrefs.SetInt("LastRank", rank);
+        PlayerPrefs.SetInt("LastPoints", points);
+        PlayerPrefs.Save();
+    }
+
+    // ======================================================
+    // 🔹 最終リザルト表示（デバッグ用）
+    // ======================================================
+    private void ShowFinalResults()
+    {
+        ShowMessage("Moving to Results...", 3f);
+    }
+
+    // ======================================================
+    // 🔹 外部からレース状態を確認する用メソッド
+    // ======================================================
+    public bool IsRaceStarted() => raceState == RaceState.Racing;
+    public bool IsCountdownActive() => raceState == RaceState.Countdown;
+    public bool IsRaceFinished() => raceState == RaceState.Finish || raceState == RaceState.Done;
 }

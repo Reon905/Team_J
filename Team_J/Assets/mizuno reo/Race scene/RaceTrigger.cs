@@ -1,27 +1,37 @@
+ï»¿//RaceTrigger
 using UnityEngine;
 
 public class RaceTrigger : MonoBehaviour
 {
-    // ƒXƒ^[ƒg‚©ƒS[ƒ‹‚©‘I‚Ô‚½‚ß‚Ì—ñ‹“Œ^
+    // ã‚¹ã‚¿ãƒ¼ãƒˆ or ã‚´ãƒ¼ãƒ«ã‚’é¸æŠã™ã‚‹
     public enum TriggerType { Start, Goal }
     public TriggerType triggerType;
 
-    // ƒvƒŒƒCƒ„[‚ªƒgƒŠƒK[‚É“ü‚Á‚½‚ÉŒÄ‚Î‚ê‚é
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // ƒvƒŒƒCƒ„[‚Ìƒ^ƒO‚ğ‚ÂƒIƒuƒWƒFƒNƒg‚¾‚¯ˆ—
-        if (other.CompareTag("Player"))
+        // ----------------------------
+        // ğŸ ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹
+        // ----------------------------
+        if (triggerType == TriggerType.Start)
         {
-            if (triggerType == TriggerType.Start)
+            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒé€šéã—ã€ã¾ã ãƒ¬ãƒ¼ã‚¹ãŒå§‹ã¾ã£ã¦ã„ãªã„å ´åˆã®ã¿é–‹å§‹
+            if (other.CompareTag("Player") && !RaceManager.Instance.IsRaceStarted())
             {
-                if (!RaceManager.Instance.IsCountdownActive())
-                {
-                    RaceManager.Instance.StartRace();   // ƒXƒ^[ƒgˆ—ŒÄ‚Ño‚µ
-                }
+                RaceManager.Instance.StartRace();
+                Debug.Log("ãƒ¬ãƒ¼ã‚¹é–‹å§‹ï¼");
             }
-            else if (triggerType == TriggerType.Goal)
+        }
+
+        // ----------------------------
+        // ğŸ† ã‚´ãƒ¼ãƒ«åœ°ç‚¹
+        // ----------------------------
+        else if (triggerType == TriggerType.Goal)
+        {
+            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ or ãƒ©ã‚¤ãƒãƒ«ãŒã‚´ãƒ¼ãƒ«ãƒ©ã‚¤ãƒ³ã‚’é€šéã—ãŸå ´åˆ
+            if (other.CompareTag("Player") || other.CompareTag("Rival"))
             {
-                RaceManager.Instance.Finish();  // ƒS[ƒ‹ˆ—ŒÄ‚Ño‚µ
+                RaceManager.Instance.RegisterFinish(other.gameObject);
+                Debug.Log($"{other.name} ãŒã‚´ãƒ¼ãƒ«ã—ã¾ã—ãŸï¼");
             }
         }
     }
