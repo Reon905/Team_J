@@ -9,8 +9,10 @@ public class Evaluation : MonoBehaviour
 
     void Start()
     {
-        //Item,Item2,Item3の合計ポイントを取得
+        //Item,Item2,Item3,レースの合計ポイントを取得
         int totalPoints = Item.totalPoints + Item2.totalPoints + Item3.totalPoints;
+        int racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
+        totalPoints += racePoints;
 
         //ランクを判定して設定
         currentRank = GetRank(totalPoints);
