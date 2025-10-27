@@ -167,7 +167,7 @@ public class E_NPC_Controller : MonoBehaviour
     }
 
     // 衝突した瞬間の処理
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         // 衝突した相手のタグが "Player" だったら
         if (collision.gameObject.CompareTag("Player"))

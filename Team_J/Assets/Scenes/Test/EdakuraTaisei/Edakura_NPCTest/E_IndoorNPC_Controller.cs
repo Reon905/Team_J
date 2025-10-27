@@ -145,7 +145,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     }
 
     // Õ“Ë‚µ‚½uŠÔ‚Ìˆ—
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         // Õ“Ë‚µ‚½‘Šè‚Ìƒ^ƒO‚ª "Player" ‚¾‚Á‚½‚ç
         if (collision.gameObject.CompareTag("Player"))
