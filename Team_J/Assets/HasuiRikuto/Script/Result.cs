@@ -7,8 +7,11 @@ public class Result : MonoBehaviour
 
     void Start()
     {
-        // すでに減少済みの値を表示
+        
         int totalPoints = Item.totalPoints + Item2.totalPoints + Item3.totalPoints;
+        int racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
+        totalPoints += racePoints;
+
         int totalMoney = Item.totalMoney + Item2.totalMoney + Item3.totalMoney;
         int itemCount = Item.itemCount + Item2.itemCount + Item3.itemCount;
 
@@ -18,7 +21,7 @@ public class Result : MonoBehaviour
             $": {totalPoints}pt";
 
         Debug.Log($"[Result] : {itemCount}個");
-        Debug.Log($"[Result] : {totalPoints}pt");
+        Debug.Log($"[Result] : {totalPoints}pt (レース分 {racePoints}pt 含む)");
         Debug.Log($"[Result] : {totalMoney}円");
     }
 }

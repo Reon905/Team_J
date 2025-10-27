@@ -282,6 +282,11 @@ public class RaceManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("LastRank", rank);
         PlayerPrefs.SetInt("LastPoints", points);
+
+        int currentTotal = PlayerPrefs.GetInt("TotalRacePoints", 0);
+        currentTotal += points;
+        PlayerPrefs.SetInt("TotalRacePoints", currentTotal);
+
         PlayerPrefs.Save();
     }
 
