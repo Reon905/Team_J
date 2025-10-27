@@ -198,7 +198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.52, y: 123.31984}
+  m_AnchoredPosition: {x: 29, y: 81.815}
   m_SizeDelta: {x: 539.22, y: 89.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52080658
@@ -619,7 +619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -162}
+  m_AnchoredPosition: {x: 0, y: -161}
   m_SizeDelta: {x: 225.35, y: 84.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571033363
@@ -716,6 +716,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571033361}
   m_CullTransparentMesh: 1
+--- !u!1 &658680784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 658680786}
+  - component: {fileID: 658680785}
+  m_Layer: 0
+  m_Name: Stage Rank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &658680785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658680784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a957c47e571c54bbe21de5fc2238a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RankText: {fileID: 909275345}
+--- !u!4 &658680786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658680784}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.58483, y: 0.16226, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &743700724
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +806,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &858050765
+--- !u!1 &909275342
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -769,23 +814,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 858050766}
-  - component: {fileID: 858050768}
-  - component: {fileID: 858050767}
+  - component: {fileID: 909275343}
+  - component: {fileID: 909275346}
+  - component: {fileID: 909275345}
+  - component: {fileID: 909275344}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: 'RankText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &858050766
+--- !u!224 &909275343
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858050765}
+  m_GameObject: {fileID: 909275342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -795,16 +841,29 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250.88, y: 93.9}
+  m_AnchoredPosition: {x: 13.273, y: -39.215}
+  m_SizeDelta: {x: 507.76, y: 78.43}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &858050767
+--- !u!114 &909275344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858050765}
+  m_GameObject: {fileID: 909275342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a957c47e571c54bbe21de5fc2238a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RankText: {fileID: 909275345}
+--- !u!114 &909275345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909275342}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -820,25 +879,27 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 80
+    m_MaxSize: 70
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RANK
---- !u!222 &858050768
+  m_Text: 'Rank
+
+'
+--- !u!222 &909275346
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858050765}
+  m_GameObject: {fileID: 909275342}
   m_CullTransparentMesh: 1
 --- !u!1 &1609245098
 GameObject:
@@ -979,10 +1040,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 269946804}
-  - {fileID: 52080657}
   - {fileID: 2112626726}
+  - {fileID: 52080657}
+  - {fileID: 909275343}
   - {fileID: 571033362}
-  - {fileID: 858050766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1024,8 +1085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273.15, y: 186.77}
-  m_SizeDelta: {x: 253.69, y: 76.37}
+  m_AnchoredPosition: {x: -184, y: 175.71}
+  m_SizeDelta: {x: 399.99, y: 98.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112626727
 MonoBehaviour:
@@ -1049,7 +1110,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1081,3 +1142,4 @@ SceneRoots:
   - {fileID: 743700726}
   - {fileID: 7954861}
   - {fileID: 1609245100}
+  - {fileID: 658680786}
