@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class PlayerCarController : MonoBehaviour
 {
     // ▼ 通常走行パラメータ
-    public float acceleration = 5f;      // 通常加速度
-    public float maxSpeed = 20f;         // 通常最大速度
+    public static float acceleration;      // 通常加速度
+    public static float maxSpeed;         // 通常最大速度
     public float deceleration = 3f;      // 減速度
 
     private float currentSpeed = 0f;     // 現在の速度
@@ -29,6 +29,7 @@ public class PlayerCarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
 
         // スピードゲージ初期化
         if (speedSlider != null)

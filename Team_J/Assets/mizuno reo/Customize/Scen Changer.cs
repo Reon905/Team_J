@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class GoToRaceOnEnter : MonoBehaviour
 {
-    // シーンを切り替えるメソッド
-    public void ChangeScene(string Racescene)
+    [SerializeField] private string raceSceneName = "Race scene"; // ← あなたのレースシーン名に変更！
+
+    void Update()
     {
-        SceneManager.LoadScene(Racescene);
+        // Enterキーでシーン切り替え
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            SceneManager.LoadScene("Race scene");
+        }
     }
 }
