@@ -31,7 +31,7 @@ public class SceneChangeOnEnter : MonoBehaviour
             isPlayerInRange = true;
             if (messageText != null)
             {
-                messageText.text = "Enterで外に出る";
+                messageText.text = "Enterでカスタム画面へ";
                 messageText.gameObject.SetActive(true);
             }
         }

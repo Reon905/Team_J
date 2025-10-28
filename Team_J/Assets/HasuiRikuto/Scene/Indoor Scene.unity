@@ -3694,7 +3694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413cdd54bb053104290912925d381907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Outdoor Scene
+  nextSceneName: Scen_Customize
   messageText: {fileID: 1760883328}
 --- !u!61 &922848561
 BoxCollider2D:
@@ -7037,7 +7037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 271.17004, y: 66}
+  m_AnchoredPosition: {x: 251.8, y: 63.34}
   m_SizeDelta: {x: 213.71, y: 47.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1779746125
