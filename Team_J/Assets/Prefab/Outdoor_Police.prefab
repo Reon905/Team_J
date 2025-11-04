@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.93725497, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,9 +101,9 @@ GameObject:
   - component: {fileID: 6662772598387093507}
   - component: {fileID: 2231080559971169882}
   - component: {fileID: 4117017513842490130}
-  - component: {fileID: -8082346933699498584}
+  - component: {fileID: 7096976229089467388}
   m_Layer: 8
-  m_Name: IndoorNPC
+  m_Name: Outdoor_Police
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.9396019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   stoppingDistance: 0
---- !u!114 &-8082346933699498584
+--- !u!114 &7096976229089467388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,18 +302,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3859507833383209786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dbc750107ffe7946a860088622e4d72, type: 3}
+  m_Script: {fileID: 11500000, guid: 3402322944d308248808510f60e8b59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChaseTimeText: {fileID: 0}
   m_TargetLayer:
     serializedVersion: 2
     m_Bits: 192
   m_fSightAngle: 0
   Detection_Value: 0
-  P_moveSpeed: 3
-  P_waitTime: 4
-  TurnSpeed: 1.5
-  Chase_Speed: 6
+  P_moveSpeed: 6
+  P_waitTime: 2
+  TurnSpeed: 5
+  Chase_Speed: 7
+  ChaseTimer: 0
   target: {fileID: 0}
   patrolPoints: []
   _state: 0
