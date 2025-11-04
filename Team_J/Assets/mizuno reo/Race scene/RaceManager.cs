@@ -269,7 +269,7 @@ public class RaceManager : MonoBehaviour
         switch (rank)
         {
             case 1: return 100;
-            case 2: return  80;
+            case 2: return  70;
             case 3: return  30;
             default: return 10;
         }
