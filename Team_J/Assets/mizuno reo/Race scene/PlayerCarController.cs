@@ -26,27 +26,33 @@ public class PlayerCarController : MonoBehaviour
     private float boostTimeRemaining = 0f; // 残りブースト時間
     private bool isBoosting = false;       // ブースト中フラグ
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
+        // --- Customize で設定された値を反映 ---
+        acceleration = Customize.selectedAcceleration;
+        maxSpeed = Customize.selectedMaxSpeed;
 
-        // スピードゲージ初期化
-        if (speedSlider != null)
+        Debug.Log($"PlayerCarController initialized → Accel:{acceleration}, MaxSpeed:{maxSpeed}");
+
+        // --- UI 初期化 ---
+        if (speedSlider)
         {
             speedSlider.minValue = 0f;
             speedSlider.maxValue = maxSpeed;
+            speedSlider.value = 0f;
         }
 
-        // ブーストゲージ初期化
-        if (boostSlider != null)
+        if (boostSlider)
         {
             boostSlider.minValue = 0f;
             boostSlider.maxValue = boostDuration;
-            boostTimeRemaining = boostDuration; // 最初は満タン
+            boostTimeRemaining = boostDuration;
             boostSlider.value = boostTimeRemaining;
         }
     }
+
 
     void Update()
     {
@@ -125,17 +131,21 @@ public class PlayerCarController : MonoBehaviour
 
         // --- UI更新 ---
         if (speedSlider != null)
+        {
             speedSlider.value = currentSpeed;
-
+        }
         if (boostSlider != null)
+        {
             boostSlider.value = boostTimeRemaining;
+        }
     }
 
     // --- 他スクリプトから呼び出す用（レース開始など） ---
     public void EnableControl()
     {
         canDrive = true;
-        Debug.Log("車の操作を許可しました");
+        Debug.Log("車の操作を許可しました（canDrive = " + canDrive + ")");
+
     }
 
     // --- 操作無効化（レース前など） ---
@@ -148,8 +158,10 @@ public class PlayerCarController : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
             return;
         }
+
         if (speedSlider != null)
             speedSlider.value = 0f;
 
@@ -160,6 +172,7 @@ public class PlayerCarController : MonoBehaviour
         if (boostSlider != null)
             boostSlider.value = boostTimeRemaining;
     }
+
 }
 
 
