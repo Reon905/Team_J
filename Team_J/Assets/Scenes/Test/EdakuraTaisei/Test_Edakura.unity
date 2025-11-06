@@ -7807,9 +7807,9 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   Speed: 8
-  WalkDelay: 0
+  WalkDelay: 1
   PlayerVector: {x: 0, y: 0}
-  WalkAudioClip: {fileID: 8300000, guid: d39f059902495c5479dca12ad379b2f0, type: 3}
+  WalkAudioClip: {fileID: 8300000, guid: fec672b767a01e943aa0f206c6cec58c, type: 3}
 --- !u!82 &6568254771333590851
 AudioSource:
   m_ObjectHideFlags: 0
