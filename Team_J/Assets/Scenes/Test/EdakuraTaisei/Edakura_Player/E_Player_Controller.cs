@@ -13,7 +13,7 @@ public class E_Player_Controller : MonoBehaviour
 
     Rigidbody2D rbody;              //Rigidbody2D型の変数宣言
     public float Speed = 6.0f;      //Playerの移動速度
-    public int WalkDelay = 0;       //歩行音用
+    public int WalkDelay = 1;       //歩行音用
     private bool FirstWalk = false;
 
     public Vector2 PlayerVector;    //キー入力の値を格納
@@ -64,19 +64,19 @@ public class E_Player_Controller : MonoBehaviour
         //        FirstWalk = true;
         //    }
         //}
-        if (FirstWalk == false) 
-        { 
-            if (PlayerVector.x != 0.0f || PlayerVector.y != 0.0f)
-            {
-                FirstWalk = true;
-            }
-        }
-        while (FirstWalk == true)
-        {
-            WalkAudio.PlayOneShot(WalkAudioClip);
+        //if (FirstWalk == false) 
+        //{ 
+        //    if (PlayerVector.x != 0.0f || PlayerVector.y != 0.0f)
+        //    {
+        //        FirstWalk = true;
+        //    }
+        //}
+        //while (FirstWalk == true)
+        //{
+        //    WalkAudio.PlayOneShot(WalkAudioClip);
 
-            FirstWalk = false;
-        }
+        //    FirstWalk = false;
+        //}
 
 
         //向きの調整
@@ -104,11 +104,16 @@ public class E_Player_Controller : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 90);
             WalkDelay++;
         }
-        if (WalkDelay > 30)
+        if (WalkDelay > 30 || WalkDelay == 0)
         {
             Debug.Log("歩行音再生");
             WalkAudio.PlayOneShot(WalkAudioClip);
-            WalkDelay = 0;
+            WalkDelay = 1;
+        }
+
+        if(PlayerVector.x == 0.0f && PlayerVector.y == 0.0f)
+        {
+            WalkDelay = -1;
         }
 
 
