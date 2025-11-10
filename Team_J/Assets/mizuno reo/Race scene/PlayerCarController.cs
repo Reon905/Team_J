@@ -13,13 +13,13 @@ public class PlayerCarController : MonoBehaviour
     private float currentSpeed = 0f;     // 現在の速度
     private Rigidbody2D rb;              // Rigidbody2D コンポーネント
 
-    public Slider speedSlider;           // スピードゲージUI
-    public bool canDrive = false;        // レース開始フラグ
-    public AudioSource CarSound;          // Sound関数
-    public AudioClip CarSoundClip;       //
-    public AudioClip CarIdling;
-    private bool isPlaying = false;
-    private bool isAccelerating = false;
+    public Slider speedSlider;             // スピードゲージUI
+    public bool canDrive = false;          // レース開始フラグ
+    public AudioSource CarSound;           //車の通常サウンド用AudioSource
+    public AudioClip CarSoundClip;         //加速時の音
+    public AudioClip CarIdling;            //アイドリング(減速)時の音
+    private bool isPlaying = false;        //ブースト用AudioSource
+    private bool isAccelerating = false;   //ブースト音
     public AudioSource boostAudio;
     public AudioClip boostClip;
 
@@ -39,7 +39,7 @@ public class PlayerCarController : MonoBehaviour
         //CarSound = this.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
 
-        PlayIdlingSound();
+        PlayIdlingSound(); //ゲーム開始時に呼び出し
 
         // --- Customize で設定された値を反映 ---
         acceleration = Customize.selectedAcceleration;
@@ -76,19 +76,22 @@ public class PlayerCarController : MonoBehaviour
         }
 
         // --- ブーストキーの入力（Enterキー長押し） ---
+        //Enterキーが押されていて、かつブーストゲージが残っている場合に再生
         bool isBoostKeyPressed = Input.GetKey(KeyCode.Return);
 
         // ブースト条件：キー押下中＆ゲージが残っている
+
         if (isBoostKeyPressed && boostTimeRemaining > 0f)
         {
             if (!isBoosting)
             {
-                StartBoostSound();
+                StartBoostSound();//ブースト音を再生開始
             }
             isBoosting = true;
         }
         else
         {
+            //ブースト解除時に音を止める
             if(isBoosting)
             {
                 StopBoostSound();
@@ -113,14 +116,16 @@ public class PlayerCarController : MonoBehaviour
         }
 
         // Wキー押下・離すの検出
+        //Wを押したときに走行音へ切り替え
         if (Input.GetKeyDown(KeyCode.W))
         {
-            PlayDriveSound();
+            PlayDriveSound();//加速音を再生
             isAccelerating = true;
         }
+        //Wキーを離したときにアイドリング音へ戻す
         else if (Input.GetKeyUp(KeyCode.W))
         {
-            PlayIdlingSound();
+            PlayIdlingSound();//アイドリング音を再生
             isAccelerating = false;
         }
         //else if (Input.GetKey(KeyCode.W) && IsIdling == true)
@@ -220,33 +225,36 @@ public class PlayerCarController : MonoBehaviour
         if (boostSlider != null)
             boostSlider.value = boostTimeRemaining;
     }
+    //走行音の再生処理
     private void PlayDriveSound()
     {
         if (CarSound.clip == CarSoundClip && CarSound.isPlaying) return;
-        CarSound.loop = true;
-        CarSound.clip = CarSoundClip;
-        CarSound.Play();
+        CarSound.loop = true;           //ループ再生ON
+        CarSound.clip = CarSoundClip;   //再生する音を設定
+        CarSound.Play();                //再生開始
     }
-
+    //アイドリング音(減速時)の再生処理
     private void PlayIdlingSound()
     {
         if (CarSound.clip == CarIdling && CarSound.isPlaying) return;
-        CarSound.loop = true;
-        CarSound.clip = CarIdling;
-        CarSound.Play();
+        CarSound.loop = true;          //繰り返し再生ON
+        CarSound.clip = CarIdling;     //再生する音を「アイドリング音」に設定
+        CarSound.Play();               //再生開始
     }
-
+    //ブースト音を流す処理
     private void StartBoostSound()
     {
+        //ブースト音が設定されていない or すでに再生中ならスキップ
         if (boostClip == null || boostAudio.isPlaying) return;
-        boostAudio.clip = boostClip;
-        boostAudio.volume = 1f;
-        boostAudio.loop = true;
-        boostAudio.Play();
+        boostAudio.clip = boostClip;   //再生する音を設定
+        boostAudio.volume = 1f;        //音量設定(最大)
+        boostAudio.loop = true;        //ループ再生ON
+        boostAudio.Play();             //再生開始
     }
-
+    //ブースト音を止める処理
     private void StopBoostSound()
     {
+        //再生中なら停止する
         if (boostAudio.isPlaying)
             boostAudio.Stop();
     }
