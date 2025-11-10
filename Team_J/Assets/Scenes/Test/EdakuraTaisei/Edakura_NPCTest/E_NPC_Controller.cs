@@ -98,7 +98,7 @@ public class E_NPC_Controller : MonoBehaviour
     {
         if (other.CompareTag("Player"))     // PlayerタグのColliderだけが真
         {
-            //
+            
             if (TimeElapsed >= TimeOut)
             {
                 RaycastHit2D hit;   // rayが当たったコライダー判別用
