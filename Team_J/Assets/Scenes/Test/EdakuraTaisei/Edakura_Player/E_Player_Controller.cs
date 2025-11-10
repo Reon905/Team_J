@@ -108,13 +108,13 @@ public class E_Player_Controller : MonoBehaviour
         {
             Debug.Log("ï‡çsâπçƒê∂");
             WalkAudio.PlayOneShot(WalkAudioClip);
-            WalkDelay = 1;
+            WalkDelay = 0;
         }
 
-        if(PlayerVector.x == 0.0f && PlayerVector.y == 0.0f)
-        {
-            WalkDelay = -1;
-        }
+        //if(PlayerVector.x == 0.0f && PlayerVector.y == 0.0f)
+        //{
+        //    WalkDelay = -1;
+        //}
 
 
 }
