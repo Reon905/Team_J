@@ -1,4 +1,5 @@
 //PlaiyerCarController 
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,13 @@ public class PlayerCarController : MonoBehaviour
 
     public Slider speedSlider;           // スピードゲージUI
     public bool canDrive = false;        // レース開始フラグ
+    public AudioSource CarSound;          // Sound関数
+    public AudioClip CarSoundClip;       //
+    public AudioClip CarIdling;
+    private bool isPlaying = false;
+    private bool isAccelerating = false;
+    public AudioSource boostAudio;
+    public AudioClip boostClip;
 
     // ▼ ブースト関連パラメータ
     [Header("Boost Settings")]
@@ -28,7 +36,10 @@ public class PlayerCarController : MonoBehaviour
 
     private void Start()
     {
+        //CarSound = this.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+
+        PlayIdlingSound();
 
         // --- Customize で設定された値を反映 ---
         acceleration = Customize.selectedAcceleration;
@@ -70,10 +81,18 @@ public class PlayerCarController : MonoBehaviour
         // ブースト条件：キー押下中＆ゲージが残っている
         if (isBoostKeyPressed && boostTimeRemaining > 0f)
         {
+            if (!isBoosting)
+            {
+                StartBoostSound();
+            }
             isBoosting = true;
         }
         else
         {
+            if(isBoosting)
+            {
+                StopBoostSound();
+            }
             isBoosting = false;
         }
 
@@ -85,13 +104,41 @@ public class PlayerCarController : MonoBehaviour
 
         // 加速・減速の入力処理
         if (Input.GetKey(KeyCode.W))
-        {
+        { 
             currentSpeed += appliedAcceleration * Time.deltaTime; // 加速
         }
         else
         {
-            currentSpeed -= deceleration * Time.deltaTime;        // 減速
+              currentSpeed -= deceleration * Time.deltaTime;        // 減速
         }
+
+        // Wキー押下・離すの検出
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            PlayDriveSound();
+            isAccelerating = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            PlayIdlingSound();
+            isAccelerating = false;
+        }
+        //else if (Input.GetKey(KeyCode.W) && IsIdling == true)
+        //{
+        //    CarSound.Stop();
+        //    IsIdling = false;
+        //}
+        //else if (IsSoundStop == true)
+        //{
+
+        //    CarSound.PlayOneShot(CarIdling);
+        //    IsIdling = true;
+        //}
+        //else
+        //{
+        //    CarSound.Stop();
+        //    IsSoundStop = true;
+        //}
 
         // --- 最高速度制限 ---
         // ブースト中は maxSpeed × boostSpeedLimitMultiplier に上限アップ
@@ -113,8 +160,9 @@ public class PlayerCarController : MonoBehaviour
 
             if (boostTimeRemaining <= 0f)
             {
+
                 boostTimeRemaining = 0f;
-                isBoosting = false;
+           //     isBoosting = false;
             }
         }
         else
@@ -172,46 +220,37 @@ public class PlayerCarController : MonoBehaviour
         if (boostSlider != null)
             boostSlider.value = boostTimeRemaining;
     }
+    private void PlayDriveSound()
+    {
+        if (CarSound.clip == CarSoundClip && CarSound.isPlaying) return;
+        CarSound.loop = true;
+        CarSound.clip = CarSoundClip;
+        CarSound.Play();
+    }
+
+    private void PlayIdlingSound()
+    {
+        if (CarSound.clip == CarIdling && CarSound.isPlaying) return;
+        CarSound.loop = true;
+        CarSound.clip = CarIdling;
+        CarSound.Play();
+    }
+
+    private void StartBoostSound()
+    {
+        if (boostClip == null || boostAudio.isPlaying) return;
+        boostAudio.clip = boostClip;
+        boostAudio.volume = 1f;
+        boostAudio.loop = true;
+        boostAudio.Play();
+    }
+
+    private void StopBoostSound()
+    {
+        if (boostAudio.isPlaying)
+            boostAudio.Stop();
+    }
 
 }
 
 
-
-/*
-using UnityEngine.UI;
-
-public class PlayerCarController : MonoBehaviour
-{
-    public float acceleration = 5f;    // �����x
-    public float maxSpeed = 20f;       // �ő呬�x
-    public float deceleration = 3f;    // �����x
-
-    private float currentSpeed = 0f;   // ���݂̑��x
-    private Rigidbody2D rb;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        // ���́F�X�y�[�X�L�[�ŉ���
-        if (Input.GetKey(KeyCode.W))
-        {
-            currentSpeed += acceleration * Time.deltaTime;
-        }
-        else
-        {
-            // �L�[�𗣂��ƌ���
-            currentSpeed -= deceleration * Time.deltaTime;
-        }
-
-        // ���x����
-        currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
-
-        // ������iY���j�Ɉړ�
-        rb.linearVelocity = new Vector2(0, currentSpeed);
-    }
-}
-*/
