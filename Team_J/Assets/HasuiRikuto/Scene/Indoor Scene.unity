@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: Speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7733062392588150359, guid: 7d112bb75ccdd6f4dbcc71225b957590, type: 3}
+      propertyPath: WalkDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8042247126468030605, guid: 7d112bb75ccdd6f4dbcc71225b957590, type: 3}
       propertyPath: m_SortingOrder
       value: 4

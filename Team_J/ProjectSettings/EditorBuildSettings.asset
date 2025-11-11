@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/HasuiRikuto/Scene/Indoor Scene.unity
     guid: 2830e84d3da3d9e42a5cfbbd4b865372
   - enabled: 1
+    path: Assets/HasuiRikuto/Scene/Indoor Office Scene.unity
+    guid: 1b034103bb8537544aa9ba30649e234a
+  - enabled: 1
+    path: Assets/HasuiRikuto/Scene/Indoor Bank Scene.unity
+    guid: 053c5894821c53248aba2e650af10b62
+  - enabled: 1
     path: Assets/HasuiRikuto/Scene/Outdoor Scene.unity
     guid: 231f7d1341dce5745876f093431ea9ee
   - enabled: 1

@@ -978,6 +978,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7733062392588150359, guid: 7d112bb75ccdd6f4dbcc71225b957590, type: 3}
+      propertyPath: WalkDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8042247126468030605, guid: 7d112bb75ccdd6f4dbcc71225b957590, type: 3}
       propertyPath: m_SortingOrder
       value: 3
@@ -4216,7 +4220,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 5402a6bfd4389e74488ce67572a951f6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
