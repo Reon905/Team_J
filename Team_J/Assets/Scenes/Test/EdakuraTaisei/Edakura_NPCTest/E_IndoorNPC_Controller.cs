@@ -41,9 +41,13 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     // ‰Šúó‘Ô‚ğPatrol‚É‚µ‚Ä‚¨‚­
     public NPC_State _state = NPC_State.Patrol;
 
+    AudioSource DetectionSource;
+    public AudioClip DetectionClip;
+
     private void Start()
     {
         NPC_rbody = GetComponent<Rigidbody2D>();
+        DetectionSource = GetComponent<AudioSource>();
 
         //Šeí•Ï”‚ğ‰Šú‰»
         m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
@@ -107,6 +111,8 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
 
                                 //Player‚Ìó‘Ô‚ğDetection‚É‚·‚é
                                 GameStateManager.instance.currentPlayerState = PlayerState.Detection;
+                                DetectionSource.PlayOneShot(DetectionClip);
+
                                 Debug.Log("Detection!!!");
 
                                 _state = NPC_State.Chase;      // ó‘Ô‚ğChase‚ÉØ‚è‘Ö‚¦

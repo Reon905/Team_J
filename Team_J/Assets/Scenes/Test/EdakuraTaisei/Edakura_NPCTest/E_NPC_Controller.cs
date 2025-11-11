@@ -41,6 +41,9 @@ public class E_NPC_Controller : MonoBehaviour
     [SerializeField] Transform target;  //追跡するターゲット
     public Transform[] patrolPoints;    // 巡回地点を格納する配列
 
+    AudioSource DetectionSource;        //見つかった音用
+    public AudioClip DetectionClip;     //見つかった音用
+
 
     // 初期状態をPatrolにしておく
     public NPC_State _state = NPC_State.Patrol;
@@ -48,6 +51,7 @@ public class E_NPC_Controller : MonoBehaviour
     private void Start()
     {
         NPC_rbody = GetComponent<Rigidbody2D>();
+        DetectionSource = GetComponent<AudioSource>();
 
         //各種変数を初期化
         m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
@@ -127,6 +131,7 @@ public class E_NPC_Controller : MonoBehaviour
                                 {
                                     //Playerの状態をDetectionにする
                                     GameStateManager.instance.currentPlayerState = PlayerState.Detection;
+                                    DetectionSource.PlayOneShot(DetectionClip);
                                 }
 
                                 Debug.Log("Detection!!!");

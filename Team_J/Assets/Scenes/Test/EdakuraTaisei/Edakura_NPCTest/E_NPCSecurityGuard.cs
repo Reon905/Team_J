@@ -45,9 +45,13 @@ public class E_NPCSecurityGuard : MonoBehaviour
     // ‰Šúó‘Ô‚ğPatrol‚É‚µ‚Ä‚¨‚­
     public NPC_State _state = NPC_State.Patrol;
 
+    AudioSource DetectionSource;
+    public AudioClip DetectionClip;
+
     private void Start()
     {
         NPC_rbody = GetComponent<Rigidbody2D>();
+        DetectionSource = GetComponent<AudioSource>();
 
         //Šeí•Ï”‚ğ‰Šú‰»
         m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
@@ -113,6 +117,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
                                 {
                                     //Player‚Ìó‘Ô‚ğDetection‚É‚·‚é
                                     GameStateManager.instance.currentPlayerState = PlayerState.Detection;
+                                    DetectionSource.PlayOneShot(DetectionClip);
                                 }
 
                                 Debug.Log("Detection!!!");
