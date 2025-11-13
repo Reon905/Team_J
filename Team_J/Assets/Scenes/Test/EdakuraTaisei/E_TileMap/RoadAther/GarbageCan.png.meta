@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1a13af10bd030bb47b9817249695c2e5
+guid: 21c82e69d86b7d4418cc9bd8c4738123
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -333980154028044092
-    second: PostBox_0
+      213: 1915090101210537560
+    second: GarbageCan_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PostBox_0
+      name: GarbageCan_0
       rect:
         serializedVersion: 2
-        x: 119
-        y: 89
-        width: 257
-        height: 302
+        x: 74
+        y: 29
+        width: 347
+        height: 437
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c0d025c1d67d5bf0800000000000000
-      internalID: -333980154028044092
+      spriteID: 85e558bec44c39a10800000000000000
+      internalID: 1915090101210537560
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PostBox_0: -333980154028044092
+      GarbageCan_0: 1915090101210537560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
