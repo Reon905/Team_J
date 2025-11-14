@@ -6,6 +6,9 @@ public class ChangeScene : MonoBehaviour
     public string nextSceneName = "";      // 次のシーン名
     public bool resetDataOnLoad = true;    // データをリセットするか（Inspectorで切り替え可能）
 
+    private AudioSource audioSource;
+    public AudioClip itemSound;
+
     void Update()
     {
         // Enterキーが押されたら
@@ -73,6 +76,8 @@ public class ChangeScene : MonoBehaviour
 
                 Debug.Log("全データをリセットしました（アイテム・金額・時間）");
             }
+
+            SoundPlayer.instance.PlaySE(itemSound);
 
             //シーン切り替え
             SceneManager.LoadScene(nextSceneName);

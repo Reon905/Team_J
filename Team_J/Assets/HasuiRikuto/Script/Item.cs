@@ -8,11 +8,15 @@ public class Item : MonoBehaviour
     public static int itemCount = 0;
 
     private ItemManager itemManager;
+    private AudioSource audioSource;  
+    public AudioClip itemSound;       
 
     void Start()
     {
         price = Random.Range(2000, 4001);
         itemManager = GetComponent<ItemManager>();
+
+        audioSource = GetComponent<AudioSource>(); // ← AudioSource取得
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +29,10 @@ public class Item : MonoBehaviour
 
             Debug.Log("アイテム1取得！ +" + price + "円、+40pt");
 
-            // ここでItemManagerに「取得済み」と伝える
+            // 🔊 サウンド再生（Item は消えても問題なし）
+            SoundPlayer.instance.PlaySE(itemSound);
+
+            // 取得済み通知
             if (itemManager != null)
                 itemManager.CollectItem();
         }

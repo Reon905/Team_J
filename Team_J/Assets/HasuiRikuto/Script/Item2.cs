@@ -8,6 +8,8 @@ public class Item2 : MonoBehaviour
     public static int itemCount = 0;
 
     private ItemManager itemManager;
+    private AudioSource audioSource;
+    public AudioClip itemSound;
 
     void Start()
     {
@@ -24,6 +26,8 @@ public class Item2 : MonoBehaviour
             itemCount++;
 
             Debug.Log("アイテム2取得！ +" + price + "円、+20pt");
+
+            SoundPlayer.instance.PlaySE(itemSound);
 
             if (itemManager != null)
                 itemManager.CollectItem();

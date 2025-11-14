@@ -13,6 +13,9 @@ public class Item7 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private ItemManager itemManager;
 
+    private AudioSource audioSource;
+    public AudioClip itemSound;
+
     public Text messageText;
     public float holdTime = 2.0f;
     private float holdTimer = 0f;
@@ -79,6 +82,8 @@ public class Item7 : MonoBehaviour
         totalMoney += price;
         totalPoints += 100;
         itemCount++;
+
+        SoundPlayer.instance.PlaySE(itemSound);
 
         if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
         if (messageText != null) messageText.text = "æ“¾Š®—¹I";

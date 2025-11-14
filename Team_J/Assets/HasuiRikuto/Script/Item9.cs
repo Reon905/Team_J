@@ -9,6 +9,9 @@ public class Item9 : MonoBehaviour
 
     private ItemManager itemManager;
 
+    private AudioSource audioSource;
+    public AudioClip itemSound;
+
     void Start()
     {
         price = 30000;
@@ -24,6 +27,8 @@ public class Item9 : MonoBehaviour
             itemCount++;
 
             Debug.Log("アイテム4取得！ +" + price + "円、+70pt");
+
+            SoundPlayer.instance.PlaySE(itemSound);
 
             // ここでItemManagerに「取得済み」と伝える
             if (itemManager != null)

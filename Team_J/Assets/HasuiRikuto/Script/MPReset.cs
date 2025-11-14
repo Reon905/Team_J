@@ -18,7 +18,6 @@ public class MPReset : MonoBehaviour
                 Item.totalMoney = 0;
                 Item.totalPoints = 0;
                 
-
                 Item2.totalMoney = 0;
                 Item2.totalPoints = 0;
                

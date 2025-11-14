@@ -1749,6 +1749,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7185532084301931480, guid: 2d8a88ae746766b44b993ba6281c27b7, type: 3}
+      propertyPath: itemSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
     - target: {fileID: 8191937509905763811, guid: 2d8a88ae746766b44b993ba6281c27b7, type: 3}
       propertyPath: m_Name
       value: Money

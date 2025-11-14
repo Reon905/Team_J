@@ -13,6 +13,9 @@ public class Item3 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private ItemManager itemManager;
 
+    private AudioSource audioSource;
+    public AudioClip itemSound;
+
     public Text messageText;
     public float holdTime = 2.0f;
     private float holdTimer = 0f;
@@ -61,6 +64,7 @@ public class Item3 : MonoBehaviour
             if (!isOpened && messageText != null)
                 messageText.text = "Enterを長押しで開錠";
         }
+      
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -70,6 +74,8 @@ public class Item3 : MonoBehaviour
             playerInRange = false;
             holdTimer = 0f;
             if (messageText != null) messageText.text = "";
+
+          
         }
     }
 
@@ -79,6 +85,8 @@ public class Item3 : MonoBehaviour
         totalMoney += price;
         totalPoints += 60;
         itemCount++;
+
+        SoundPlayer.instance.PlaySE(itemSound);
 
         if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
         if (messageText != null) messageText.text = "取得完了！";
