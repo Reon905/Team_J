@@ -104,7 +104,7 @@ public class E_Player_Controller : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 90);
             WalkDelay++;
         }
-        if (WalkDelay > 30 || WalkDelay == 0)
+        if (WalkDelay > 30 )
         {
             Debug.Log("ï‡çsâπçƒê∂");
             WalkAudio.PlayOneShot(WalkAudioClip);
