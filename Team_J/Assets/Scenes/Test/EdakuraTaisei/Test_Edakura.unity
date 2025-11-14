@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: 7096976229089467388, guid: 02c370212f7f5b94f8edd15851b858c6, type: 3}
       propertyPath: DetectionClip
       value: 
-      objectReference: {fileID: 8300000, guid: 13a0aa5e15faa0c499f05a6db444cb16, type: 3}
+      objectReference: {fileID: 8300000, guid: cc3ce61e3fffa6042a146cc46a27c044, type: 3}
     - target: {fileID: 7096976229089467388, guid: 02c370212f7f5b94f8edd15851b858c6, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 6

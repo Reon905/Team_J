@@ -317,3 +317,4 @@ MonoBehaviour:
   target: {fileID: 0}
   patrolPoints: []
   _state: 0
+  DetectionClip: {fileID: 8300000, guid: cc3ce61e3fffa6042a146cc46a27c044, type: 3}
