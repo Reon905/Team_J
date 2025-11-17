@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 698d318f92de58547b29a8de5962688d
+guid: d668a3c6a0d055b4783cdbe0346bca1d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3372295830177910384
-    second: RoadTopLeft_0
+      213: -7860760197787789631
+    second: RoadGrass_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RoadTopLeft_0
+      name: RoadGrass_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 500
+        height: 500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 091f6b44fc23331d0800000000000000
-      internalID: -3372295830177910384
+      spriteID: 1c6545a8f38f8e290800000000000000
+      internalID: -7860760197787789631
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RoadTopLeft_0: -3372295830177910384
+      RoadGrass_0: -7860760197787789631
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

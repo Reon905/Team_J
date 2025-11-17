@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: RoadLR
+  m_Name: RoadBR
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 9176402986357116658, guid: 5e8b0a44c9bcb664c940ae8a62eabb05, type: 3}
+  m_DefaultSprite: {fileID: -7271740431857846904, guid: a2e813aac833ee44ea91a60b299bfdcb, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
