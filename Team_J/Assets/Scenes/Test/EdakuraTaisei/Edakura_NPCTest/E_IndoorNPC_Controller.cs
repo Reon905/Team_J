@@ -109,9 +109,15 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
                             {
                                 Detection_Value = 0.0f;     // ”­Šo’l‚ğ0‚É
 
+                                if (GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
+                                {
+                                    //Player‚Ìó‘Ô‚ğDetection‚É‚·‚é
+                                    GameStateManager.instance.currentPlayerState = PlayerState.Detection;
+                                    DetectionSource.PlayOneShot(DetectionClip);
+                                }
                                 //Player‚Ìó‘Ô‚ğDetection‚É‚·‚é
                                 GameStateManager.instance.currentPlayerState = PlayerState.Detection;
-                                DetectionSource.PlayOneShot(DetectionClip);
+                                
 
                                 Debug.Log("Detection!!!");
 
