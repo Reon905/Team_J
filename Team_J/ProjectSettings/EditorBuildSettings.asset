@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/HasuiRikuto/Scene/Title.unity
     guid: 24cbc8dc878dd344b9567ee5832cb0c8
   - enabled: 1
+    path: Assets/mizuno reo/Summary Scene/Summary Scene.unity
+    guid: 2fb77103f905c0840b8b51e97202bf7a
+  - enabled: 1
     path: Assets/HasuiRikuto/Scene/Indoor Scene.unity
     guid: 2830e84d3da3d9e42a5cfbbd4b865372
   - enabled: 1
