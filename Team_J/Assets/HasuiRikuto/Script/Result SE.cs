@@ -1,22 +1,17 @@
 using UnityEngine;
 
-public class ResultSE : MonoBehaviour 
-{
-    public AudioSource audioSource;
+//public class ResultSE : MonoBehaviour
+//{
+//    public AudioSource audioSource;
 
-    //ƒ‰ƒ“ƒN‚²‚Æ‚ÉŒø‰Ê‰¹‚ğİ’è
-    public AudioClip sRankSE;
-    public AudioClip aRankSE; 
-    public AudioClip bRankSE;
-    public AudioClip cRankSE;
-    public AudioClip dRankSE;
+//    public AudioClip SRankSE;
+//    public AudioClip ARankSE;
+//    public AudioClip BRankSE;
+//    public AudioClip CRankSE;
+//    public AudioClip DRankSE;
 
-    //ƒ‰ƒ“ƒN‚ğŠO•”‚©‚çó‚¯æ‚é
-    public void PlayRankSound(string rank)
-    {
-        switch (rank)
-        {
+//    public
 
-        }
-    }
-}
+
+
+//}
