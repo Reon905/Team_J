@@ -1768,7 +1768,7 @@ MonoBehaviour:
   CarSoundClip: {fileID: 8300000, guid: afd6d76b32cfdc1468f2ab0e35553b8b, type: 3}
   CarIdling: {fileID: 8300000, guid: 5402a6bfd4389e74488ce67572a951f6, type: 3}
   boostAudio: {fileID: 1077696843}
-  boostClip: {fileID: 8300000, guid: 4e8ec89e837a3054f82ce3e5012795a3, type: 3}
+  boostClip: {fileID: 8300000, guid: 79e9e35a6cd8bae4c9fff4c50d048efd, type: 3}
   boostAccelerationMultiplier: 2
   boostSpeedLimitMultiplier: 4
   boostDuration: 3

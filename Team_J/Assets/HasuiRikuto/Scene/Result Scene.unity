@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 8142248240484677237, guid: 221c558687947ec48978c4dd23f83382, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1651,6 +1651,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankText: {fileID: 2020774559}
+  seRankS: {fileID: 8300000, guid: bb047cbcf5e704840a8bed1425fd5bf0, type: 3}
+  seRankA: {fileID: 8300000, guid: 0f4e2fe5648051443bf97eb3ea91c991, type: 3}
+  seRankB: {fileID: 8300000, guid: 35af859248785724a8fb373088939dbd, type: 3}
+  seRankC: {fileID: 8300000, guid: 5f8d9de46ca63c2479e01dd42f5e2bc6, type: 3}
+  seRankD: {fileID: 8300000, guid: c312a3cf3949f2a41b507ee112f7f8c5, type: 3}
+  audioSource: {fileID: 763308248}
 --- !u!4 &1997628323
 Transform:
   m_ObjectHideFlags: 0
@@ -1834,8 +1840,8 @@ Transform:
   m_GameObject: {fileID: 2008482936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0425, y: 0.0247, z: 0}
-  m_LocalScale: {x: 17.936026, y: 9.993286, z: 1}
+  m_LocalPosition: {x: -0.0425, y: -0.0118, z: 0}
+  m_LocalScale: {x: 17.936026, y: 10.066237, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
