@@ -5,7 +5,7 @@ public class DetectionMusic : MonoBehaviour
     public static DetectionMusic instance;
     AudioSource DmusicSource;
 
-    private bool isPlaying = false;
+    private bool Played = false;
 
     void Awake()
     {
@@ -26,6 +26,8 @@ public class DetectionMusic : MonoBehaviour
     void Start()
     {
         DmusicSource = GetComponent<AudioSource>();
+
+        //MusicStop();
     }
 
     // Update is called once per frame
@@ -48,4 +50,17 @@ public class DetectionMusic : MonoBehaviour
         }
 
     }
+
+    //void MusicStop()
+    //{
+    //    if (Played == false)
+    //    {
+    //        if (DmusicSource.isPlaying == true)
+    //        {
+    //            DmusicSource.Stop();
+    //        }
+    //        Played = true;
+    //    }
+
+    //}
 }
