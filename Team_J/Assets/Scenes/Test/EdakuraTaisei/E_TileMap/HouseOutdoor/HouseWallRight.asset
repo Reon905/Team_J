@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: HouseWallRight
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -98941902800450946, guid: ea8dd8e00530a484f889bcc6187ca177, type: 3}
+  m_DefaultSprite: {fileID: -532234990928224920, guid: 440ab05316d99af42ba077050dcb7a67, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
