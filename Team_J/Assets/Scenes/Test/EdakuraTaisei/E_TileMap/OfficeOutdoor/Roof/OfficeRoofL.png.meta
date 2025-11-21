@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a8500bc1a6a04f44a8c0aff4f046cd55
+guid: 089b8773648699141b4b11db60158b07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4309767043124212115
-    second: HouseForeWindow_0
+      213: -7217401940347812785
+    second: OfficeRoofL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HouseForeWindow_0
+      name: OfficeRoofL_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 34
-        width: 252
-        height: 252
+        x: 0
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 391ba16aa4e5fcb30800000000000000
-      internalID: 4309767043124212115
+      spriteID: f448a58bc23a6db90800000000000000
+      internalID: -7217401940347812785
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HouseForeWindow_0: 4309767043124212115
+      OfficeRoofL_0: -7217401940347812785
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -55,8 +55,11 @@ TagManager:
   - name: Player
     uniqueID: 975530057
     locked: 0
-  - name: ForeGround
+  - name: Roof
     uniqueID: 2126777355
+    locked: 0
+  - name: Decoration
+    uniqueID: 3677302707
     locked: 0
   m_RenderingLayers:
   - Default
