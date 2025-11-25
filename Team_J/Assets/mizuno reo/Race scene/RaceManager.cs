@@ -214,7 +214,7 @@ public class RaceManager : MonoBehaviour
                 {
                     finishState = FinishState.Done;
                     raceState = RaceState.Done;
-                    SceneManager.LoadScene("HasuiRikuto/Scene/Result Scene");
+                    SceneManager.LoadScene("Image/HasuiRikuto/Scene/Result Scene");
                 }
                 break;
         }
