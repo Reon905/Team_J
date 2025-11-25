@@ -16,6 +16,10 @@ public class ChangeSceneAfterTime : MonoBehaviour
     // シーン切り替えまでの時間（5分＝300秒）
     public float changeTime = 300f;
 
+    public AudioSource audioSource;
+    public AudioClip warningClip;
+    private bool hasPlayedAlert = false;   // 一度だけ再生するためのフラグ
+
     void Update()
     {
         // 経過時間を加算
@@ -32,6 +36,17 @@ public class ChangeSceneAfterTime : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = $"残り時間 : {minutes:00}:{seconds:00}";
+        }
+
+        if (!hasPlayedAlert && remainingTime <= 10f)
+        {
+            if (audioSource != null && warningClip != null)
+            {
+                audioSource.clip = warningClip; 
+                audioSource.loop = true;        // ループ
+                audioSource.Play();             // 再生開始
+            }
+            hasPlayedAlert = true;
         }
 
         // 時間が来たらシーン切り替え

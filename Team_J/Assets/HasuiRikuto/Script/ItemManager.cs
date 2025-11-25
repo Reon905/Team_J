@@ -29,7 +29,14 @@ public class ItemManager : MonoBehaviour
         PlayerPrefs.SetInt(itemID, 1);
         PlayerPrefs.Save();
 
-        // アイテム削除
+        // Item3 だけ破壊しない
+        if (GetComponent<Item3>() != null)
+        {
+            // Destroy をスキップ
+            return;
+        }
+
+        // それ以外のアイテムは削除
         Destroy(gameObject);
     }
 }

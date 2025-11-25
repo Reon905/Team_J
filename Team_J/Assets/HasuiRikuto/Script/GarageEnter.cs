@@ -8,6 +8,9 @@ public class GarageEnter : MonoBehaviour
     public string nextSceneName = "NextScene"; // 次に行くシーン名
     private bool isPlayerInRange = false;
 
+    private AudioSource audioSource;
+    public AudioClip itemSound;
+    
     void Start()
     {
         // 最初は非表示
@@ -20,6 +23,8 @@ public class GarageEnter : MonoBehaviour
         // 範囲内かつEnterが押されたらシーン切替
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
         {
+            SoundPlayer.instance.PlaySE(itemSound);
+
             SceneManager.LoadScene(nextSceneName);
         }
     }

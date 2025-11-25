@@ -8,6 +8,8 @@ public class SceneChangeOnEnter : MonoBehaviour
     public Text messageText;     // 「Enterで外に出る」表示用Text
     private bool isPlayerInRange = false;
 
+    private AudioSource audioSource;
+    public AudioClip itemSound;
     void Start()
     {
         // 最初は非表示
@@ -20,6 +22,8 @@ public class SceneChangeOnEnter : MonoBehaviour
         // 範囲内かつEnterキーが押されたらシーン切り替え
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
         {
+            SoundPlayer.instance.PlaySE(itemSound);
+
             SceneManager.LoadScene(nextSceneName);
         }
     }
