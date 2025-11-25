@@ -1,5 +1,6 @@
 //using NUnit.Framework.Internal;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 
@@ -21,6 +22,13 @@ public class E_Player_Controller : MonoBehaviour
     AudioSource WalkAudio;          //
     public AudioClip WalkAudioClip; //
 
+    //アニメーション用
+    Animator animator;
+    public string stopAnime = "PlayerStop";
+    public string moveAnime = "PlayerMoveAnimation";
+    public string nowAnime = "";
+    public string oldAnime = "";
+
     void Start()
     {
         Application.targetFrameRate = 60;   //FPS制限(仮)
@@ -30,6 +38,10 @@ public class E_Player_Controller : MonoBehaviour
         //Rigidbody2Dをとってくる
         rbody = this.GetComponent<Rigidbody2D>();
         WalkAudio = this.GetComponent<AudioSource>();
+
+        animator = this.GetComponent<Animator>();
+        nowAnime = stopAnime;       //停止から開始
+        oldAnime = stopAnime;       //停止から開始
     }
 
     void Update()
@@ -120,6 +132,21 @@ public class E_Player_Controller : MonoBehaviour
 }
     void FixedUpdate()
     {
-        rbody.linearVelocity = PlayerVector * Speed;    //キー入力からとったベクトルをSpeedと掛け算して現在の移動速度に入れる
+        //アニメーション更新
+        if (PlayerVector.x == 0.0f && PlayerVector.y == 0.0f )
+        {
+            nowAnime = stopAnime;
+        }
+        else
+        {
+            nowAnime = moveAnime;
+        }
+
+        if(nowAnime != oldAnime)
+        {
+            oldAnime = nowAnime;
+            animator.Play(nowAnime);
+        }
+            rbody.linearVelocity = PlayerVector * Speed;    //キー入力からとったベクトルをSpeedと掛け算して現在の移動速度に入れる
     }
 }
