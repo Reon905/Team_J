@@ -64,5 +64,8 @@ TagManager:
   - name: Decoration2
     uniqueID: 446417255
     locked: 0
+  - name: NavMeshTile
+    uniqueID: 489178815
+    locked: 0
   m_RenderingLayers:
   - Default
