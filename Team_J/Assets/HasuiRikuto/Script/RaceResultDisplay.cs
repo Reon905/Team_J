@@ -22,5 +22,7 @@ public class RaceRankDisplay : MonoBehaviour
         rankText.text = ": " + lastRank + " 位";
 
         Debug.Log("[RaceRankDisplay] 順位: " + lastRank + "位");
+
+
     }
 }

@@ -23,8 +23,12 @@ public class GarageEnter : MonoBehaviour
         // 範囲内かつEnterが押されたらシーン切替
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
         {
+<<<<<<< HEAD
             SoundPlayer.instance.PlaySE(itemSound);
 
+=======
+            GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
+>>>>>>> 7867b670307a98e53f8197fe740d38be27e2fe49
             SceneManager.LoadScene(nextSceneName);
         }
     }
@@ -42,7 +46,7 @@ public class GarageEnter : MonoBehaviour
             }
         }
     }
-
+    
     void OnTriggerExit2D(Collider2D other)
     {
         // 範囲外に出たら非表示

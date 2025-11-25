@@ -49,11 +49,20 @@ TagManager:
   - name: WalkLayer
     uniqueID: 449902901
     locked: 0
-  - name: ForeGround
-    uniqueID: 2126777355
+  - name: Building
+    uniqueID: 2241584421
     locked: 0
   - name: Player
     uniqueID: 975530057
+    locked: 0
+  - name: Roof
+    uniqueID: 2126777355
+    locked: 0
+  - name: Decoration
+    uniqueID: 3677302707
+    locked: 0
+  - name: Decoration2
+    uniqueID: 446417255
     locked: 0
   m_RenderingLayers:
   - Default

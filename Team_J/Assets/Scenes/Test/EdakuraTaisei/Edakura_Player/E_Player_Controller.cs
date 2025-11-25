@@ -12,7 +12,7 @@ public class E_Player_Controller : MonoBehaviour
     public InputAction DashAction;      //ダッシュ用
 
     Rigidbody2D rbody;              //Rigidbody2D型の変数宣言
-    public float Speed = 6.0f;      //Playerの移動速度
+    public float Speed = 5.0f;      //Playerの移動速度
     public int WalkDelay = 1;       //歩行音用
     private bool FirstWalk = false;
 
@@ -40,7 +40,7 @@ public class E_Player_Controller : MonoBehaviour
         //ダッシュ
         if (DashAction.IsPressed())      //Shiftキーが押されるとダッシュする
         {
-            Speed = 6.0f * (float)1.5;   //PlayerSpeedを1.5倍する
+            Speed = 5.0f * (float)1.5;   //PlayerSpeedを1.5倍する
             if (PlayerVector.x != 0.0f || PlayerVector.y != 0.0f)
             {
                 WalkDelay++;
@@ -48,7 +48,7 @@ public class E_Player_Controller : MonoBehaviour
         }
         else   
         {
-            Speed = 6.0f;       //押されていない場合は元のスピードに戻す    
+            Speed = 5.0f;       //押されていない場合は元のスピードに戻す    
         }
 
         ////歩き始め
@@ -83,25 +83,25 @@ public class E_Player_Controller : MonoBehaviour
         if (PlayerVector.x > 0.0f)
         {
             //Debug.Log("右移動");
-            transform.rotation = Quaternion.Euler(0, 0, 180);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
             WalkDelay++;
         }
         else if (PlayerVector.x < 0.0f)
         {
             //Debug.Log("左移動");
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 0, -90);
             WalkDelay++;
         }
         else if (PlayerVector.y > 0.0f)
         {
             //Debug.Log("上移動");
-            transform.rotation = Quaternion.Euler(0, 0, -90);
+            transform.rotation = Quaternion.Euler(0, 0, -180);
             WalkDelay++;
         }
         else if (PlayerVector.y < 0.0f)
         {
             //Debug.Log("下移動");
-            transform.rotation = Quaternion.Euler(0, 0, 90);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             WalkDelay++;
         }
         if (WalkDelay > 30 )

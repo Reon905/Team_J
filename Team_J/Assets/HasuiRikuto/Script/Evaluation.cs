@@ -7,6 +7,15 @@ public class Evaluation : MonoBehaviour
 
     public Text rankText;
 
+    //ランクごとにSEを鳴らす
+    [Header("Rank Sounds")]
+    public AudioClip seRankS;
+    public AudioClip seRankA;
+    public AudioClip seRankB;
+    public AudioClip seRankC;
+    public AudioClip seRankD;
+
+    public AudioSource audioSource;
     void Start()
     {
         //Item,Item2,Item3,レースの合計ポイントを取得
@@ -33,16 +42,29 @@ public class Evaluation : MonoBehaviour
 
     //ポイントに応じてランクを返す関数
     string GetRank(int totalPoints)
-    {
+    { 
         if (totalPoints >= 250)
+        {
+            audioSource.PlayOneShot(seRankS);
             return "S       おめでとう！";
+        }
         else if (totalPoints >= 130)
+        {
+            audioSource.PlayOneShot(seRankA);
             return "A  おめでとうあと少し！";
+        }
         else if (totalPoints >= 80)
+        {
+            audioSource.PlayOneShot(seRankB);
             return "B  いい感じ！あと一歩！";
+        }
         else if (totalPoints >= 30)
+        {
+            audioSource.PlayOneShot(seRankC);
             return "C    もう少し頑張ろう！";
+        }
         else
+            audioSource.PlayOneShot(seRankD);
             return "D       頑張ろう！";
     }
 }
