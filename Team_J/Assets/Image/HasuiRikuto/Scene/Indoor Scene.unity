@@ -7741,6 +7741,8 @@ MonoBehaviour:
   nextSceneName: Scen_Customize
   timerText: {fileID: 2089055667}
   changeTime: 300
+  audioSource: {fileID: 0}
+  warningClip: {fileID: 8300000, guid: e2f8fb2aaaf486b4d85330c238a3a821, type: 3}
 --- !u!114 &2089055667
 MonoBehaviour:
   m_ObjectHideFlags: 0
