@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 194748c3563391e4989600cc302818dd
+guid: 3477e42feb53460408611dcae6373408
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2252083909272842676
-    second: Refrigerator_0
+      213: 898551970227511676
+    second: Wall3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Refrigerator_0
+      name: Wall3_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 15
         y: 0
-        width: 35
+        width: 20
         height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4e4b67dd9dfeb0e0800000000000000
-      internalID: -2252083909272842676
+      spriteID: c7163a5914c487c00800000000000000
+      internalID: 898551970227511676
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Refrigerator_0: -2252083909272842676
+      Wall3_0: 898551970227511676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
