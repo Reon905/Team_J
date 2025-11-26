@@ -8,7 +8,6 @@ public class Item11 : MonoBehaviour
     public static int itemCount = 0;
 
     private ItemManager itemManager;
-
     private AudioSource audioSource;
     public AudioClip itemSound;
 
@@ -16,6 +15,8 @@ public class Item11 : MonoBehaviour
     {
         price = 20000;
         itemManager = GetComponent<ItemManager>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
