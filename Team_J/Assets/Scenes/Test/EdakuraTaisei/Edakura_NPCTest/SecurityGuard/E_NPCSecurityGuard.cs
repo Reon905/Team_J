@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
-public class E_Indoor_NPC_Controller : MonoBehaviour
+public class E_NPCSecurityGuard : MonoBehaviour
 {
+    public Text ChaseTimeText;  //UnityからText表示場所を入れる
+
     // 視界の対象とするレイヤー（Playerや障害物など）
     public LayerMask m_TargetLayer; // これを設定することにより、自身(NPC)のコライダーに反応しなくなる
 
@@ -32,6 +34,8 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     private bool isWaiting = false; // 停止中フラグ
 
     [SerializeField] float Chase_Speed = 2.0f; // 敵の追跡速度
+    public float ChaseTimer;     // Chase時間(屋内屋外共有)
+
 
     NavMeshAgent2D agent;               //NavMeshAgent2Dを使用するための変数
     [SerializeField] Transform target;  //追跡するターゲット
@@ -44,18 +48,30 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     AudioSource DetectionSource;
     public AudioClip DetectionClip;
 
+    //アニメーション用
+    Animator Police_animator;
+    string stopAnime = "PoliceStop";
+    string moveAnime = "PoliceMove";
+    string nowAnime = "";
+    string oldAnime = "";
+
     private void Start()
     {
+        Police_animator = this.GetComponent<Animator>();    //Animatorコンポーネントを取る
+        nowAnime = stopAnime;   //停止状態から開始
+        oldAnime = stopAnime;   //停止状態から開始
         NPC_rbody = GetComponent<Rigidbody2D>();
         DetectionSource = GetComponent<AudioSource>();
 
         //各種変数を初期化
-        m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
-        Detection_Value = Constants.DEFAULT_DETECTION_VALUE;
+        m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;        //30.0f
+        Detection_Value = Constants.DEFAULT_DETECTION_VALUE;  //2.5f
+        ChaseTimer = Constants.CHASE_TIMER; //10.0f
         TimeOut = 0.02f;
 
         agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
-        agent.speed = P_moveSpeed;              //巡回速度に合わせる
+        agent.speed = P_moveSpeed;  //巡回速度に合わせる
+
     }
 
     private void Update()
@@ -66,13 +82,32 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
         // 状態がPatrolの場合
         if (_state == NPC_State.Patrol)
         {
-            //パトロール関数の呼び出し
             PatrolUpdate();
         }//Chaseの場合
         else if (_state == NPC_State.Chase)
         {
-            //Chase関数の呼び出し
             ChaseUpdate();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //アニメーション更新
+        if(agent.speed == 0)
+        {
+            nowAnime = stopAnime;   //停止中
+        }
+        else
+        {
+            nowAnime = moveAnime;   //移動
+
+        }
+
+        if (nowAnime != oldAnime)
+        {
+            Debug.Log(nowAnime);
+            oldAnime = nowAnime;
+            Police_animator.Play(nowAnime);    //アニメーション再生
         }
     }
 
@@ -115,9 +150,6 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
                                     GameStateManager.instance.currentPlayerState = PlayerState.Detection;
                                     DetectionSource.PlayOneShot(DetectionClip);
                                 }
-                                //Playerの状態をDetectionにする
-                                GameStateManager.instance.currentPlayerState = PlayerState.Detection;
-                                
 
                                 Debug.Log("Detection!!!");
 
@@ -166,7 +198,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
             {
                 // 接触した時の処理
                 Debug.Log("Playerと接触");
-                //Playerの状態をDetectionに切り替え
+
                 GameStateManager.instance.currentPlayerState = PlayerState.Detection;
                 _state = NPC_State.Chase;       // 状態をChaseに切り替え
             }
@@ -174,7 +206,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
             {
                 //Chase中に衝突したらSceneを切り替える
                 SceneManager.LoadScene("Caught Scene");
-                //次のプレイのためにPlayerの状態をNoDetectionにする
+                //次のプレイのためにプレイヤーの状態をNoDetectionにしておく
                 GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
 
             }
@@ -182,22 +214,27 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
         }
     }
 
-    //巡回用関数
     private void PatrolUpdate()
     {
+        if (ChaseTimeText != null)
+        {
+            ChaseTimeText.text = "盗め";
+
+        }
+
         if (isWaiting) return; // 停止中は何もしない
 
-        // 現在位置と目的の巡回ポイント座標の取得
+        //現在位置と目的の巡回ポイント座標の取得
         Vector2 currentPos = transform.position;
         Vector2 patrolPos = patrolPoints[currentPointIndex].position;
 
-        //Agentの移動速度を巡回速度に設定
+        //NavMeshAgent2Dの移動速度を巡回速度に設定
         agent.speed = P_moveSpeed;
-        
+
         //現在の目的地の設定
         agent.destination = patrolPos;
 
-        //巡回ポイントへのベクトルを計算
+        // 巡回ポイントへのベクトルを計算
         Vector2 diff = patrolPos - currentPos;
         Vector2 moveDirection = diff.normalized;
 
@@ -208,12 +245,12 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
             StartCoroutine(WaitBeforeNextPoint());
         }
 
-        // 向き変更
+        // 移動方向に合わせてなめらかに回転
         if (moveDirection != Vector2.zero)
         {
-            // 回転処理のための角度を求める
+            //移動方向のベクトルを角度に変換
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            //Lerp(補完処理)でなめらかに回転させる
+
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.Euler(0, 0, angle),
                 Time.deltaTime * 1.5f
@@ -221,16 +258,16 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
         }
     }
 
-    //巡回時WayPoint到達時の一時停止
+    //巡回時Waypoint到達時の一時停止
     private IEnumerator WaitBeforeNextPoint()
     {
         //待機中フラグ
         isWaiting = true;
         agent.speed = 0; // 移動停止（物理的に止まる）
-        
+
         //経過時間を初期化
         float Elapsed = 0.0f;
-        //指定時間が経過するまで待機
+        //指定時間経過するまで待機
         while (Elapsed < P_waitTime)
         {
             //もし途中でChase状態になったら待機を中断
@@ -249,7 +286,7 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
 
         //待機完了後　次のポイントへ
         currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
-        // スピードを元に戻す
+        //スピードを元に戻す
         agent.speed = P_moveSpeed;
         isWaiting = false;
     }
@@ -257,20 +294,46 @@ public class E_Indoor_NPC_Controller : MonoBehaviour
     //チェイス用関数
     private void ChaseUpdate()
     {
+
+        if (ChaseTimeText != null)
+        {
+            ChaseTimeText.text = $"逃げきれ {Mathf.FloorToInt(ChaseTimer)}";
+
+        }
+
         //追跡速度に設定
         agent.speed = Chase_Speed;
+
         //Agentの目的地をプレイヤーの現在位置に設定
         agent.destination = target.position;
+        //チェイス時間を加算
+        ChaseTimer -= Time.deltaTime;
+
+        //ChaseTimerが０以下になったら
+        if (ChaseTimer < 0)
+        {
+            //状態がDetectionの場合
+            if (GameStateManager.instance.currentPlayerState == PlayerState.Detection)
+            {
+                //Playerの状態をNoDetectionにする
+                GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
+            }
+
+            Debug.Log("NoDetection!");
+            //Patrolへ変更
+            _state = NPC_State.Patrol;
+            //ChaseTimerを初期化
+            ChaseTimer = Constants.CHASE_TIMER;
+        }
 
         //プレイヤー方向のベクトルを計算
         Vector2 moveDirection = (target.position - transform.position).normalized;
-        
+
         //NPCが停止していない場合、移動方向を向くように回転
         if (moveDirection != Vector2.zero)
         {
             //ベクトルから角度へ変換
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            
             //なめらかに回転
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.Euler(0, 0, angle),

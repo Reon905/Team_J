@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class E_NPCSecurityGuard : MonoBehaviour
+public class Civilian_Controller : MonoBehaviour
 {
     public Text ChaseTimeText;  //UnityからText表示場所を入れる
 
@@ -48,15 +48,25 @@ public class E_NPCSecurityGuard : MonoBehaviour
     AudioSource DetectionSource;
     public AudioClip DetectionClip;
 
+    //アニメーション用
+    Animator Police_animator;
+    string stopAnime = "CivilianStop";
+    string moveAnime = "CivilianMove";
+    string nowAnime = "";
+    string oldAnime = "";
+
     private void Start()
     {
+        Police_animator = this.GetComponent<Animator>();    //Animatorコンポーネントを取る
+        nowAnime = stopAnime;   //停止状態から開始
+        oldAnime = stopAnime;   //停止状態から開始
         NPC_rbody = GetComponent<Rigidbody2D>();
         DetectionSource = GetComponent<AudioSource>();
 
         //各種変数を初期化
-        m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;
-        Detection_Value = Constants.DEFAULT_DETECTION_VALUE;
-        ChaseTimer = Constants.CHASE_TIMER;
+        m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;        //30.0f
+        Detection_Value = Constants.DEFAULT_DETECTION_VALUE;  //2.5f
+        ChaseTimer = Constants.CHASE_TIMER; //10.0f
         TimeOut = 0.02f;
 
         agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
@@ -77,6 +87,27 @@ public class E_NPCSecurityGuard : MonoBehaviour
         else if (_state == NPC_State.Chase)
         {
             ChaseUpdate();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //アニメーション更新
+        if (agent.speed == 0)
+        {
+            nowAnime = stopAnime;   //停止中
+        }
+        else
+        {
+            nowAnime = moveAnime;   //移動
+
+        }
+
+        if (nowAnime != oldAnime)
+        {
+            Debug.Log(nowAnime);
+            oldAnime = nowAnime;
+            Police_animator.Play(nowAnime);    //アニメーション再生
         }
     }
 
