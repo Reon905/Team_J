@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 13644e8750ba6884caef919d471585bc
+guid: bc62c24de9cf8114d938d3bf7d9e5c2d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6399436286414931901
-    second: Woll10 1_0
+      213: 1935985929446074354
+    second: carpet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Woll10 1_0
+      name: carpet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3483e796a92a037a0800000000000000
-      internalID: -6399436286414931901
+      spriteID: 2f7a9ce02f00eda10800000000000000
+      internalID: 1935985929446074354
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Woll10 1_0: -6399436286414931901
+      carpet_0: 1935985929446074354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
