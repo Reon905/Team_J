@@ -5,8 +5,11 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager instance;
 
+    public static int Game_Progress = 0;
+
     // ƒvƒŒƒCƒ„[‚Ìó‘Ô‚ğ•Û‚·‚é•Ï”
     public PlayerState currentPlayerState;
+    
 
     void Awake()
     {
