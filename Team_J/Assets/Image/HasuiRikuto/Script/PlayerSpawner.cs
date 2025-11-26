@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using UnityEngine.SceneManager;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -10,11 +9,9 @@ public class PlayerSpawner : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        // ï€ë∂ÇµÇΩç¿ïWÇéÊìæ
-        Vector3 savedPos = PlayerPositionKeeper.GetPosition(sceneName);
         if (PlayerPositionKeeper.HasPosition(sceneName))
         {
-            player.transform.position = savedPos;
+            player.transform.position = PlayerPositionKeeper.GetPosition(sceneName);
         }
     }
 }

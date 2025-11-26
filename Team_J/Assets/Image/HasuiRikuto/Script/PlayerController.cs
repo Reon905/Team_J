@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    void OnDestroy()
-    {
-        // 現在のシーン名
-        string sceneName = SceneManager.GetActiveScene().name;
+    // 移動スクリプトや入力はここに書く
 
-        // 現在のプレイヤー位置を保存
+    // シーン切替の瞬間に必ず呼ぶ保存用メソッド
+    public void SaveCurrentPosition()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
         PlayerPositionKeeper.SavePosition(sceneName, transform.position);
     }
 }

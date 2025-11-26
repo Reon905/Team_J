@@ -3,25 +3,26 @@ using System.Collections.Generic;
 
 public static class PlayerPositionKeeper
 {
-    // シーンごとに位置を保存
     private static Dictionary<string, Vector3> savedPositions = new Dictionary<string, Vector3>();
 
+    // 位置を保存
     public static void SavePosition(string sceneName, Vector3 pos)
     {
         savedPositions[sceneName] = pos;
     }
 
-    public static Vector3 GetPosition(string sceneName)
-    {
-        if (savedPositions.ContainsKey(sceneName))
-        {
-            return savedPositions[sceneName];
-        }
-
-        return Vector3.zero; // 保存がない場合
-    }
+    // 保存があるか
     public static bool HasPosition(string sceneName)
     {
         return savedPositions.ContainsKey(sceneName);
+    }
+
+    // 保存位置を取得
+    public static Vector3 GetPosition(string sceneName)
+    {
+        if (savedPositions.ContainsKey(sceneName))
+            return savedPositions[sceneName];
+
+        return Vector3.zero;
     }
 }

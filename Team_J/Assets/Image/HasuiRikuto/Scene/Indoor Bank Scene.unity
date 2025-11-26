@@ -2977,7 +2977,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 4.0013, y: 2.5580432}
+  m_Offset: {x: 3.5200944, y: 2.5580432}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2987,7 +2987,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 9.688238, y: 1.2645984}
+  m_Size: {x: 10.650649, y: 1.2645984}
   m_EdgeRadius: 0
 --- !u!212 &128878404
 SpriteRenderer:
@@ -3168,6 +3168,7 @@ GameObject:
   - component: {fileID: 302382594}
   - component: {fileID: 302382597}
   - component: {fileID: 302382598}
+  - component: {fileID: 302382599}
   m_Layer: 0
   m_Name: Bank Underground
   m_TagString: Untagged
@@ -3349,6 +3350,20 @@ MonoBehaviour:
   messageText: {fileID: 862280807}
   audioSource: {fileID: 302382597}
   enterClip: {fileID: 8300000, guid: 4cb40d6c105dc0542b39220a850c4893, type: 3}
+--- !u!114 &302382599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302382592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408c636326b25184eb43637e24548b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: 
+  playerController: {fileID: 945591047}
 --- !u!114 &334474260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5457071013859265918, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
@@ -8682,8 +8697,8 @@ Tilemap:
   - first: {x: -2, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 4
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8692,8 +8707,8 @@ Tilemap:
   - first: {x: -1, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 13
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8882,8 +8897,8 @@ Tilemap:
   - first: {x: -2, y: 2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8892,8 +8907,8 @@ Tilemap:
   - first: {x: -1, y: 2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 6
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -9601,17 +9616,17 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 137
+  - m_RefCount: 135
     m_Data: {fileID: 11400000, guid: d7240ad76650e1e4c8fb8dffca6e95b5, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 2330b5a2ec7694c42b35af8d264f9a54, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: bae943e112f32004a8eb0c8c877ffaab, type: 2}
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 4157a9d0247c277468ff02416ddfa87c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 3b8e3a74ddbc56f4fa2b007fa84fa0ce, type: 2}
-  - m_RefCount: 8
+  - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 467dc6e6ab2c33c4fbf4d8ac330c522f, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 017b76a37497de84ea6ebaecf8da0148, type: 2}
@@ -9632,17 +9647,17 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 7e25132a14ecaec41bc7b2a9a4d192fd, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 137
+  - m_RefCount: 135
     m_Data: {fileID: -1454618249890222, guid: c1198e459c09d5843ab6f679bdf492ba, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -7243836392196042374, guid: b0f06c61d831bce40b78c9edf17b6f4e, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 6976755987978306439, guid: 79d37fcae5cbeac4d88c8096bca08fb3, type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data: {fileID: 7472218830980305611, guid: 39df59c9ec31134468293016d2b21b76, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -2828486259269243792, guid: e6767327a6dbaee458ab99620c8c0759, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 9
     m_Data: {fileID: 3717537677763163367, guid: 9ef221bef2bb9b2418530e1936dbd1ac, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1933891489933680821, guid: 1795cfa5ff395c64e87389f9ccab72f3, type: 3}
@@ -10092,8 +10107,8 @@ Transform:
   m_GameObject: {fileID: 1518042071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.618, y: -0.445, z: 0}
-  m_LocalScale: {x: 39.513515, y: 25.026865, z: 1}
+  m_LocalPosition: {x: 0.3223, y: -0.0486, z: 0}
+  m_LocalScale: {x: 63.724453, y: 31.68276, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -10860,7 +10875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1951579090}
-  - component: {fileID: 1951579089}
+  - component: {fileID: 1951579091}
   m_Layer: 0
   m_Name: Player  Place
   m_TagString: Untagged
@@ -10868,19 +10883,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1951579089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951579088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b62dc22c27cd3eb4389396ac8a9d611f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 481055202}
 --- !u!4 &1951579090
 Transform:
   m_ObjectHideFlags: 0
@@ -10896,6 +10898,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1951579091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951579088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62dc22c27cd3eb4389396ac8a9d611f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 481055202}
 --- !u!1001 &5088008415042976049
 PrefabInstance:
   m_ObjectHideFlags: 0
