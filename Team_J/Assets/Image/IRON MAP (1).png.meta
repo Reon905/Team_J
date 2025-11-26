@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c1198e459c09d5843ab6f679bdf492ba
+guid: 83e9c3fe9b441e54297df56f08533a94
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1454618249890222
-    second: BANK MAP3_0
+      213: -4215347083874711192
+    second: IRON MAP (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BANK MAP3_0
+      name: IRON MAP (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2567eeb4805dafff0800000000000000
-      internalID: -1454618249890222
+      spriteID: 8694bac39241085c0800000000000000
+      internalID: -4215347083874711192
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BANK MAP3_0: -1454618249890222
+      IRON MAP (1)_0: -4215347083874711192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

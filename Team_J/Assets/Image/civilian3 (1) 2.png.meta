@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 28fd9659c40bd6f45b7ac359ee0bf84d
+guid: a29207fa761ed864c9e6824333751d74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4501261244313094110
-    second: IRON MAP_0
+      213: 3045655532891035282
+    second: civilian3 (1) 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IRON MAP_0
+      name: civilian3 (1) 2_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 3
-        width: 48
-        height: 44
+        x: 179
+        y: 59
+        width: 642
+        height: 782
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed7c384c041b77e30800000000000000
-      internalID: 4501261244313094110
+      spriteID: 2965c221297544a20800000000000000
+      internalID: 3045655532891035282
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IRON MAP_0: 4501261244313094110
+      civilian3 (1) 2_0: 3045655532891035282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
