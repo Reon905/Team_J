@@ -105,7 +105,7 @@ public class Civilian_Controller : MonoBehaviour
 
         if (nowAnime != oldAnime)
         {
-            Debug.Log(nowAnime);
+            //Debug.Log(nowAnime);
             oldAnime = nowAnime;
             Police_animator.Play(nowAnime);    //アニメーション再生
         }

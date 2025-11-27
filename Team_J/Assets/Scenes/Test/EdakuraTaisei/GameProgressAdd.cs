@@ -7,6 +7,7 @@ public class GameProgressAdd : MonoBehaviour
     void Start()
     {
         GameStateManager.Game_Progress += 1;
+        GameProgress = GameStateManager.Game_Progress;
 
         Debug.Log(GameProgress);
     }
