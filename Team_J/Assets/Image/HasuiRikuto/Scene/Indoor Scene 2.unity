@@ -2364,7 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413cdd54bb053104290912925d381907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Scen_Customize
+  nextSceneName: EscapeSuccessfulBetweenCustomize
   messageText: {fileID: 463416602}
   audioSource: {fileID: 591943119}
   enterClip: {fileID: 8300000, guid: 5e12f7053e75458469fb22f8b4c51dda, type: 3}

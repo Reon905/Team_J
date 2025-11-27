@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Image/HasuiRikuto/Scene/Indoor Scene.unity
     guid: 2830e84d3da3d9e42a5cfbbd4b865372
   - enabled: 1
+    path: Assets/Image/HasuiRikuto/Scene/Indoor Scene 2.unity
+    guid: 31c6e8510d23fad42ab033eb8c9f3491
+  - enabled: 1
     path: Assets/Image/HasuiRikuto/Scene/Indoor Office Scene.unity
     guid: 1b034103bb8537544aa9ba30649e234a
   - enabled: 1
@@ -29,6 +32,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Image/HasuiRikuto/Scene/Caught Scene.unity
     guid: e15a4902d4aa0de408d3458c74083951
+  - enabled: 1
+    path: Assets/Scenes/Test/EdakuraTaisei/EscapeSuccessfulBetweenCustomize.unity
+    guid: 790c35b2ec2f64d498b891e912023681
+  - enabled: 1
+    path: Assets/Scenes/Test/EdakuraTaisei/EscapeSuccessfulBetweenIndoor.unity
+    guid: 71d917e8ee047e641af3a9df725a67f8
   - enabled: 1
     path: Assets/mizuno reo/Customize/Scen_Customize.unity
     guid: 31ebcf6521e469544abd4b9b87d397d0
