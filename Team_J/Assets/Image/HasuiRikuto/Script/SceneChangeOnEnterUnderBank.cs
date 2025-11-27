@@ -1,37 +1,37 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UI; // ← Textを使うために必要
 
 public class SceneChangeOnEnterUnderBank : MonoBehaviour
 {
     public string nextSceneName; // 次のシーン名
     public Text messageText;     // 「Enterで外に出る」表示用Text
     private bool isPlayerInRange = false;
-    private bool hasTriggered = false;
 
+    public AudioSource audioSource;
     public AudioClip enterClip;
+    private bool hasPlayedSound = false;
 
     void Start()
     {
+        // 最初は非表示
         if (messageText != null)
             messageText.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return) && !hasTriggered)
+        // 範囲内かつEnterキーが押されたらシーン切り替え
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
         {
-            hasTriggered = true;
-
-            // シーン切り替え
-            SceneManager.LoadScene(nextSceneName);
-
-            // シーン切り替え後に音を鳴らす
-            if (SoundPlayer.instance != null && enterClip != null)
+            if (!hasPlayedSound && audioSource != null && enterClip != null)
             {
-                SoundPlayer.instance.PlaySE(enterClip);
-                // 3秒後に消したい場合は SoundPlayer 側で対応
+                audioSource.PlayOneShot(enterClip);
+                DontDestroyOnLoad(audioSource.gameObject);
+                hasPlayedSound = true;
             }
+
+            SceneManager.LoadScene(nextSceneName);
         }
     }
 

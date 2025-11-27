@@ -30,18 +30,4 @@ public class SoundPlayer : MonoBehaviour
         if (clip != null)
             audioSource.PlayOneShot(clip);
     }
-    public void PlaySEForSeconds(AudioClip clip, float seconds)
-    {
-        if (clip != null)
-        {
-            audioSource.PlayOneShot(clip);
-            StartCoroutine(StopAfterSeconds(seconds));
-        }
-    }
-
-    private System.Collections.IEnumerator StopAfterSeconds(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        audioSource.Stop();
-    }
 }
