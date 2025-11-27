@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: danboll
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
+  m_DefaultSprite: {fileID: -5325729173422653803, guid: edbd59b346dec2544b26e4d73b1e0cd1, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
