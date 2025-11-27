@@ -13,7 +13,7 @@ public class Item11 : MonoBehaviour
 
     void Start()
     {
-        price = 20000;
+        price = 10000;
         itemManager = GetComponent<ItemManager>();
 
         audioSource = GetComponent<AudioSource>();
@@ -24,7 +24,7 @@ public class Item11 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             totalMoney += price;
-            totalPoints += 50;
+            totalPoints += 20;
             itemCount++;
 
             Debug.Log("アイテム4取得！ +" + price + "円、+70pt");

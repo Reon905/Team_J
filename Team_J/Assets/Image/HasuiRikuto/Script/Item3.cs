@@ -22,6 +22,9 @@ public class Item3 : MonoBehaviour
     private bool playerInRange = false;
     private bool isOpened = false;
 
+    private string saveKey;
+   
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -30,6 +33,22 @@ public class Item3 : MonoBehaviour
 
         price = Random.Range(5000, 10001);
         if (messageText != null) messageText.text = "";
+
+        
+        saveKey = "ItemOpened_" + gameObject.name;
+        
+
+      
+        if (PlayerPrefs.GetInt(saveKey, 0) == 1)
+        {
+            isOpened = true;
+            if (spriteRenderer && openedSprite)
+                spriteRenderer.sprite = openedSprite;
+
+            // メッセージは表示しない
+            if (messageText != null) messageText.text = "";
+        }
+       
     }
 
     void Update()
@@ -64,7 +83,6 @@ public class Item3 : MonoBehaviour
             if (!isOpened && messageText != null)
                 messageText.text = "Enterを長押しで開錠";
         }
-      
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -74,8 +92,6 @@ public class Item3 : MonoBehaviour
             playerInRange = false;
             holdTimer = 0f;
             if (messageText != null) messageText.text = "";
-
-          
         }
     }
 
@@ -90,6 +106,11 @@ public class Item3 : MonoBehaviour
 
         if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
         if (messageText != null) messageText.text = "取得完了！";
+
+       
+        PlayerPrefs.SetInt(saveKey, 1);
+        PlayerPrefs.Save();
+       
 
         if (itemManager != null)
             itemManager.CollectItem(); // 取得済み登録＆削除

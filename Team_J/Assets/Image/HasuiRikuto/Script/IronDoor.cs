@@ -22,8 +22,6 @@ public class IronDoor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer && itemSprite) spriteRenderer.sprite = itemSprite;
         itemManager = GetComponent<ItemManager>();
-
-
     }
 
     void Update()
@@ -58,7 +56,6 @@ public class IronDoor : MonoBehaviour
             if (!isOpened && messageText != null)
                 messageText.text = "Enterを長押しで開錠";
         }
-
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -68,15 +65,16 @@ public class IronDoor : MonoBehaviour
             playerInRange = false;
             holdTimer = 0f;
             if (messageText != null) messageText.text = "";
-
-
         }
     }
 
     void OpenItem()
     {
         isOpened = true;
-       
+
+        // コライダーの判定を無効化
+        BoxCollider2D col = GetComponent<BoxCollider2D>();
+        if (col != null) col.enabled = false;
 
         SoundPlayer.instance.PlaySE(itemSound);
 
