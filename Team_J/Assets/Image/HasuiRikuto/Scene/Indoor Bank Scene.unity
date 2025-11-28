@@ -12738,7 +12738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 0
-  itemSound: {fileID: 0}
+  itemSound: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
 --- !u!212 &1221662261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12929,7 +12929,7 @@ GameObject:
   - component: {fileID: 1481993615}
   - component: {fileID: 1481993618}
   m_Layer: 0
-  m_Name: ' Entrance'
+  m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15893,10 +15893,10 @@ SceneRoots:
   - {fileID: 969298700}
   - {fileID: 1937106665}
   - {fileID: 331097519}
+  - {fileID: 1221662262}
   - {fileID: 1785017175}
   - {fileID: 1951579090}
   - {fileID: 1481993617}
-  - {fileID: 1221662262}
   - {fileID: 159674719}
   - {fileID: 703529019}
   - {fileID: 625827447}
