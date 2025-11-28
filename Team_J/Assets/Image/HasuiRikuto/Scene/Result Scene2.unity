@@ -881,7 +881,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 936187218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2981f129d4be074f970f6dd62851231, type: 3}
+  m_Script: {fileID: 11500000, guid: fc12b3a42fda1364ba4ccb617c151afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 635504166}
@@ -1086,7 +1086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.788265, y: -337.59644}
+  m_AnchoredPosition: {x: 19.788265, y: -306}
   m_SizeDelta: {x: 801.82, y: 171.4993}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505135468
