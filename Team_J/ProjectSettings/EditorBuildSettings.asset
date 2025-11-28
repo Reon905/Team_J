@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/mizuno reo/Customize/Scen_Customize.unity
     guid: 31ebcf6521e469544abd4b9b87d397d0
   - enabled: 1
+    path: Assets/Image/HasuiRikuto/Scene/Caught SceneCustomize.unity
+    guid: 9a9370a67b7906e4984df24a2497a9cb
+  - enabled: 1
     path: Assets/mizuno reo/Race scene/Race scene.unity
     guid: fe74f92b9dc422e40b1c03c15b622fc2
   - enabled: 1

@@ -204,13 +204,22 @@ public class E_NPCSecurityGuard : MonoBehaviour
             }
             else if (_state == NPC_State.Chase)     // 状態がChaseの場合
             {
-                //Chase中に衝突したらSceneを切り替える
-                SceneManager.LoadScene("Caught Scene");
-                //次のプレイのためにプレイヤーの状態をNoDetectionにしておく
-                GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
+                if (GameStateManager.Game_Progress == 1 || GameStateManager.Game_Progress == 3 || GameStateManager.Game_Progress == 4)
+                {
+                    //Chase中に衝突したらSceneを切り替える
+                    SceneManager.LoadScene("Caught SceneCustomize");
+                    //次のプレイのためにプレイヤーの状態をNoDetectionにしておく
+                    GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
+                }
+                else
+                {
+                    //Chase中に衝突したらSceneを切り替える
+                    SceneManager.LoadScene("Caught Scene");
+                    //次のプレイのためにプレイヤーの状態をNoDetectionにしておく
+                    GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
 
+                }
             }
-
         }
     }
 
