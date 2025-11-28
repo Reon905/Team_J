@@ -1765,7 +1765,7 @@ GameObject:
   - component: {fileID: 399680333}
   - component: {fileID: 399680332}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: ShowMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1788,8 +1788,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487.19543, y: 304.83118}
-  m_SizeDelta: {x: 305.6209, y: 110.348}
+  m_AnchoredPosition: {x: -458.16354, y: 304.83118}
+  m_SizeDelta: {x: 363.6848, y: 110.348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399680332
 MonoBehaviour:
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5919,7 +5919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8328707079180039530, guid: 1f5caf4266823ab49b32d0190f2c14ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 305.61
+      value: 363.67
       objectReference: {fileID: 0}
     - target: {fileID: 8328707079180039530, guid: 1f5caf4266823ab49b32d0190f2c14ce, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5955,7 +5955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8328707079180039530, guid: 1f5caf4266823ab49b32d0190f2c14ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -487.19
+      value: -458.16
       objectReference: {fileID: 0}
     - target: {fileID: 8328707079180039530, guid: 1f5caf4266823ab49b32d0190f2c14ce, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6100,7 +6100,7 @@ GameObject:
   - component: {fileID: 1368516067}
   - component: {fileID: 1368516066}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6139,7 +6139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11470,7 +11470,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -11508,8 +11508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00045836, y: -0.00057125}
-  m_SizeDelta: {x: 447.6291, y: 152.01}
+  m_AnchoredPosition: {x: -0.00073528, y: 2.829}
+  m_SizeDelta: {x: 363.68, y: 93.3531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1573913049
 GameObject:
@@ -11720,7 +11720,7 @@ GameObject:
   - component: {fileID: 1745655739}
   - component: {fileID: 1745655738}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: EntranceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11760,7 +11760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12059,8 +12059,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.004272461, y: -2.2938538}
-  m_SizeDelta: {x: 425.5887, y: 95.413}
+  m_AnchoredPosition: {x: -0.9647, y: -2.2938538}
+  m_SizeDelta: {x: 423.6679, y: 95.413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089055666
 MonoBehaviour:

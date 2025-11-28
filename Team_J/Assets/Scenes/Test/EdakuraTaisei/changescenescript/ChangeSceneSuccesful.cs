@@ -34,7 +34,11 @@ public class ChangeSceneSuccesful : MonoBehaviour
             {
                 SceneManager.LoadScene("Indoor Bank Scene");
             }
-           
+            else if (GameStateManager.Game_Progress == 5)
+            {
+                SceneManager.LoadScene("Result Scene");
+            }
+
         }
     }
 }

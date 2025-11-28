@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba357bd1b5218b44a3c55d7f0fa9345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetDataOnLoad: 1
+  resetDataOnLoad: 0
 --- !u!4 &1263614263
 Transform:
   m_ObjectHideFlags: 0

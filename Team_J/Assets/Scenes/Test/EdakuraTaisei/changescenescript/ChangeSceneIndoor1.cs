@@ -24,6 +24,7 @@ public class ChangeSceneIndoor1 : MonoBehaviour
         // 範囲内かつEnterキーが押されたらシーン切り替え
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
         {
+            GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
             if (!hasPlayedSound && audioSource != null && enterClip != null)
             {
                 audioSource.PlayOneShot(enterClip);
@@ -42,7 +43,7 @@ public class ChangeSceneIndoor1 : MonoBehaviour
             isPlayerInRange = true;
             if (messageText != null)
             {
-                messageText.text = "Enterで家を出る";
+                messageText.text = "Enterで外に出る";
                 messageText.gameObject.SetActive(true);
             }
         }
