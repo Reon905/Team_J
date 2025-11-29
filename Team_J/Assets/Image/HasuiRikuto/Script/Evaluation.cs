@@ -46,17 +46,17 @@ public class Evaluation : MonoBehaviour
         if (totalPoints >= 250)
         {
             audioSource.PlayOneShot(seRankS);
-            return "S       おめでとう！";
+            return "S 最高評価です  おめでとう！";
         }
         else if (totalPoints >= 130)
         {
             audioSource.PlayOneShot(seRankA);
-            return "A  おめでとうあと少し！";
+            return "A  おめでとう あと少し！";
         }
         else if (totalPoints >= 80)
         {
             audioSource.PlayOneShot(seRankB);
-            return "B  いい感じ！あと一歩！";
+            return "B  いい感じ！ あと一歩！";
         }
         else if (totalPoints >= 30)
         {
