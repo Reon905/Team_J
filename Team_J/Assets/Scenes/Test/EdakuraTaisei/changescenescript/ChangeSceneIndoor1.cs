@@ -28,11 +28,9 @@ public class ChangeSceneIndoor1 : MonoBehaviour
             if (!hasPlayedSound && audioSource != null && enterClip != null)
             {
                 audioSource.PlayOneShot(enterClip);
-                DontDestroyOnLoad(audioSource.gameObject);
                 hasPlayedSound = true;
             }
             SceneManager.LoadScene(nextSceneName);
-            this.gameObject.SetActive(false);
         }
     }
 
