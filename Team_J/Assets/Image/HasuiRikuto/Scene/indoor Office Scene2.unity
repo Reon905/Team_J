@@ -2599,6 +2599,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Money Back
       objectReference: {fileID: 0}
+    - target: {fileID: 4802433796783397774, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 298.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802433796783397774, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75.513
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802433796783397774, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00018692
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802433796783397774, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000065327
+      objectReference: {fileID: 0}
     - target: {fileID: 8837091355816793488, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
