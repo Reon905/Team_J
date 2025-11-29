@@ -24,6 +24,7 @@ public class SceneChangeOnEnterUnderBank : MonoBehaviour
         // 範囲内かつEnterキーが押されたらシーン切り替え
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.Return))
         {
+            GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
             if (!hasPlayedSound && audioSource != null && enterClip != null)
             {
                 audioSource.PlayOneShot(enterClip);
