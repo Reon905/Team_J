@@ -643,6 +643,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6067357426288031508, guid: 0319d9f604ee45b44a7820cb1af17fcb, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 16fdf6b0f1a3e65408ff1c4bc63889f6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2455,6 +2459,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.0001018
       objectReference: {fileID: 0}
+    - target: {fileID: 6969754616235917813, guid: 1f5caf4266823ab49b32d0190f2c14ce, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 16fdf6b0f1a3e65408ff1c4bc63889f6, type: 3}
     - target: {fileID: 8328707079180039530, guid: 1f5caf4266823ab49b32d0190f2c14ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2615,6 +2623,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.000065327
       objectReference: {fileID: 0}
+    - target: {fileID: 5457071013859265918, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 16fdf6b0f1a3e65408ff1c4bc63889f6, type: 3}
     - target: {fileID: 8837091355816793488, guid: 8631bc6bac442804fb6de215c82c841b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2775,7 +2787,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 16fdf6b0f1a3e65408ff1c4bc63889f6, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -13931,6 +13943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Time Text Back
       objectReference: {fileID: 0}
+    - target: {fileID: 4127456503799280930, guid: cf5131f4380a6564bb409d77682130ef, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 16fdf6b0f1a3e65408ff1c4bc63889f6, type: 3}
     - target: {fileID: 4907919670461023684, guid: cf5131f4380a6564bb409d77682130ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
