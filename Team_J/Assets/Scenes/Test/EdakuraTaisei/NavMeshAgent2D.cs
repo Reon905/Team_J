@@ -35,9 +35,15 @@ public class NavMeshAgent2D : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(current, target, NavMesh.AllAreas, path);
 
+        // パスが見つからなかった（cornersが空）の場合は処理を中断する
+        if (path.corners == null || path.corners.Length == 0)
+        {
+            return;
+        }
+
         Vector2 corner = path.corners[0];
 
-        if (Vector2.Distance(current, corner) <= 0.05f)
+        if (Vector2.Distance(current, corner) <= 0.05f && path.corners.Length > 1)
         {
             corner = path.corners[1];
         }
