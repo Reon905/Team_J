@@ -1,4 +1,5 @@
 ﻿//RivalCarController
+using JetBrains.Annotations;
 using UnityEngine;
 
 /// <summary>
@@ -15,14 +16,18 @@ public class RivalCarController : MonoBehaviour
     public float maxSpeed = 10f;  // ライバルの最高速度
     public float acceleration = 3f; // 加速力
     public float deceleration = 2f; // 減速力
+    public float baseMin;
+    public float baseMax;
 
     // ======================================================
     // 🔸 内部管理用
     // ======================================================
+    public static int Carstage;       // プレイヤーの速度変数
     private float targetSpeed = 0f;   // 目標速度（ランダムで決まる）
     private float currentSpeed = 0f;  // 現在速度
     private bool canDrive = false;    // 動けるかどうか
     private Rigidbody2D rb;           // Rigidbody2Dコンポーネント
+    
 
     // ======================================================
     // 🔸 初期化処理
@@ -65,8 +70,8 @@ public class RivalCarController : MonoBehaviour
         else if (currentSpeed > targetSpeed)
             currentSpeed -= deceleration * Time.deltaTime;
 
-        // 過剰な速度を防ぐ
-        currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
+            // 過剰な速度を防ぐ
+            currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
 
         // Rigidbodyを使って前進（上方向に移動）
         if (rb != null)
@@ -103,10 +108,17 @@ public class RivalCarController : MonoBehaviour
     // ======================================================
     public void SetRandomSpeed()
     {
-        // minSpeed〜maxSpeedの範囲でランダムな目標速度を決める
-        targetSpeed = Random.Range(minSpeed, maxSpeed);
+        //CarStageaに応じてライバルの速度作る
+        float dynamicMin = minSpeed + (Carstage * 1.0f);
+        float dynamicMax = maxSpeed + (Carstage * 1.5f);
+
+        if (dynamicMax < dynamicMin)
+            dynamicMin = dynamicMin + 1f;
+
+        //ランダム設定
+        targetSpeed = Random.Range(dynamicMin, dynamicMax);
 
         // デバッグ出力（ゲーム中はコンソールに出る）
-        Debug.Log($"{gameObject.name} の目標速度: {targetSpeed:F2}");
+        Debug.Log($"{gameObject.name} の目標速度: {targetSpeed:F2} / 現在速度: {currentSpeed:F2}");
     }
 }
