@@ -28265,6 +28265,7 @@ GameObject:
   - component: {fileID: 1388467464}
   - component: {fileID: 1388467463}
   - component: {fileID: 1388467466}
+  - component: {fileID: 1388467467}
   m_Layer: 0
   m_Name: HouseSafe_0
   m_TagString: Untagged
@@ -28463,6 +28464,24 @@ MonoBehaviour:
   openedSprite: {fileID: -1627759090196722273, guid: fa01c51d5dc634d45911f59a3e57f386, type: 3}
   itemSound: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
   messageText: {fileID: 829219428}
+  holdTime: 2
+--- !u!114 &1388467467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388467460}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023081253ca6634380f562452b6e01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 0
+  itemSprite: {fileID: -2861860743327625080, guid: d406c649bef775a408bdeb11c197c3f3, type: 3}
+  openedSprite: {fileID: -1627759090196722273, guid: fa01c51d5dc634d45911f59a3e57f386, type: 3}
+  itemSound: {fileID: 0}
+  messageText: {fileID: 0}
   holdTime: 2
 --- !u!1001 &1390760094
 PrefabInstance:

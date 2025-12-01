@@ -3,18 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneDoor : MonoBehaviour
 {
-    public string nextScene;
-    public PlayerController playerController;
+    
+    public Transform spawnPoint;  // このドアから出た位置（次のシーンの開始地点）
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // シーン切替前に必ず位置保存
-            playerController.SaveCurrentPosition();
+            // 今いるシーン名
+            string currentScene = SceneManager.GetActiveScene().name;
 
-            // シーン切替
-            SceneManager.LoadScene(nextScene);
+            // プレイヤーの位置を正しく保存（ドアを通った位置）
+            PlayerPositionKeeper.SavePosition(currentScene, other.transform.position);
+
+            // 次のシーンへ
+           
         }
     }
 }
