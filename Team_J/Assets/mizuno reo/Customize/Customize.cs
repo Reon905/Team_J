@@ -119,12 +119,96 @@ public class Customize : MonoBehaviour
             selectedMaxSpeed = 48f;
             nextLevel = 350000;
         }
-        else if (totalMoney >= 350000)
+        else if (totalMoney >= 350000 && totalMoney < 400000)
         {
-            CarStage = 14;
+            CarStage = 15;
             selectedAcceleration = 8.0f;
             selectedMaxSpeed = 50f;
-            nextLevel++;
+            nextLevel = 400000;
+        }
+        else if (totalMoney >= 400000 && totalMoney < 450000)
+        {
+            CarStage = 16;
+            selectedAcceleration = 8.2f;
+            selectedMaxSpeed = 52f;
+            nextLevel = 450000;
+        }
+        else if (totalMoney >= 450000 && totalMoney < 500000)
+        {
+            CarStage = 17;
+            selectedAcceleration = 8.4f;
+            selectedMaxSpeed = 54f;
+            nextLevel = 500000;
+        }
+        else if (totalMoney >= 500000 && totalMoney < 550000)
+        {
+            CarStage = 18;
+            selectedAcceleration = 8.6f;
+            selectedMaxSpeed = 56f;
+            nextLevel = 550000;
+        }
+        else if (totalMoney >= 550000 && totalMoney < 600000)
+        {
+            CarStage = 19;
+            selectedAcceleration = 8.8f;
+            selectedMaxSpeed = 58f;
+            nextLevel = 600000;
+        }
+        else if (totalMoney >= 230000 && totalMoney < 350000)
+        {
+            CarStage = 20;
+            selectedAcceleration = 8.8f;
+            selectedMaxSpeed = 58f;
+            nextLevel = 700000;
+        }
+        else if (totalMoney >= 700000 && totalMoney < 750000)
+        {
+            CarStage = 21;
+            selectedAcceleration = 9.0f;
+            selectedMaxSpeed = 60f;
+            nextLevel = 750000;
+        }
+        else if (totalMoney >= 230000 && totalMoney < 350000)
+        {
+            CarStage = 22;
+            selectedAcceleration = 9.2f;
+            selectedMaxSpeed = 62f;
+            nextLevel = 800000;
+        }
+        else if (totalMoney >= 800000 && totalMoney < 850000)
+        {
+            CarStage = 23;
+            selectedAcceleration = 9.4f;
+            selectedMaxSpeed = 64f;
+            nextLevel = 850000;
+        }
+        else if (totalMoney >= 850000 && totalMoney < 900000)
+        {
+            CarStage = 24;
+            selectedAcceleration = 9.6f;
+            selectedMaxSpeed = 66f;
+            nextLevel = 900000;
+        }
+        else if (totalMoney >= 900000 && totalMoney < 950000)
+        {
+            CarStage = 25;
+            selectedAcceleration = 9.6f;
+            selectedMaxSpeed = 66f;
+            nextLevel = 950000;
+        }
+        else if (totalMoney >= 950000 && totalMoney < 1000000)
+        {
+            CarStage = 26;
+            selectedAcceleration = 9.8f;
+            selectedMaxSpeed = 68f;
+            nextLevel =     1000000;
+        }
+        else if (totalMoney >= 1000000)
+        {
+            CarStage = 17;
+            selectedAcceleration = 10.0f;
+            selectedMaxSpeed = 70f;
+            nextLevel ++;
         }
 
         Debug.Log($"CarStage: {CarStage}, Accel: {selectedAcceleration}, MaxSpeed: {selectedMaxSpeed}");
