@@ -2,7 +2,7 @@
 // RaceManager.cs
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +22,7 @@ public class RaceManager : MonoBehaviour
     }
 
     [Header("UI関連")]
-    [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private Text messageText;
 
     [Header("車両関連")]
     public PlayerCarController playerCar;
