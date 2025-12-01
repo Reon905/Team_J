@@ -205,7 +205,7 @@ public class Customize : MonoBehaviour
         }
         else if (totalMoney >= 1000000)
         {
-            CarStage = 17;
+            CarStage = 27;
             selectedAcceleration = 10.0f;
             selectedMaxSpeed = 70f;
             nextLevel ++;
