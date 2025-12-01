@@ -2016,7 +2016,7 @@ MonoBehaviour:
   openedSprite: {fileID: 0}
   itemSound: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
   messageText: {fileID: 646248315}
-  holdTime: 5
+  holdTime: 2
 --- !u!61 &420691210
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3011,7 +3011,7 @@ MonoBehaviour:
   openedSprite: {fileID: 0}
   itemSound: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
   messageText: {fileID: 646248315}
-  holdTime: 5
+  holdTime: 2
 --- !u!61 &546392546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39931,7 +39931,7 @@ MonoBehaviour:
   openedSprite: {fileID: 0}
   itemSound: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
   messageText: {fileID: 646248315}
-  holdTime: 5
+  holdTime: 2
 --- !u!61 &2110492469
 BoxCollider2D:
   m_ObjectHideFlags: 0
