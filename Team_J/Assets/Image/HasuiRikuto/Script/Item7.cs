@@ -28,6 +28,11 @@ public class Item7 : MonoBehaviour
 
     void Start()
     {
+        saveKey = "ItemOpened_Item7";
+
+        //–ˆ‰ñ•Â‚¶‚½ó‘Ô‚ÉƒŠƒZƒbƒg
+        PlayerPrefs.SetInt(saveKey, 0);
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer && itemSprite) spriteRenderer.sprite = itemSprite;
         itemManager = GetComponent<ItemManager>();
@@ -35,20 +40,6 @@ public class Item7 : MonoBehaviour
         price = 50000;
         if (messageText != null) messageText.text = "";
 
-      
-        saveKey = "ItemOpened_" + gameObject.name;
-        
-
-      
-        if (PlayerPrefs.GetInt(saveKey, 0) == 1)
-        {
-            isOpened = true;
-            if (spriteRenderer && openedSprite)
-                spriteRenderer.sprite = openedSprite;
-
-            if (messageText != null) messageText.text = "";
-        }
-       
     }
 
     void Update()

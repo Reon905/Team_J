@@ -27,28 +27,17 @@ public class Item3 : MonoBehaviour
 
     void Start()
     {
+        saveKey = "ItemOpened_Item3";
+
+        //毎回リセットして閉じた状態に戻す
+        PlayerPrefs.SetInt(saveKey, 0);
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer && itemSprite) spriteRenderer.sprite = itemSprite;
         itemManager = GetComponent<ItemManager>();
 
         price = Random.Range(5000, 10001);
         if (messageText != null) messageText.text = "";
-
-        
-        saveKey = "ItemOpened_" + gameObject.name;
-        
-
-      
-        if (PlayerPrefs.GetInt(saveKey, 0) == 1)
-        {
-            isOpened = true;
-            if (spriteRenderer && openedSprite)
-                spriteRenderer.sprite = openedSprite;
-
-            // メッセージは表示しない
-            if (messageText != null) messageText.text = "";
-        }
-       
     }
 
     void Update()
