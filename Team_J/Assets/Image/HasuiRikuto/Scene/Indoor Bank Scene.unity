@@ -2157,6 +2157,7 @@ GameObject:
   - component: {fileID: 431257125}
   - component: {fileID: 431257124}
   - component: {fileID: 431257123}
+  - component: {fileID: 431257127}
   m_Layer: 0
   m_Name: GOLD (5)_0 (2)
   m_TagString: Untagged
@@ -2288,12 +2289,24 @@ Transform:
   m_GameObject: {fileID: 431257122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.47, y: 31.86, z: 0}
-  m_LocalScale: {x: 0.22006293, y: 0.23313811, z: 1}
+  m_LocalPosition: {x: -11.83, y: 31.84, z: 0}
+  m_LocalScale: {x: 0.14627582, y: 0.16918834, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &431257127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431257122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &446487230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2350,7 @@ GameObject:
   - component: {fileID: 461204492}
   - component: {fileID: 461204491}
   - component: {fileID: 461204490}
+  - component: {fileID: 461204494}
   m_Layer: 0
   m_Name: A stack of cash_0
   m_TagString: Untagged
@@ -2468,12 +2482,24 @@ Transform:
   m_GameObject: {fileID: 461204489}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.66, y: 27.25, z: 0}
-  m_LocalScale: {x: 0.16534898, y: 0.15771243, z: 1}
+  m_LocalPosition: {x: -17.01, y: 27.33, z: 0}
+  m_LocalScale: {x: 0.103723414, y: 0.11424688, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &461204494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461204489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &469277573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3126,6 +3152,7 @@ GameObject:
   - component: {fileID: 593966660}
   - component: {fileID: 593966659}
   - component: {fileID: 593966658}
+  - component: {fileID: 593966662}
   m_Layer: 0
   m_Name: GOLD (5)_0 (1)
   m_TagString: Untagged
@@ -3257,12 +3284,24 @@ Transform:
   m_GameObject: {fileID: 593966657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.68, y: 31.88, z: 0}
-  m_LocalScale: {x: 0.23613684, y: 0.23998086, z: 1}
+  m_LocalPosition: {x: -6.29, y: 31.7858, z: 0}
+  m_LocalScale: {x: 0.1791334, y: 0.19733627, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &593966662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593966657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &597425337
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,6 +4357,7 @@ GameObject:
   - component: {fileID: 694365623}
   - component: {fileID: 694365622}
   - component: {fileID: 694365621}
+  - component: {fileID: 694365625}
   m_Layer: 0
   m_Name: _jewelry (1)_0 (1)
   m_TagString: Untagged
@@ -4449,12 +4489,24 @@ Transform:
   m_GameObject: {fileID: 694365620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.97, y: 22.82, z: 0}
-  m_LocalScale: {x: 0.16574459, y: 0.17911616, z: 1}
+  m_LocalPosition: {x: -11.73, y: 23.61, z: 0}
+  m_LocalScale: {x: 0.11083232, y: 0.11923763, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &694365625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694365620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &699300338
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4796,7 @@ GameObject:
   - component: {fileID: 725875291}
   - component: {fileID: 725875290}
   - component: {fileID: 725875289}
+  - component: {fileID: 725875293}
   m_Layer: 0
   m_Name: A stack of cash_0 (1)
   m_TagString: Untagged
@@ -4875,12 +4928,24 @@ Transform:
   m_GameObject: {fileID: 725875288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.32, y: 27.01, z: 0}
-  m_LocalScale: {x: 0.16534898, y: 0.15771243, z: 1}
+  m_LocalPosition: {x: -11.78, y: 27.47, z: 0}
+  m_LocalScale: {x: 0.10160694, y: 0.11424688, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &725875293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725875288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &751773745
 GameObject:
   m_ObjectHideFlags: 0
@@ -20265,6 +20330,7 @@ GameObject:
   - component: {fileID: 999062895}
   - component: {fileID: 999062898}
   - component: {fileID: 999062897}
+  - component: {fileID: 999062899}
   m_Layer: 0
   m_Name: GOLD (5)_0
   m_TagString: Untagged
@@ -20336,8 +20402,8 @@ Transform:
   m_GameObject: {fileID: 999062894}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.48, y: 31.7, z: 0}
-  m_LocalScale: {x: 0.25221074, y: 0.27404892, z: 1}
+  m_LocalPosition: {x: -17.1, y: 31.86, z: 0}
+  m_LocalScale: {x: 0.16502148, y: 0.18451715, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -20402,6 +20468,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   itemSound: {fileID: 8300000, guid: 1d0480942c847ad4b9d2bcdea2b078c4, type: 3}
+--- !u!114 &999062899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999062894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1016700307
 GameObject:
   m_ObjectHideFlags: 0
@@ -21207,6 +21285,7 @@ GameObject:
   - component: {fileID: 1279391610}
   - component: {fileID: 1279391609}
   - component: {fileID: 1279391608}
+  - component: {fileID: 1279391612}
   m_Layer: 0
   m_Name: _jewelry (1)_0 (2)
   m_TagString: Untagged
@@ -21338,12 +21417,24 @@ Transform:
   m_GameObject: {fileID: 1279391607}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.94, y: 22.94, z: 0}
-  m_LocalScale: {x: 0.16574459, y: 0.17911616, z: 1}
+  m_LocalPosition: {x: -6.22, y: 23.55, z: 0}
+  m_LocalScale: {x: 0.09836128, y: 0.107827924, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279391612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279391607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1304096726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22408,7 +22499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1589473991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22956,6 +23047,7 @@ GameObject:
   - component: {fileID: 1752842866}
   - component: {fileID: 1752842865}
   - component: {fileID: 1752842864}
+  - component: {fileID: 1752842868}
   m_Layer: 0
   m_Name: A stack of cash_0 (2)
   m_TagString: Untagged
@@ -23087,12 +23179,24 @@ Transform:
   m_GameObject: {fileID: 1752842863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.52, y: 27.13, z: 0}
-  m_LocalScale: {x: 0.16534898, y: 0.15771243, z: 1}
+  m_LocalPosition: {x: -6.22, y: 27.41, z: 0}
+  m_LocalScale: {x: 0.090164796, y: 0.11038292, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1752842868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752842863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1769303428
 GameObject:
   m_ObjectHideFlags: 0
@@ -39593,6 +39697,7 @@ GameObject:
   - component: {fileID: 2103440009}
   - component: {fileID: 2103440008}
   - component: {fileID: 2103440007}
+  - component: {fileID: 2103440011}
   m_Layer: 0
   m_Name: _jewelry (1)_0
   m_TagString: Untagged
@@ -39724,12 +39829,24 @@ Transform:
   m_GameObject: {fileID: 2103440006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.66, y: 22.86, z: 0}
-  m_LocalScale: {x: 0.16574459, y: 0.17911616, z: 1}
+  m_LocalPosition: {x: -17.06, y: 23.61, z: 0}
+  m_LocalScale: {x: 0.10695498, y: 0.12034814, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2103440011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103440006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68dcec2765db634c97232eebe9643c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2110492466
 GameObject:
   m_ObjectHideFlags: 0
