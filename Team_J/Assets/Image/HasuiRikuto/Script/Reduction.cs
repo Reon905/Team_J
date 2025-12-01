@@ -89,6 +89,7 @@ public class Reduction : MonoBehaviour
         Item12.totalPoints = Mathf.FloorToInt(Item12.totalPoints * 0.8f);
         Debug.Log($"【Item12】金額 {oldMoney12} → {Item12.totalMoney} ／ ポイント {oldPoints12} → {Item12.totalPoints}");
 
-        Debug.Log("✅ 各アイテム（Item～Item12）の金額・ポイントを2割減少させました。");
+        Debug.Log(" 各アイテム（Item～Item12）の金額・ポイントを2割減少させました。");
+        Debug.Log( $"所持金: {Item8.totalMoney}円");
     }
 }
