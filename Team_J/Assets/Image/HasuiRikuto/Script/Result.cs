@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class Result : MonoBehaviour
 {
     public Text resultText;
-
+    public static int racePoints;
     void Start()
     {
         Money.AddToTotal();
 
-        int racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
-        Money.totalPoints += racePoints;
+        racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
+       // Money.totalPoints += racePoints;
 
         // --- アイテム数合計 ---
         int itemCount =
@@ -27,7 +27,7 @@ public class Result : MonoBehaviour
         int totalPoints =
            Item.totalPoints + Item2.totalPoints + Item3.totalPoints + Item4.totalPoints +
            Item5.totalPoints + Item6.totalPoints + Item7.totalPoints + Item8.totalPoints +
-           Item9.totalPoints + Item10.totalPoints + Item11.totalPoints + Item12.totalPoints;
+           Item9.totalPoints + Item10.totalPoints + Item11.totalPoints + Item12.totalPoints + racePoints;
 
         // --- 表示 ---
         resultText.text =
