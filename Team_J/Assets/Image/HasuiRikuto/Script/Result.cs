@@ -27,7 +27,7 @@ public class Result : MonoBehaviour
         int totalPoints =
            Item.totalPoints + Item2.totalPoints + Item3.totalPoints + Item4.totalPoints +
            Item5.totalPoints + Item6.totalPoints + Item7.totalPoints + Item8.totalPoints +
-           Item9.totalPoints + Item10.totalPoints + Item11.totalPoints + Item12.totalPoints + Money.totalPoints;
+           Item9.totalPoints + Item10.totalPoints + Item11.totalPoints + Item12.totalPoints;
 
         // --- 表示 ---
         resultText.text =
