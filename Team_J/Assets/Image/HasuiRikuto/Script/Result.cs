@@ -24,14 +24,19 @@ public class Result : MonoBehaviour
             Item5.totalMoney + Item6.totalMoney + Item7.totalMoney + Item8.totalMoney +
             Item9.totalMoney + Item10.totalMoney + Item11.totalMoney + Item12.totalMoney;
 
+        int totalPoints =
+           Item.totalPoints + Item2.totalPoints + Item3.totalPoints + Item4.totalPoints +
+           Item5.totalPoints + Item6.totalPoints + Item7.totalPoints + Item8.totalPoints +
+           Item9.totalPoints + Item10.totalPoints + Item11.totalPoints + Item12.totalPoints;
+
         // --- 表示 ---
         resultText.text =
             $": {itemCount}個\n" +
             $": {totalMoney}円\n" +
-            $": {Money.totalPoints}pt";
+            $": {totalPoints}pt";
 
         Debug.Log($"[Result] totalMoney = {totalMoney}円");
-        Debug.Log($"[Result] totalPoints = {Money.totalPoints}pt");
+        Debug.Log($"[Result] totalPoints = {totalPoints}pt");
         Debug.Log($"[Result] itemCount = {itemCount}個");
     }
 }
