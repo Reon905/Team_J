@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217fc6fc4a443a348b2214aa1680933a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Summary Scene
+  nextSceneName: Operation_Scene
   resetDataOnLoad: 1
   itemSound: {fileID: 8300000, guid: 4721df2c53387384a87132d316b49cad, type: 3}
 --- !u!4 &819594874
