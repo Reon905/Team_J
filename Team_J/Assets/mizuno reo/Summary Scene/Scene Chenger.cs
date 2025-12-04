@@ -7,7 +7,7 @@ public class SceneChenger : MonoBehaviour
         //エンターを押したらシーン切り替え
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("Indoor Scene");//室内に切り替え
+            SceneManager.LoadScene("Operation_Scene");//室内に切り替え
         }
     }
 }
