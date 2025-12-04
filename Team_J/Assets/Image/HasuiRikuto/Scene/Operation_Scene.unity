@@ -476,8 +476,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326.7, y: -204.43}
-  m_SizeDelta: {x: 114.0162, y: 39.1322}
+  m_AnchoredPosition: {x: 303.21, y: -215.43}
+  m_SizeDelta: {x: 229.58, y: 39.132}
   m_Pivot: {x: 0.5000001, y: 0.49999994}
 --- !u!114 &804639698
 MonoBehaviour:
@@ -501,7 +501,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 16fdf6b0f1a3e65408ff1c4bc63889f6, type: 3}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -512,7 +512,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Enter\u3067\u6B21\u3078"
+  m_Text: "Enter\u3067\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8"
 --- !u!222 &804639699
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefb12697602c1a47bd10dd7aa22a523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Summary Scene
+  nextSceneName: Indoor Scene
 --- !u!4 &1325497256
 Transform:
   m_ObjectHideFlags: 0
