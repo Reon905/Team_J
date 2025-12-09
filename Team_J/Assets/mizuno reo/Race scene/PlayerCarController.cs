@@ -17,12 +17,15 @@ public class PlayerCarController : MonoBehaviour
     public Slider speedSlider;             // スピードゲージUI
     public bool canDrive = false;          // レース開始フラグ
     public AudioSource CarSound;           //車の通常サウンド用AudioSource
+    public AudioClip CarStop;              //車の通常サウンド止める用関数
     public AudioClip CarSoundClip;         //加速時の音
     public AudioClip CarIdling;            //アイドリング(減速)時の音
-    private bool isPlaying = false;        //ブースト用AudioSource
-    private bool isAccelerating = false;   //ブースト音
+    public bool isPlaying = false;        //ブースト用AudioSource
+    public AudioClip boostStop;            //ブースト音を止める用の関
+    public bool isAccelerating = false;   //ブースト音
     public AudioSource boostAudio;
     public AudioClip boostClip;
+
 
     // ▼ ブースト関連パラメータ
     [Header("Boost Settings")]
@@ -210,7 +213,7 @@ public class PlayerCarController : MonoBehaviour
             boostSlider.value = boostTimeRemaining;
     }
     //走行音の再生処理
-    private void PlayDriveSound()
+    public void PlayDriveSound()
     {
         if (CarSound.clip == CarSoundClip && CarSound.isPlaying) return;
         CarSound.loop = true;           //ループ再生ON
@@ -218,7 +221,7 @@ public class PlayerCarController : MonoBehaviour
         CarSound.Play();                //再生開始
     }
     //アイドリング音(減速時)の再生処理
-    private void PlayIdlingSound()
+    public void PlayIdlingSound()
     {
         if (CarSound.clip == CarIdling && CarSound.isPlaying) return;
         CarSound.loop = true;          //繰り返し再生ON
@@ -226,7 +229,7 @@ public class PlayerCarController : MonoBehaviour
         CarSound.Play();               //再生開始
     }
     //ブースト音を流す処理
-    private void StartBoostSound()
+    public void StartBoostSound()
     {
         //ブースト音が設定されていない or すでに再生中ならスキップ
         if (boostClip == null || boostAudio.isPlaying) return;
@@ -242,12 +245,14 @@ public class PlayerCarController : MonoBehaviour
         if (boostAudio.isPlaying)
             boostAudio.Stop();
     }
-    public void StopAllCarSounds()
+    // ▼ ゴール時にすべての車サウンドを停止する処理
+    public  void StopAllCarSounds()
     {
         if (CarSound != null && CarSound.isPlaying)
             CarSound.Stop();
 
-        if(boostAudio != null && boostAudio.isPlaying)
+        if (boostAudio != null && boostAudio.isPlaying)
             boostAudio.Stop();
     }
+
 }
