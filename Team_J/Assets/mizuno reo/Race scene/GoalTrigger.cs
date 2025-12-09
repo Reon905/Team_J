@@ -15,8 +15,6 @@ public class GoalTrigger : MonoBehaviour
             }
             if (RaceManager.Instance != null)
             {
-                
-
                 RaceManager.Instance.RegisterFinish(other.gameObject);
             }
         }

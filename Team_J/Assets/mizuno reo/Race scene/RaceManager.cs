@@ -178,9 +178,6 @@ public class RaceManager : MonoBehaviour
             PlayerDataManager.AddPoints(playerPoints);
             SaveResult(playerRank, (int)playerPoints);
         }
-
-
-
     }
 
     // ======================================================
