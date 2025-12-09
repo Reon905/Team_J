@@ -43,22 +43,22 @@ public class Evaluation : MonoBehaviour
     //ポイントに応じてランクを返す関数
     string GetRank(int totalPoints)
     { 
-        if (totalPoints >= 1500)
+        if (totalPoints >= 1715)
         {
             audioSource.PlayOneShot(seRankS);
             return "S 最高評価です  おめでとう！";
         }
-        else if (totalPoints <= 1499 && totalPoints >= 651)
+        else if (totalPoints <= 1714 && totalPoints >= 1030)
         {
             audioSource.PlayOneShot(seRankA);
             return "A  おめでとう あと少し！";
         }
-        else if (totalPoints <= 650 && totalPoints >= 321)
+        else if (totalPoints <= 1029 && totalPoints >= 650)
         {
             audioSource.PlayOneShot(seRankB);
             return "B  いい感じ！ あと一歩！";
         }
-        else if (totalPoints <= 320 && totalPoints >= 0)
+        else if (totalPoints <= 649 && totalPoints >= 0)
         {
             audioSource.PlayOneShot(seRankC);
             return "C    もう少し頑張ろう！";
