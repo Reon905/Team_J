@@ -154,7 +154,7 @@ public class Customize : MonoBehaviour
             selectedMaxSpeed = 58f;
             nextLevel = 600000;
         }
-        else if (totalMoney >= 230000 && totalMoney < 350000)
+        else if (totalMoney >= 600000 && totalMoney < 700000)
         {
             CarStage = 20;
             selectedAcceleration = 8.8f;
@@ -168,7 +168,7 @@ public class Customize : MonoBehaviour
             selectedMaxSpeed = 60f;
             nextLevel = 750000;
         }
-        else if (totalMoney >= 230000 && totalMoney < 350000)
+        else if (totalMoney >= 750000 && totalMoney < 800000)
         {
             CarStage = 22;
             selectedAcceleration = 9.2f;
