@@ -12,8 +12,6 @@ public class GoalTrigger : MonoBehaviour
             if (car != null)
             {
                 car.StopAllCarSounds();
-
-
             }
             if (RaceManager.Instance != null)
             {
