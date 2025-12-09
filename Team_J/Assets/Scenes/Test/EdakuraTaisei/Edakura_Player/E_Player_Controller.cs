@@ -52,7 +52,7 @@ public class E_Player_Controller : MonoBehaviour
         //ダッシュ
         if (DashAction.IsPressed())      //Shiftキーが押されるとダッシュする
         {
-            Speed = 5.0f * (float)1.5;   //PlayerSpeedを1.5倍する
+            Speed = 5.0f * 1.5f;   //PlayerSpeedを1.5倍する
             if (PlayerVector.x != 0.0f || PlayerVector.y != 0.0f)
             {
                 WalkDelay++;

@@ -3271,6 +3271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Time Text Back
       objectReference: {fileID: 0}
+    - target: {fileID: 4075765029497512674, guid: cf5131f4380a6564bb409d77682130ef, type: 3}
+      propertyPath: changeTime
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 4127456503799280930, guid: cf5131f4380a6564bb409d77682130ef, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -13142,6 +13146,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1752427738}
+  - {fileID: 1878823461}
   - {fileID: 506940025}
   - {fileID: 1521527295}
   - {fileID: 835564479}
@@ -13150,7 +13155,6 @@ SceneRoots:
   - {fileID: 1922854303}
   - {fileID: 1515041834}
   - {fileID: 1455641980}
-  - {fileID: 1878823461}
   - {fileID: 2049561428}
   - {fileID: 591943118}
   - {fileID: 1436862985}

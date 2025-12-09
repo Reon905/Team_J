@@ -8,7 +8,7 @@ public class ChangeSceneAfterTime : MonoBehaviour
     public Text timerText;
 
     public static float timer = 0f;
-    public float changeTime = 300f;
+    public float changeTime = 30f;
 
     // ▼ 30秒警告サウンド（ループ）
     public AudioSource audioSource;
@@ -43,7 +43,30 @@ public class ChangeSceneAfterTime : MonoBehaviour
 
         if (timer >= changeTime)
         {
-            SceneManager.LoadScene(nextSceneName);
+            if (GameStateManager.Game_Progress == 0)    //民家１
+            {
+                SceneManager.LoadScene("EscapeSuccessfulBetweenIndoor");
+            }
+            if (GameStateManager.Game_Progress == 1)//民家２
+            {
+                SceneManager.LoadScene("EscapeSuccessfulBetweenCustomize");
+            }
+            else if (GameStateManager.Game_Progress == 2)//オフィス１
+            {
+                SceneManager.LoadScene("EscapeSuccessfulBetweenIndoor");
+            }
+            else if (GameStateManager.Game_Progress == 3)//オフィス２
+            {
+                SceneManager.LoadScene("EscapeSuccessfulBetweenCustomize");
+            }
+            else if (GameStateManager.Game_Progress == 4)
+            {
+                SceneManager.LoadScene("EscapeSuccessfulBetweenCustomize");
+            }
+            else if (GameStateManager.Game_Progress == 5)
+            {
+                SceneManager.LoadScene("Result Scene");
+            }
         }
     }
 }
