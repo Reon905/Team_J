@@ -8,8 +8,17 @@ public class GoalTrigger : MonoBehaviour
         // PlayerまたはRivalタグのみ通す
         if (other.CompareTag("Player") || other.CompareTag("Rival"))
         {
+            PlayerCarController car = other.GetComponent<PlayerCarController>();
+            if (car != null)
+            {
+                car.StopAllCarSounds();
+
+
+            }
             if (RaceManager.Instance != null)
             {
+                
+
                 RaceManager.Instance.RegisterFinish(other.gameObject);
             }
         }

@@ -2027,6 +2027,7 @@ MonoBehaviour:
   boostDuration: 3
   boostCooldown: 15
   boostSlider: {fileID: 1537462384}
+  audioSource: {fileID: 0}
 --- !u!61 &1077696838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2701,7 +2702,7 @@ GameObject:
   - component: {fileID: 1247339354}
   - component: {fileID: 1247339353}
   m_Layer: 0
-  m_Name: Sound
+  m_Name: BGMobj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

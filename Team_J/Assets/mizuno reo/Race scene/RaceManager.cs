@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class RaceManager : MonoBehaviour
 {
@@ -177,7 +178,7 @@ public class RaceManager : MonoBehaviour
             PlayerDataManager.AddPoints(playerPoints);
             SaveResult(playerRank, (int)playerPoints);
         }
-    }
+}
 
     // ======================================================
     // 🔹 ゴール後のメッセージ・シーケンス

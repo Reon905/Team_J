@@ -1,5 +1,6 @@
 //PlaiyerCarController 
 using JetBrains.Annotations;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class PlayerCarController : MonoBehaviour
     // ▼ 通常走行パラメータ
     public static float acceleration;      // 通常加速度
     public static float maxSpeed;         // 通常最大速度
-    public float deceleration = 3f;      // 減速度
+    public float deceleration = 5f;      // 減速度
 
     private float currentSpeed = 0f;     // 現在の速度
     private Rigidbody2D rb;              // Rigidbody2D コンポーネント
@@ -33,6 +34,7 @@ public class PlayerCarController : MonoBehaviour
     public Slider boostSlider;             // ブーストゲージUI
     private float boostTimeRemaining = 0f; // 残りブースト時間
     private bool isBoosting = false;       // ブースト中フラグ
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
@@ -128,25 +130,7 @@ public class PlayerCarController : MonoBehaviour
             PlayIdlingSound();//アイドリング音を再生
             isAccelerating = false;
         }
-        //else if (Input.GetKey(KeyCode.W) && IsIdling == true)
-        //{
-        //    CarSound.Stop();
-        //    IsIdling = false;
-        //}
-        //else if (IsSoundStop == true)
-        //{
 
-        //    CarSound.PlayOneShot(CarIdling);
-        //    IsIdling = true;
-        //}
-        //else
-        //{
-        //    CarSound.Stop();
-        //    IsSoundStop = true;
-        //}
-
-        // --- 最高速度制限 ---
-        // ブースト中は maxSpeed × boostSpeedLimitMultiplier に上限アップ
         float currentMaxSpeed = isBoosting
             ? maxSpeed * boostSpeedLimitMultiplier
             : maxSpeed;
@@ -258,7 +242,12 @@ public class PlayerCarController : MonoBehaviour
         if (boostAudio.isPlaying)
             boostAudio.Stop();
     }
+    public void StopAllCarSounds()
+    {
+        if (CarSound != null && CarSound.isPlaying)
+            CarSound.Stop();
 
+        if(boostAudio != null && boostAudio.isPlaying)
+            boostAudio.Stop();
+    }
 }
-
-
