@@ -883,7 +883,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "  \u3000W:    \u4E0A\u65B9\u5411\u306B\u79FB\u52D5\n  \u3000S:    \u4E0B\u65B9\u5411\u306B\u79FB\u52D5\n 
     \u3000D:    \u53F3\u65B9\u5411\u306B\u79FB\u52D5\n  \u3000A:    \u5DE6\u65B9\u5411\u306B\u79FB\u52D5\n\nShift:   
-    \u30C0\u30C3\u30B7\u30E5\n\nEnter: \u3000 \u91D1\u5EAB\u3084\u6249\u306E\u30A4\u30F3\u30BF\u30E9\u30AF\u30C8"
+    \u30C0\u30C3\u30B7\u30E5\n\nEnter: \u3000 \u91D1\u5EAB\u3084\u6249\u306E\u958B\u9320"
 --- !u!222 &1559480828
 CanvasRenderer:
   m_ObjectHideFlags: 0
