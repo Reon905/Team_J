@@ -1,15 +1,19 @@
 //PlaiyerCarController 
 //using JetBrains.Annotations;
 //using UnityEditorInternal;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCarController : MonoBehaviour
 {
     // ▼ 通常走行パラメータ
-    public static float acceleration;      // 通常加速度
-    public static float maxSpeed;         // 通常最大速度
-    public float deceleration = 5f;      // 減速度
+    [Header("Car Stats")]
+    [SerializeField] private float acceleration;// 通常加速度
+    [SerializeField] private float maxSpeed; // 通常最大速度
+    public float deceleration = 5f;       // 減速度
+    public bool autoDrive = true;         // 自動運転ON
+    public float autoTargetspeed = 100f;  //最高速度
 
     private float currentSpeed = 0f;     // 現在の速度
     private Rigidbody2D rb;              // Rigidbody2D コンポーネント
@@ -39,16 +43,19 @@ public class PlayerCarController : MonoBehaviour
     private bool isBoosting = false;       // ブースト中フラグ
     [SerializeField] private AudioSource audioSource;
 
-    private void Start()
+
+    private void Awake()
     {
-        //CarSound = this.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
 
-        PlayIdlingSound(); //ゲーム開始時に呼び出し
-
-        // --- Customize で設定された値を反映 ---
+        //Customizeの値を確実に反映
         acceleration = Customize.selectedAcceleration;
         maxSpeed = Customize.selectedMaxSpeed;
+    }
+    private void Start()
+    {
+
+        PlayIdlingSound(); //ゲーム開始時に呼び出し
 
         Debug.Log($"PlayerCarController initialized → Accel:{acceleration}, MaxSpeed:{maxSpeed}");
 
@@ -109,30 +116,54 @@ public class PlayerCarController : MonoBehaviour
         float appliedAcceleration = isBoosting
             ? acceleration * boostAccelerationMultiplier
             : acceleration;
+        if (autoDrive)
+        {
+            float targetSpeed = maxSpeed * autoTargetspeed;
 
+            if (currentSpeed < targetSpeed)
+            {
+                currentSpeed += appliedAcceleration * Time.deltaTime;
+
+                if (!isAccelerating)
+                {
+                    PlayDriveSound();
+                    isAccelerating = true;
+                }
+            }
+            else
+            {
+                currentSpeed -= deceleration * Time.deltaTime;
+
+                if (isAccelerating)
+                {
+                    PlayDriveSound();
+                    isAccelerating = false;
+                }
+            }
+        }
         // 加速・減速の入力処理
-        if (Input.GetKey(KeyCode.W))
-        { 
-            currentSpeed += appliedAcceleration * Time.deltaTime; // 加速
-        }
-        else
-        {
-              currentSpeed -= deceleration * Time.deltaTime;        // 減速
-        }
+        //if (Input.GetKey(KeyCode.W))
+        //{ 
+        //    currentSpeed += appliedAcceleration * Time.deltaTime; // 加速
+        //}
+        //else
+        //{
+        //      currentSpeed -= deceleration * Time.deltaTime;        // 減速
+        //}
 
-        // Wキー押下・離すの検出
-        //Wを押したときに走行音へ切り替え
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            PlayDriveSound();//加速音を再生
-            isAccelerating = true;
-        }
-        //Wキーを離したときにアイドリング音へ戻す
-        else if (Input.GetKeyUp(KeyCode.W))
-        {
-            PlayIdlingSound();//アイドリング音を再生
-            isAccelerating = false;
-        }
+        //// Wキー押下・離すの検出
+        ////Wを押したときに走行音へ切り替え
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    PlayDriveSound();//加速音を再生
+        //    isAccelerating = true;
+        //}
+        ////Wキーを離したときにアイドリング音へ戻す
+        //else if (Input.GetKeyUp(KeyCode.W))
+        //{
+        //    PlayIdlingSound();//アイドリング音を再生
+        //    isAccelerating = false;
+        //}
 
         float currentMaxSpeed = isBoosting
             ? maxSpeed * boostSpeedLimitMultiplier

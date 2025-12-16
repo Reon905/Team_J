@@ -2058,7 +2058,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c357eb4a9e1d3144ac9ba765a207efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceleration: 0
+  maxSpeed: 0
   deceleration: 3
+  autoDrive: 1
+  autoTargetspeed: 40
   speedSlider: {fileID: 0}
   canDrive: 0
   CarSound: {fileID: 1077696842}
