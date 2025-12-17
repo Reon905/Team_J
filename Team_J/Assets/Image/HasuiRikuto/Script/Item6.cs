@@ -22,8 +22,8 @@ public class Item6 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            totalMoney += price;
-            totalPoints += 40;
+           // totalMoney += price;
+           // totalPoints += 40;
             itemCount++;
 
             Money.DayMoney += price;

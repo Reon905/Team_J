@@ -89,8 +89,8 @@ public class Item7 : MonoBehaviour
     void OpenItem()
     {
         isOpened = true;
-        totalMoney += price;
-        totalPoints += 100;
+       // totalMoney += price;
+       // totalPoints += 100;
         itemCount++;
 
         Money.DayMoney += price;

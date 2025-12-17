@@ -37,4 +37,5 @@ public class Result : MonoBehaviour
         Debug.Log($"[Result] totalMoney = {Money.totalMoney}円");
         Debug.Log($"[Result] totalPoints = {Money.totalPoints}pt");
     }
+
 }
