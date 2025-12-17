@@ -29,6 +29,10 @@ public class RaceManager : MonoBehaviour
     public PlayerCarController playerCar;
     public List<RivalCarController> rivals = new List<RivalCarController>();
 
+    [Header("Raycastゴール判定用")]
+    [SerializeField] private float goalRayDistance = 5f;   // ★Rayの距離（必要に応じて調整）
+    [SerializeField] private LayerMask goalLayer;          // ★ゴールオブジェクト専用のLayer
+
     // ======================================================
     // 🔹 レース状態管理
     // ======================================================
@@ -68,6 +72,12 @@ public class RaceManager : MonoBehaviour
     {
         HandleFinishSequence();
         HandleMessageDisplay();
+
+        //レース中のみゴール判定
+        if(raceState == RaceState.Racing && playerCar != null)
+        {
+            CheckPlayerGoalRay();
+        }
     }
 
     // ======================================================
@@ -287,4 +297,30 @@ public class RaceManager : MonoBehaviour
     public bool IsRaceStarted() => raceState == RaceState.Racing;
     public bool IsCountdownActive() => raceState == RaceState.Countdown;
     public bool IsRaceFinished() => raceState == RaceState.Finish || raceState == RaceState.Done;
+
+    /// <summary>
+    /// PlayerCar から前方向に Ray を飛ばしてゴール判定
+    /// </summary>
+    private void CheckPlayerGoalRay()
+    {
+        // Ray の開始位置：車の位置
+        Vector2 origin = playerCar.transform.position;
+
+        // Ray の方向：車の進行方向
+        // 右向きが前の場合は transform.right、上が前なら transform.up に変更
+        Vector2 direction = playerCar.transform.right;
+
+        // Sceneビューで見えるように Ray を描画（デバッグ用）
+        Debug.DrawRay(origin, direction * goalRayDistance, Color.green);
+
+        // Raycast 実行
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, goalRayDistance, goalLayer);
+
+        if (hit.collider != null)
+        {
+            // ゴールに当たったら RegisterFinish で処理
+            RegisterFinish(playerCar.gameObject);
+        }
+    }
+
 }
