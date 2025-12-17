@@ -93,12 +93,12 @@ public class Item7 : MonoBehaviour
        // totalPoints += 100;
         itemCount++;
 
-        Money.DayMoney += price;
-        Money.DayPoint += 40;
+        Money.Instance.DayMoney += price;
+        Money.Instance.DayPoint += 40;
 
-        Money.SceneMoney += price;
-        Money.ScenePoint += 40;
-        Money.SceneItemCount++;
+        Money.Instance.SceneMoney += price;
+        Money.Instance.ScenePoint += 40;
+        Money.Instance.SceneItemCount++;
 
         SoundPlayer.instance.PlaySE(itemSound);
 

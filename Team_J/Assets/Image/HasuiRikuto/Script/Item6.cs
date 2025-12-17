@@ -26,12 +26,12 @@ public class Item6 : MonoBehaviour
            // totalPoints += 40;
             itemCount++;
 
-            Money.DayMoney += price;
-            Money.DayPoint += 40;
+            Money.Instance.DayMoney += price;
+            Money.Instance.DayPoint += 40;
 
-            Money.SceneMoney += price;
-            Money.ScenePoint += 40;
-            Money.SceneItemCount++;
+            Money.Instance.SceneMoney += price;
+            Money.Instance.ScenePoint += 40;
+            Money.Instance.SceneItemCount++; 
 
             Debug.Log("アイテム4取得！ +" + price + "円、+40pt");
 

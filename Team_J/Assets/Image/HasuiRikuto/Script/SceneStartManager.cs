@@ -4,8 +4,8 @@ public class SceneStartManager : MonoBehaviour
 {
     void Start()
     {
-        Money.SceneMoney = 0;
-        Money.ScenePoint = 0;
-        Money.SceneItemCount = 0;
+        Money.Instance.SceneMoney = 0;
+        Money.Instance.ScenePoint = 0;
+        Money.Instance.SceneItemCount = 0;
     }
 }

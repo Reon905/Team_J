@@ -68,8 +68,8 @@ public class ChangeScene : MonoBehaviour
                 Item12.totalPoints = 0;
                 Item12.itemCount = 0;
 
-                Money.totalMoney = 0;
-                Money.totalPoints = 0;
+                Money.Instance.totalMoney = 0;
+                Money.Instance.totalPoints = 0;
 
                 //タイマーもリセット
                 ChangeSceneAfterTime.timer = 0f;

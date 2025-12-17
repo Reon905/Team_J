@@ -7,7 +7,7 @@ public class Result : MonoBehaviour
     public static int racePoints;
     void Start()
     {
-        Money.AddToTotal();
+        Money.Instance.AddToTotal();
 
         racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
         // Money.totalPoints += racePoints;
@@ -31,11 +31,11 @@ public class Result : MonoBehaviour
 
         // --- 表示 ---
         resultText.text =
-             $"合計金額: {Money.totalMoney}円\n" +
-             $"合計ポイント: {Money.totalPoints}pt";
+             $"合計金額: {Money.Instance.totalMoney}円\n" +
+             $"合計ポイント: {Money.Instance.totalPoints}pt";
 
-        Debug.Log($"[Result] totalMoney = {Money.totalMoney}円");
-        Debug.Log($"[Result] totalPoints = {Money.totalPoints}pt");
+        Debug.Log($"[Result] totalMoney = {Money.Instance.totalMoney}円");
+        Debug.Log($"[Result] totalPoints = {Money.Instance.totalPoints}pt");
     }
 
 }

@@ -4,6 +4,6 @@ public class CaughtSceneManager : MonoBehaviour
 {
     void Start()
     {
-        Money.OnCaughtInScene();
+        Money.Instance.OnCaughtInScene();
     }
 }
