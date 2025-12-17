@@ -91,6 +91,13 @@ public class Item3 : MonoBehaviour
         totalPoints += 60;
         itemCount++;
 
+        Money.DayMoney += price;
+        Money.DayPoint += 40;
+
+        Money.SceneMoney += price;
+        Money.ScenePoint += 40;
+        Money.SceneItemCount++;
+
         SoundPlayer.instance.PlaySE(itemSound);
 
         if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
@@ -103,5 +110,11 @@ public class Item3 : MonoBehaviour
 
         if (itemManager != null)
             itemManager.CollectItem(); // 取得済み登録＆削除
+    }
+    public static void Reset()
+    {
+        totalMoney = 0;
+        totalPoints = 0;
+        itemCount = 0;
     }
 }

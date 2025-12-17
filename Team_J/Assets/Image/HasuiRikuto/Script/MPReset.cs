@@ -9,16 +9,18 @@ public class MPReset : MonoBehaviour
     void Update()
     {
        
-            if (resetDataOnLoad)
-            {
-                //PlayerPrefs（アイテム取得情報）リセット
-              // PlayerPrefs.DeleteAll();
+           if (resetDataOnLoad)
+           {
+            //PlayerPrefs（アイテム取得情報）リセット
+            // PlayerPrefs.DeleteAll();
 
-                //タイマーもリセット
-                ChangeSceneAfterTime.timer = 0f;
+            PlayerPrefs.DeleteAll();
+
+            //タイマーもリセット
+            ChangeSceneAfterTime.timer = 0f;
 
                 Debug.Log("リセットしました（アイテム・時間）");
-            }
+           }
     }
 }
 

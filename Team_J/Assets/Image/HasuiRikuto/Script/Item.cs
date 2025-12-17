@@ -27,6 +27,13 @@ public class Item : MonoBehaviour
             totalPoints += 40;
             itemCount++;
 
+            Money.DayMoney += price;
+            Money.DayPoint += 40;
+
+            Money.SceneMoney += price;
+            Money.ScenePoint += 40;
+            Money.SceneItemCount++;
+
             Debug.Log("アイテム1取得！ +" + price + "円、+40pt");
 
             // 🔊 サウンド再生（Item は消えても問題なし）
@@ -36,5 +43,11 @@ public class Item : MonoBehaviour
             if (itemManager != null)
                 itemManager.CollectItem();
         }
+    }
+    public static void Reset()
+    {
+        totalMoney = 0;
+        totalPoints = 0;
+        itemCount = 0;
     }
 }

@@ -93,6 +93,13 @@ public class Item7 : MonoBehaviour
         totalPoints += 100;
         itemCount++;
 
+        Money.DayMoney += price;
+        Money.DayPoint += 40;
+
+        Money.SceneMoney += price;
+        Money.ScenePoint += 40;
+        Money.SceneItemCount++;
+
         SoundPlayer.instance.PlaySE(itemSound);
 
         if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
@@ -104,5 +111,11 @@ public class Item7 : MonoBehaviour
 
         if (itemManager != null)
             itemManager.CollectItem(); // æ“¾Ï‚İ“o˜^•íœ
+    }
+    public static void Reset()
+    {
+        totalMoney = 0;
+        totalPoints = 0;
+        itemCount = 0;
     }
 }
