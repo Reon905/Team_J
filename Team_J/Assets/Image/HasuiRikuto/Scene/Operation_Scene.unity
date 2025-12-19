@@ -802,7 +802,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Enter:\n\u9577\u62BC\u3057\u3067\u30B2\u30FC\u30B8\u3092\u6D88\u8CBB\u3057\u52A0\u901F\n\nEsc:   
+  m_Text: "Enter:\n\u9577\u62BC\u3057\u3067\u30B2\u30FC\u30B8\u3092\u6D88\u8CBB\u3057\u52A0\u901F\u3000\u3000\u62BC\u3057\u3066\u3044\u306A\u3044\u3068\u30B2\u30FC\u30B8\u304C\u56DE\u5FA9\n\nEsc:   
     \u30B2\u30FC\u30E0\u306E\u4E2D\u65AD"
 --- !u!222 &1508463440
 CanvasRenderer:
