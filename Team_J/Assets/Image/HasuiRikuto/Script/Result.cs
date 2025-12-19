@@ -32,7 +32,7 @@ public class Result : MonoBehaviour
         // --- 表示 ---
         resultText.text =
              $"合計金額: {Money.Instance.totalMoney}円\n" +
-             $"合計ポイント: {Money.Instance.totalPoints + racePoints}pt";
+             $"合計ポイント: {Money.Instance.totalPoints}pt";
 
         Debug.Log($"[Result] totalMoney = {Money.Instance.totalMoney}円");
         Debug.Log($"[Result] totalPoints = {Money.Instance.totalPoints}pt");

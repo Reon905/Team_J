@@ -29,6 +29,10 @@ public class Money : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
+
+        //‚±‚±‚Åˆê“x‚¾‚¯‡Z
+        DayPoint += racePoints;
     }
     public void AddToTotal()
     {
