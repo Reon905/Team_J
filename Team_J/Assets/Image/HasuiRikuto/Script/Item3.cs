@@ -22,11 +22,15 @@ public class Item3 : MonoBehaviour
     private bool playerInRange = false;
     private bool isOpened = false;
 
+    GameObject ItemLight;
+
     private string saveKey;
    
 
     void Start()
     {
+        ItemLight = transform.Find("ItemLight").gameObject;
+
         saveKey = "ItemOpened_Item3";
 
         //毎回リセットして閉じた状態に戻す
@@ -110,6 +114,8 @@ public class Item3 : MonoBehaviour
 
         if (itemManager != null)
             itemManager.CollectItem(); // 取得済み登録＆削除
+
+        ItemLight.SetActive(false);
     }
     public static void Reset()
     {

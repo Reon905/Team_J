@@ -23,11 +23,14 @@ public class Item7 : MonoBehaviour
     private bool isOpened = false;
 
    //開錠状態保存用
-    private string saveKey; 
+    private string saveKey;
+
+    GameObject ItemLight;
     
 
     void Start()
     {
+        ItemLight = transform.Find("ItemLight").gameObject;
         saveKey = "ItemOpened_Item7";
 
         //毎回閉じた状態にリセット
@@ -111,6 +114,8 @@ public class Item7 : MonoBehaviour
 
         if (itemManager != null)
             itemManager.CollectItem(); // 取得済み登録＆削除
+
+        ItemLight.SetActive(false);
     }
     public static void Reset()
     {
