@@ -23,11 +23,14 @@ public class Item8 : MonoBehaviour
     private bool isOpened = false;
 
     //ŠJùó‘Ô•Û‘¶—p
-    private string saveKey;  
+    private string saveKey;
 
+    GameObject ItemLight;
 
     void Start()
     {
+        ItemLight = transform.Find("ItemLight").gameObject;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer && itemSprite) spriteRenderer.sprite = itemSprite;
         itemManager = GetComponent<ItemManager>();
@@ -121,6 +124,8 @@ public class Item8 : MonoBehaviour
 
         if (itemManager != null)
             itemManager.CollectItem(); // æ“¾Ï‚İ“o˜^•íœ
+
+        ItemLight.SetActive(false);
     }
     public static void Reset()
     {
