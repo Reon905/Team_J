@@ -25,13 +25,9 @@ public class Range_Text : MonoBehaviour
         float distance = Vector2.Distance(carTransform.position, goalTransform.position);
 
         // UI に表示
-        distanceText.text = $"ゴールまで: {distance:F1} m";
+        distanceText.text = $"ゴ|ルまで: {distance:F1} m";
 
         // 任意でゴール判定（距離が一定以下になったらゴール扱い）
-        if (distance < 0.5f) // 0.5m以内ならゴール
-        {
-            OnGoalReached();
-        }
     }
 
     // ゴール時の処理
