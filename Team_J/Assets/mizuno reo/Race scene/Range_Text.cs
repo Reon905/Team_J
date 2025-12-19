@@ -14,21 +14,24 @@ public class Range_Text : MonoBehaviour
     {
         if (carTransform == null || goalTransform == null || distanceText == null) return;
 
-        // ゴール済みならテキスト非表示
-        if (hasFinished)
-        {
-            distanceText.gameObject.SetActive(false);
-            return;
-        }
-
         // ゴールまでの距離を計算
         float distance = Vector2.Distance(carTransform.position, goalTransform.position);
 
-        // UI に表示
-        distanceText.text = $"ゴ|ルまで: {distance:F1} m";
+        // ★② ここに書く！
+        if (distance <= 0.1f)
+        {
+            distanceText.text = "ゴールまで: 0.0 m";
+            hasFinished = true;
+            return; // これ以上 Update を進めない
+        }
 
-        // 任意でゴール判定（距離が一定以下になったらゴール扱い）
+        // ゴール後は更新しない
+        if (hasFinished) return;
+
+        // 通常表示
+        distanceText.text = $"ゴールまで: {distance:F1} m";
     }
+
 
     // ゴール時の処理
     private void OnGoalReached()

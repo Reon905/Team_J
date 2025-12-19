@@ -11,6 +11,11 @@ public class Range_Display : MonoBehaviour
 
         Debug.DrawRay(origin, directon * 10f, Color.red);
 
+        if(hit.distance <= 0)
+        {
+            hit.distance = 0;
+        }
+
         if(hit.collider != null )
         {
             Debug.Log("‹——£F" + hit.distance);
