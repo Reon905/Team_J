@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Image/HasuiRikuto/Scene/Indoor Bank2.unity
     guid: 19afdc1ab7d7bf142a1d77fe5501ff03
-  - enabled: 1
+  - enabled: 0
     path: Assets/Image/HasuiRikuto/Scene/Capture Scene.unity
     guid: 6599ffb0bf66f9546a3d3ab94e10fa18
   - enabled: 0
