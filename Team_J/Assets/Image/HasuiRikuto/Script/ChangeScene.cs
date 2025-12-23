@@ -18,6 +18,8 @@ public class ChangeScene : MonoBehaviour
             {
                 //PlayerPrefs（アイテム取得情報）リセット
                 PlayerPrefs.DeleteAll();
+               // PlayerPrefs.Save();
+
 
                 //アイテム合計金額とポイントをリセット
                 Item.totalMoney = 0;
@@ -70,6 +72,8 @@ public class ChangeScene : MonoBehaviour
 
                 Money.Instance.totalMoney = 0;
                 Money.Instance.totalPoints = 0;
+               // Money.Instance.racePoints = 0;
+                
 
                 //タイマーもリセット
                 ChangeSceneAfterTime.timer = 0f;

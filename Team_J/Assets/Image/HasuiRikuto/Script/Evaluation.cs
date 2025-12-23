@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class Evaluation : MonoBehaviour
 {
     public static string currentRank = "D";
-
     public Text rankText;
 
     [Header("Rank Sounds")]
@@ -18,9 +17,14 @@ public class Evaluation : MonoBehaviour
 
     void Start()
     {
-        // 1日の最終ポイント（評価専用）
-        int evaluationPoints = Money.Instance.DayPoint
-                             + PlayerPrefs.GetInt("TotalRacePoints", 0);
+        if (Money.Instance == null)
+        {
+            Debug.LogError("Money.Instance が null");
+            return;
+        }
+
+        // ★ 評価に使うポイント（DayPointだけ使うならこれでOK）
+        int evaluationPoints = Money.Instance.DayPoint;
 
         // ランク判定
         currentRank = GetRank(evaluationPoints);

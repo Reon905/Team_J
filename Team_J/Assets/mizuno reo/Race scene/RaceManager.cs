@@ -175,6 +175,12 @@ public class RaceManager : MonoBehaviour
             playerRank = rank;
             playerPoints = CalculatePoints(rank);
 
+            if (Money.Instance != null)
+            {
+                Money.Instance.DayPoint += (int)playerPoints;
+                Debug.Log($"[Race] Rank {playerRank} → +{playerPoints}pt / DayPoint={Money.Instance.DayPoint}");
+            }
+
             if (playerCar != null) playerCar.DisableControl();
             if (rivals != null)
             {
@@ -188,6 +194,8 @@ public class RaceManager : MonoBehaviour
             PlayerDataManager.AddPoints(playerPoints);
             SaveResult(playerRank, (int)playerPoints);
         }
+        PlayerPrefs.SetInt("EvaluationPoint", Money.Instance.DayPoint);
+        PlayerPrefs.Save();
     }
 
     // ======================================================
@@ -269,6 +277,7 @@ public class RaceManager : MonoBehaviour
             case 2: return 70;
             case 3: return 30;
             default: return 10;
+
         }
     }
 

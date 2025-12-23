@@ -32,15 +32,35 @@ public class Money : MonoBehaviour
         racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
 
         //‚±‚±‚Åˆê“x‚¾‚¯‡ŽZ
-        DayPoint += racePoints;
+        //DayPoint += racePoints;
     }
+    public void AddRacePointByRank(int rank)
+    {
+        int point = rank switch
+        {
+            1 => 100,
+            2 => 70,
+            3 => 30,
+            _ => 10
+        };
+
+        DayPoint += point;
+        Debug.Log($"[Race] Rank {rank} +{point}pt / DayPoint={DayPoint}");
+    }
+
     public void AddToTotal()
     {
         totalMoney += DayMoney;
         totalPoints += DayPoint;
 
+
         DayMoney = 0;
         DayPoint = 0;
+        
+    }
+    public void ResetAll()
+    {
+        //racePoints = 0;
     }
     void Start()
     {
