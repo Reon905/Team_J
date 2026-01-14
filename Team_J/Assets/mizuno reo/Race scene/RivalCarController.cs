@@ -15,6 +15,14 @@ public class RivalCarController : MonoBehaviour
     // ======================================================
     private float minSpeed = 20f;   // ライバルの最低速度
     private float maxSpeed = 21f;  // ライバルの最高速度
+
+    public float houseminSpeed = 0;
+    public float housemaxSpeed = 0;
+    public float officeminSpeed = 0;
+    public float officemaxSpeed = 0;
+    public float bankminSpeed = 0;
+    public float bankmaxSpeed = 0;
+
     private float acceleration = 10f; // 加速力
     public float deceleration = 2f; // 減速力
     public float baseMin;
@@ -118,20 +126,20 @@ public class RivalCarController : MonoBehaviour
         //民家
         if (GameStateManager.Game_Progress == 2)
         {
-            minSpeed = 33f;
-            maxSpeed = 34.7f;
+            minSpeed = houseminSpeed;
+            maxSpeed = housemaxSpeed;
         }
         //オフィス
         else if (GameStateManager.Game_Progress == 4)
         {
-            minSpeed = 45f;
-            maxSpeed = 46.5f;
+            minSpeed = officeminSpeed;
+            maxSpeed = officemaxSpeed;
         }
         //銀行
         else if (GameStateManager.Game_Progress == 5)
         {
-            minSpeed = 53f;
-            maxSpeed = 57f;
+            minSpeed = bankminSpeed;
+            maxSpeed = bankmaxSpeed;
         }
 
         //ランダム設定

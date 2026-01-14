@@ -63,7 +63,7 @@ public class Customize : MonoBehaviour
             selectedMaxSpeed = 32f;
             nextLevel = 20000;
         }
-        else if (Money.Instance.DayMoney >= 20000 && Money.Instance.DayMoney < 30000)
+        else if (Money.Instance.DayMoney >= 20000 && Money.Instance.DayMoney < 30000)// 民家最大
         {
             CarStage = 7;
             selectedAcceleration = 6.4f;
@@ -98,7 +98,7 @@ public class Customize : MonoBehaviour
             selectedMaxSpeed = 40f;
             nextLevel = 120000;
         }
-        else if (Money.Instance.DayMoney >= 120000 && Money.Instance.DayMoney < 150000)
+        else if (Money.Instance.DayMoney >= 120000 && Money.Instance.DayMoney < 150000)// オフィス最大
         {
             CarStage = 12;
             selectedAcceleration = 7.4f;
@@ -140,7 +140,7 @@ public class Customize : MonoBehaviour
             selectedMaxSpeed = 54f;
             nextLevel = 500000;
         }
-        else if (Money.Instance.DayMoney >= 500000 && Money.Instance.DayMoney < 550000)
+        else if (Money.Instance.DayMoney >= 500000 && Money.Instance.DayMoney < 550000)//銀行最大
         {
             CarStage = 18;
             selectedAcceleration = 8.6f;
