@@ -43,7 +43,7 @@ public class Evaluation : MonoBehaviour
             audioSource.PlayOneShot(seRankA);
             return "A Ç®ÇﬂÇ≈Ç∆Ç§ÅIÇ†Ç∆è≠ÇµÅI";
         }
-        else if (points >= 930)
+        else if (points >= 800)
         {
             audioSource.PlayOneShot(seRankB);
             return "B Ç¢Ç¢ä¥Ç∂ÅI";
@@ -60,7 +60,7 @@ public class Evaluation : MonoBehaviour
         }
         else
         {
-            return "afjeaoifjao;ieho;aifj";
+            return "CRIME RACER";
         }
         
     }
