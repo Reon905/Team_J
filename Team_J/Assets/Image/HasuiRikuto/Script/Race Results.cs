@@ -7,6 +7,8 @@ public class RaceRssults : MonoBehaviour
 
     void Start()
     {
+        Money.Instance.resultPoint = Money.Instance.DayPoint;
+
         // 🔹 RaceManagerで保存された順位データを取得
         int lastRank = PlayerPrefs.GetInt("LastRank", 0);
 

@@ -19,22 +19,16 @@ public class Evaluation : MonoBehaviour
     {
         if (Money.Instance == null)
         {
-            Debug.LogError("Money.Instance が null");
+            Debug.LogError("Money.Instance が存在しません");
             return;
         }
+        int evaluationPoints = Money.Instance.resultPoint;
 
-        // ★ 評価に使うポイント（DayPointだけ使うならこれでOK）
-        int evaluationPoints = Money.Instance.DayPoint;
+        Debug.Log($"[Evaluation] 評価ポイント = {evaluationPoints}");
 
-        // ランク判定
         currentRank = GetRank(evaluationPoints);
 
-        Debug.Log($"評価ポイント: {evaluationPoints} → ランク: {currentRank}");
-
-        if (rankText != null)
-        {
-            rankText.text = currentRank;
-        }
+        rankText.text = currentRank;
     }
 
     string GetRank(int points)

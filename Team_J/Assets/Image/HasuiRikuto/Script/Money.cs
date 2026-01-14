@@ -13,6 +13,8 @@ public class Money : MonoBehaviour
     public int totalMoney;
     public int totalPoints;
 
+    public int resultPoint;
+
     public int SceneMoney;
     public int ScenePoint;
     public int SceneItemCount;
