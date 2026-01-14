@@ -20587,7 +20587,7 @@ MonoBehaviour:
   openedSprite: {fileID: -1627759090196722273, guid: fa01c51d5dc634d45911f59a3e57f386, type: 3}
   itemSound: {fileID: 8300000, guid: 029f84ecad013e341992df758d3ec87f, type: 3}
   messageText: {fileID: 646248315}
-  holdTime: 5
+  holdTime: 3
 --- !u!212 &969298699
 SpriteRenderer:
   m_ObjectHideFlags: 0
