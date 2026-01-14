@@ -33,30 +33,35 @@ public class Evaluation : MonoBehaviour
 
     string GetRank(int points)
     {
-        if (points >= 1715)
+        if (points >= 1899)
         {
             audioSource.PlayOneShot(seRankS);
             return "S 最高評価です！おめでとう！";
         }
-        else if (points >= 1030)
+        else if (points >= 1400)
         {
             audioSource.PlayOneShot(seRankA);
             return "A おめでとう！あと少し！";
         }
-        else if (points >= 650)
+        else if (points >= 930)
         {
             audioSource.PlayOneShot(seRankB);
             return "B いい感じ！";
         }
-        else if (points >= 0)
+        else if (points >= 450)
         {
             audioSource.PlayOneShot(seRankC);
             return "C もう少し頑張ろう！";
         }
-        else
+        else if (points >= 0)
         {
             audioSource.PlayOneShot(seRankD);
             return "D 頑張ろう！";
         }
+        else
+        {
+            return "afjeaoifjao;ieho;aifj";
+        }
+        
     }
 }
