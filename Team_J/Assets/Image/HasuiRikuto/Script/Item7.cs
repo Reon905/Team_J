@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Item7 : MonoBehaviour
+public class Item7 : BaseItem
 {
     public int price;
     public static int totalMoney = 0;
     public static int totalPoints = 0;
-    public static int itemCount = 0;
+    //public static int itemCount = 0;
 
     public Sprite itemSprite;
     public Sprite openedSprite;
@@ -103,6 +103,8 @@ public class Item7 : MonoBehaviour
         Money.Instance.ScenePoint += 40;
         Money.Instance.SceneItemCount++;
 
+        Debug.Log("アイテム1取得！ +" + BaseItem.itemCount + "個");
+
         SoundPlayer.instance.PlaySE(itemSound);
 
         if (spriteRenderer && openedSprite) spriteRenderer.sprite = openedSprite;
@@ -121,6 +123,6 @@ public class Item7 : MonoBehaviour
     {
         totalMoney = 0;
         totalPoints = 0;
-        itemCount = 0;
+        //itemCount = 0;
     }
 }

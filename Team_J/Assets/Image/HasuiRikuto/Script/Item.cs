@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : BaseItem
 {
     public int price;
     public static int totalMoney = 0;
     public static int totalPoints = 0;
-    public static int itemCount = 0;
+    //public static int itemCount = 0;
 
     private ItemManager itemManager;
     private AudioSource audioSource;  
@@ -35,6 +35,7 @@ public class Item : MonoBehaviour
             Money.Instance.SceneItemCount++;
 
             Debug.Log("アイテム1取得！ +" + price + "円、+40pt");
+            Debug.Log("アイテム1取得！ +" + BaseItem.itemCount + "個");
 
             // 🔊 サウンド再生（Item は消えても問題なし）
             SoundPlayer.instance.PlaySE(itemSound);
@@ -48,6 +49,6 @@ public class Item : MonoBehaviour
     {
         totalMoney = 0;
         totalPoints = 0;
-        itemCount = 0;
+       // itemCount = 0;
     }
 }

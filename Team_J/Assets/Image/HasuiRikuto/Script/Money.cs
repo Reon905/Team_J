@@ -76,11 +76,11 @@ public class Money : MonoBehaviour
         DayPoint -= ScenePoint;
 
         // š ŒÂ”‚à–ß‚·
-        Item.itemCount -= SceneItemCount;
+        BaseItem.itemCount -= SceneItemCount;
 
         if (DayMoney < 0) DayMoney = 0;
         if (DayPoint < 0) DayPoint = 0;
-        if (Item.itemCount < 0) Item.itemCount = 0;
+        if (BaseItem.itemCount < 0) BaseItem.itemCount = 0;
 
         Debug.Log($"•ßŠlF-{SceneMoney}‰~ / -{ScenePoint}pt / -{SceneItemCount}ŒÂ");
     }

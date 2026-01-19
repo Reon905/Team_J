@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Item5 : MonoBehaviour
+public class Item5 : BaseItem
 {
     public int price;
     public static int totalMoney = 0;
     public static int totalPoints = 0;
-    public static int itemCount = 0;
+    //public static int itemCount = 0;
 
     private ItemManager itemManager;
 
@@ -34,7 +34,7 @@ public class Item5 : MonoBehaviour
             Money.Instance.SceneItemCount++;
 
             Debug.Log("アイテム5取得！ +" + price + "円、+50pt");
-
+            Debug.Log("アイテム1取得！ +" + BaseItem.itemCount + "個");
             SoundPlayer.instance.PlaySE(itemSound);
 
             // ここでItemManagerに「取得済み」と伝える
@@ -46,6 +46,6 @@ public class Item5 : MonoBehaviour
     {
         totalMoney = 0;
         totalPoints = 0;
-        itemCount = 0;
+       // itemCount = 0;
     }
 }
