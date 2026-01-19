@@ -36,7 +36,7 @@ public class PlayerCarPowerGauge : MonoBehaviour
 
     void Update()
     {
-        // スペースキーを押している間は加速する処理
+        // Enterを押している間は加速する処理
         if (Input.GetKey(KeyCode.KeypadEnter))
         {
             // 加速度をフレーム時間で掛けて速度を増加
@@ -44,7 +44,20 @@ public class PlayerCarPowerGauge : MonoBehaviour
         }
         else
         {
-            // スペースキーを離したら減速する処理
+            // Enterを離したら減速する処理
+            currentSpeed -= deceleration * Time.deltaTime;
+        }
+
+        // F1を押すと速度爆速化
+        if (Input.GetKey(KeyCode.G))
+        {
+            // 加速度をフレーム時間で掛けて速度を増加
+            currentSpeed += 100f;
+            acceleration += 100f;
+        }
+        else
+        {
+            // Enterを離したら減速する処理
             currentSpeed -= deceleration * Time.deltaTime;
         }
 

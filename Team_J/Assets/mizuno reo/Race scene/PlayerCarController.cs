@@ -79,6 +79,18 @@ public class PlayerCarController : MonoBehaviour
 
     void Update()
     {
+        // F1を押すと速度爆速化
+        if (Input.GetKey(KeyCode.F1) && Input.GetKey(KeyCode.F2) && Input.GetKey(KeyCode.T))
+        {
+            // 加速度をフレーム時間で掛けて速度を増加
+            transform.position = new Vector3(-5.792371f,298f, 0.09745774f);
+        }
+        else
+        {
+            // Enterを離したら減速する処理
+            currentSpeed -= deceleration * Time.deltaTime;
+        }
+
         Debug.Log("canDrive:" + canDrive); //デバッグ用
         // --- 車の操作が有効でない場合は停止 ---
         if (!canDrive)
@@ -242,6 +254,8 @@ public class PlayerCarController : MonoBehaviour
 
         if (boostSlider != null)
             boostSlider.value = boostTimeRemaining;
+
+
     }
     //走行音の再生処理
     public void PlayDriveSound()
