@@ -59,7 +59,6 @@ public class Item3 : BaseItem
                 if (holdTimer >= holdTime)
                     OpenItem();
             }
-
             if (Input.GetKeyUp(KeyCode.Return))
             {
                 holdTimer = 0f;
