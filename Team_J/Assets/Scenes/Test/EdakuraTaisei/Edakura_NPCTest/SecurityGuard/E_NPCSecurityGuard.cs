@@ -268,6 +268,8 @@ public class E_NPCSecurityGuard : MonoBehaviour
 
         //経過時間を初期化
         float Elapsed = 0.0f;
+
+        P_waitTime = Random.Range(2.0f, 3.0f);
         //指定時間経過するまで待機
         while (Elapsed < P_waitTime)
         {
