@@ -3172,8 +3172,12 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
+      propertyPath: Chase_Speed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: P_moveSpeed
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -5830,8 +5834,12 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
+      propertyPath: Chase_Speed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: P_moveSpeed
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -22361,8 +22369,12 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
+      propertyPath: Chase_Speed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: P_moveSpeed
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -23667,8 +23679,12 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
+      propertyPath: Chase_Speed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: P_moveSpeed
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -1475192547671818363, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: patrolPoints.Array.size
