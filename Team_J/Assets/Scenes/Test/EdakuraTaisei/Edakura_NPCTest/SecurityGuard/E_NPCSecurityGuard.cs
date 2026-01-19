@@ -28,7 +28,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
 
     public float P_moveSpeed = 2f;      // Patrol移動速度
     public float P_waitTime = 2f;       // Patrol待機時間
-    public float TurnSpeed = 1.5f;      // 旋回速度
+    public float TurnSpeed = 32f;      // 旋回速度
 
     private int currentPointIndex = 0;    // 次の目的地を示すインデックス
     private bool isWaiting = false; // 停止中フラグ
