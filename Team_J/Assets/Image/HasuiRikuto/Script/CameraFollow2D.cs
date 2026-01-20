@@ -5,7 +5,7 @@ public class CameraFollow2D : MonoBehaviour
     [Header("プレイヤーを自動で探す")]
     public Transform player;
     public Vector3 offset = new Vector3(0, 0, -10);
-
+   
     void Start()
     {
         // 自動でプレイヤーを探す（タグがPlayerのオブジェクト）

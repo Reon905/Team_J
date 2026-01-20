@@ -72,7 +72,7 @@ public class ChangeScene : MonoBehaviour
 
                 Money.Instance.totalMoney = 0;
                 Money.Instance.totalPoints = 0;
-               // Money.Instance.racePoints = 0;
+               
                 
 
                 //タイマーもリセット

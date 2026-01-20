@@ -14,16 +14,17 @@ public class Item9 : BaseItem
 
     void Start()
     {
-        price = 30000;
+        price = 30000;//金額設定
         itemManager = GetComponent<ItemManager>();
     }
 
+    /// <summary>
+    /// 金額ポイントアイテムカウント設定・サウンド再生関数
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-          //  totalMoney += price;
-           // totalPoints += 20;
             itemCount++;
 
             Money.Instance.DayMoney += price;
@@ -46,6 +47,5 @@ public class Item9 : BaseItem
     {
         totalMoney = 0;
         totalPoints = 0;
-       // itemCount = 0;
     }
 }

@@ -6,7 +6,6 @@ public class Item3 : BaseItem
     public int price;
     public static int totalMoney = 0;
     public static int totalPoints = 0;
-   // public static int itemCount = 0;
 
     public Sprite itemSprite;
     public Sprite openedSprite;
@@ -40,7 +39,7 @@ public class Item3 : BaseItem
         if (spriteRenderer && itemSprite) spriteRenderer.sprite = itemSprite;
         itemManager = GetComponent<ItemManager>();
 
-        price = Random.Range(5000, 10001);
+        price = Random.Range(5000, 10001);//金額設定
         if (messageText != null) messageText.text = "";
     }
 
@@ -67,6 +66,9 @@ public class Item3 : BaseItem
         }
     }
 
+    /// <summary>
+    /// 金庫を開ける前の関数
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -87,11 +89,12 @@ public class Item3 : BaseItem
         }
     }
 
+    /// <summary>
+    /// 金庫が開いたときの関数
+    /// </summary>
     void OpenItem()
     {
         isOpened = true;
-       // totalMoney += price;
-       // totalPoints += 60;
         itemCount++;
 
         Money.Instance.DayMoney += price;
@@ -122,6 +125,5 @@ public class Item3 : BaseItem
     {
         totalMoney = 0;
         totalPoints = 0;
-        //itemCount = 0;
     }
 }

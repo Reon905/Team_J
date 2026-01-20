@@ -30,7 +30,9 @@ public class Evaluation : MonoBehaviour
 
         rankText.text = currentRank;
     }
-
+    /// <summary>
+    /// ‘‡•]‰¿•\¦ŠÖ”
+    /// </summary>
     string GetRank(int points)
     {
         if (points >= 1899)

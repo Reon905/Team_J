@@ -47,7 +47,9 @@ public class IronDoor : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Enterを押す前の関数
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -68,6 +70,9 @@ public class IronDoor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ドアが開いたときの関数
+    /// </summary>
     void OpenItem()
     {
         isOpened = true;

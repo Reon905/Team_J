@@ -10,7 +10,7 @@ public class ChangeSceneAfterTime : MonoBehaviour
     public static float timer = 0f;
     public float changeTime = 30f;
 
-    // ▼ 30秒警告サウンド（ループ）
+    //30秒警告サウンド（ループ）
     public AudioSource audioSource;
     public AudioClip warningClip;
     private bool hasStartedLoop = false;   // 1回だけループ開始するフラグ
@@ -29,7 +29,7 @@ public class ChangeSceneAfterTime : MonoBehaviour
             timerText.text = $"残り時間 : {minutes:00}:{seconds:00}";
         }
 
-        // ▼ 残り30秒でループ再生開始（1回だけ）
+        //残り30秒でループ再生開始（1回だけ）
         if (!hasStartedLoop && remainingTime <= 10f)
         {
             if (audioSource != null && warningClip != null)

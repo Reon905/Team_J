@@ -5,7 +5,6 @@ public class Item4 : BaseItem
     public int price;
     public static int totalMoney = 0;
     public static int totalPoints = 0;
-    //public static int itemCount = 0;
 
     private ItemManager itemManager;
 
@@ -14,16 +13,17 @@ public class Item4 : BaseItem
 
     void Start()
     {
-        price = 20000;
+        price = 20000;//金額設定
         itemManager = GetComponent<ItemManager>();
     }
 
+    /// <summary>
+    /// 金額ポイントアイテムカウント設定・サウンド再生関数
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-           // totalMoney += price;
-           // totalPoints += 70;
             itemCount++;
 
             Money.Instance.DayMoney += price;
@@ -46,6 +46,5 @@ public class Item4 : BaseItem
     {
         totalMoney = 0;
         totalPoints = 0;
-        //itemCount = 0;
     }
 }

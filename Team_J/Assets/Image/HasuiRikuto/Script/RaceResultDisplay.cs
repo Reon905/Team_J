@@ -7,10 +7,10 @@ public class RaceRankDisplay : MonoBehaviour
 
     void Start()
     {
-        // 🔹 RaceManagerで保存された順位データを取得
+        //RaceManagerで保存された順位データを取得
         int lastRank = PlayerPrefs.GetInt("LastRank", 0);
 
-        // 🔹 順位が未保存だった場合の対策
+        //順位が未保存だった場合の対策
         if (lastRank <= 0)
         {
             rankText.text = "順位データなし";
@@ -18,7 +18,7 @@ public class RaceRankDisplay : MonoBehaviour
             return;
         }
 
-        // 🔹 順位をUIに表示
+        //順位をUIに表示
         rankText.text = ": " + lastRank + " 位";
 
         Debug.Log("[RaceRankDisplay] 順位: " + lastRank + "位");

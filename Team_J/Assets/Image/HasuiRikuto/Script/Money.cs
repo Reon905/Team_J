@@ -19,7 +19,6 @@ public class Money : MonoBehaviour
     public int ScenePoint;
     public int SceneItemCount;
 
-    // public Text moneyText; // UI TextをInspectorにドラッグ
 
     void Awake()
     {
@@ -33,8 +32,7 @@ public class Money : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
 
-        //ここで一度だけ合算
-        //DayPoint += racePoints;
+      
     }
     public void AddRacePointByRank(int rank)
     {
@@ -50,6 +48,9 @@ public class Money : MonoBehaviour
         Debug.Log($"[Race] Rank {rank} +{point}pt / DayPoint={DayPoint}");
     }
 
+    /// <summary>
+    /// 一回で稼いだ金額保存関数
+    /// </summary>
     public void AddToTotal()
     {
         totalMoney += DayMoney;
@@ -62,20 +63,23 @@ public class Money : MonoBehaviour
     }
     public void ResetAll()
     {
-        //racePoints = 0;
+
     }
     void Start()
     {
         racePoints = PlayerPrefs.GetInt("TotalRacePoints", 0);
-        //Money.totalPoints += racePoints;
+   
     }
 
+    /// <summary>
+    /// 捕まった場合金額・ポイント・アイテムの個数リセット
+    /// </summary>
     public void OnCaughtInScene()
     {
         DayMoney -= SceneMoney;
         DayPoint -= ScenePoint;
 
-        // ★ 個数も戻す
+        //個数も戻す
         BaseItem.itemCount -= SceneItemCount;
 
         if (DayMoney < 0) DayMoney = 0;

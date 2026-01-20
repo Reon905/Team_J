@@ -13,18 +13,20 @@ public class Item : BaseItem
 
     void Start()
     {
-        price = Random.Range(2000, 4001);
+        price = Random.Range(2000, 4001);//金額設定
         itemManager = GetComponent<ItemManager>();
 
-        audioSource = GetComponent<AudioSource>(); // ← AudioSource取得
+        audioSource = GetComponent<AudioSource>(); //AudioSource取得
     }
 
+    /// <summary>
+    /// 金額ポイントアイテムカウント設定・サウンド再生関数
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            //totalMoney += price;
-            //totalPoints += 40;
+           
             itemCount++;
 
             Money.Instance.DayMoney += price;
@@ -37,10 +39,10 @@ public class Item : BaseItem
             Debug.Log("アイテム1取得！ +" + price + "円、+40pt");
             Debug.Log("アイテム1取得！ +" + BaseItem.itemCount + "個");
 
-            // 🔊 サウンド再生（Item は消えても問題なし）
+            //サウンド再生
             SoundPlayer.instance.PlaySE(itemSound);
 
-            // 取得済み通知
+            //取得済み通知
             if (itemManager != null)
                 itemManager.CollectItem();
         }
@@ -49,6 +51,5 @@ public class Item : BaseItem
     {
         totalMoney = 0;
         totalPoints = 0;
-       // itemCount = 0;
     }
 }
