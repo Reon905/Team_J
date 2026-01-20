@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Civilian_Controller : MonoBehaviour
 {
-    public Text ChaseTimeText;  //UnityからText表示場所を入れる
+    public Text ChaseText;  //UnityからText表示場所を入れる
 
     // 視界の対象とするレイヤー（Playerや障害物など）
     public LayerMask m_TargetLayer; // これを設定することにより、自身(NPC)のコライダーに反応しなくなる
@@ -127,7 +127,7 @@ public class Civilian_Controller : MonoBehaviour
                 // 視野の設定
                 posDelta = other.transform.position - this.transform.position;  // NPCからPlayerへの方向ベクトル
                 TargetAngle = Vector2.Angle(this.transform.right, posDelta);    // NPCからPlayerの角度
-                                                                                // PlayerがNPCの視界に入っているか確認（障害物は無視）
+                // PlayerがNPCの視界に入っているか確認（障害物は無視）
                 if (TargetAngle < m_fSightAngle)     // targetAngleがm_SightAngleに収まっているかどうか
                 {
                     // Rayを飛ばして、間に障害物がないかを判定する
@@ -180,6 +180,7 @@ public class Civilian_Controller : MonoBehaviour
         // 抜けたColliderのタグがPlayerの場合
         if (other.CompareTag("Player"))
         {
+            // 視界範囲から抜ける
             if (TargetAngle > m_fSightAngle)
             {
                 Detection_Value = 0.0f;     //Detection_Valueを0.0fにする
@@ -215,13 +216,16 @@ public class Civilian_Controller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Waypointを巡回するための関数
+    /// </summary>
     private void PatrolUpdate()
     {
-        if (ChaseTimeText != null)
-        {
-            ChaseTimeText.text = "盗め";
+        //if (ChaseText != null)
+        //{   
+        //    ChaseText.text = "盗め";
 
-        }
+        //}
 
         if (isWaiting) return; // 停止中は何もしない
 
@@ -259,7 +263,9 @@ public class Civilian_Controller : MonoBehaviour
         }
     }
 
-    //巡回時Waypoint到達時の一時停止
+    /// <summary>
+    /// 巡回時Waypoint到達時の一時停止関数
+    /// </summary>
     private IEnumerator WaitBeforeNextPoint()
     {
         //待機中フラグ
@@ -292,15 +298,17 @@ public class Civilian_Controller : MonoBehaviour
         isWaiting = false;
     }
 
-    //チェイス用関数
+    /// <summary>
+    ///  プレイヤーを見つけた時のチェイス用関数
+    /// </summary>
     private void ChaseUpdate()
     {
+        // 
+        //if (ChaseText != null)
+        //{
+        //    ChaseText.text = $"逃げきれ {Mathf.FloorToInt(ChaseTimer)}";
 
-        if (ChaseTimeText != null)
-        {
-            ChaseTimeText.text = $"逃げきれ {Mathf.FloorToInt(ChaseTimer)}";
-
-        }
+        //}
 
         //追跡速度に設定
         agent.speed = Chase_Speed;

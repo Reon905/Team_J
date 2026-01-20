@@ -80,9 +80,6 @@ public class E_NPC_Controller : MonoBehaviour
         // タイム加算
         TimeElapsed += Time.deltaTime;
 
-        //Vector2 currentPos = transform.position;
-        //Vector2 moveDirection = Vector2.zero;
-
         // 状態がPatrolの場合
         if (_state == NPC_State.Patrol)
         {

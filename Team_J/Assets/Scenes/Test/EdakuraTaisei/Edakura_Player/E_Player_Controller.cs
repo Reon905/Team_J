@@ -63,33 +63,6 @@ public class E_Player_Controller : MonoBehaviour
             Speed = 5.0f;       //押されていない場合は元のスピードに戻す    
         }
 
-        ////歩き始め
-        //if (FirstWalk == true && PlayerVector.x != 0.0f && PlayerVector.y != 0.0f)
-        //{
-        //    WalkAudio.PlayOneShot(WalkAudioClip);
-        //    FirstWalk = false;
-        //}
-        //else if (FirstWalk == false)
-        //{
-        //    if (PlayerVector.x == 0.0f && PlayerVector.y == 0.0f)
-        //    {
-        //        FirstWalk = true;
-        //    }
-        //}
-        //if (FirstWalk == false) 
-        //{ 
-        //    if (PlayerVector.x != 0.0f || PlayerVector.y != 0.0f)
-        //    {
-        //        FirstWalk = true;
-        //    }
-        //}
-        //while (FirstWalk == true)
-        //{
-        //    WalkAudio.PlayOneShot(WalkAudioClip);
-
-        //    FirstWalk = false;
-        //}
-
 
         //向きの調整
         if (PlayerVector.x > 0.0f)
@@ -116,19 +89,12 @@ public class E_Player_Controller : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
             WalkDelay++;
         }
-        if (WalkDelay > 30 )
+        if (WalkDelay > 30)
         {
             Debug.Log("歩行音再生");
             WalkAudio.PlayOneShot(WalkAudioClip);
             WalkDelay = 0;
         }
-
-        //if(PlayerVector.x == 0.0f && PlayerVector.y == 0.0f)
-        //{
-        //    WalkDelay = -1;
-        //}
-
-
 }
     void FixedUpdate()
     {

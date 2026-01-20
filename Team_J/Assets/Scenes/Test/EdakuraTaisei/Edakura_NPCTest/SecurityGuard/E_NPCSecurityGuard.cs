@@ -119,7 +119,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
     {
         if (other.CompareTag("Player"))     // PlayerタグのColliderだけが真
         {
-            //
+            // 
             if (TimeElapsed >= TimeOut)
             {
                 RaycastHit2D hit;   // rayが当たったコライダー判別用
@@ -127,7 +127,8 @@ public class E_NPCSecurityGuard : MonoBehaviour
                 // 視野の設定
                 posDelta = other.transform.position - this.transform.position;  // NPCからPlayerへの方向ベクトル
                 TargetAngle = Vector2.Angle(this.transform.right, posDelta);    // NPCからPlayerの角度
-                                                                                // PlayerがNPCの視界に入っているか確認（障害物は無視）
+
+                // PlayerがNPCの視界に入っているか確認（障害物は無視）
                 if (TargetAngle < m_fSightAngle)     // targetAngleがm_SightAngleに収まっているかどうか
                 {
                     // Rayを飛ばして、間に障害物がないかを判定する
@@ -144,9 +145,10 @@ public class E_NPCSecurityGuard : MonoBehaviour
                             {
                                 Detection_Value = 0.0f;     // 発覚値を0に
 
+                                // Playerの状態が未発覚であれば
                                 if (GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
                                 {
-                                    //Playerの状態をDetectionにする
+                                    // Playerの状態をDetectionにする
                                     GameStateManager.instance.currentPlayerState = PlayerState.Detection;
                                     DetectionSource.PlayOneShot(DetectionClip);
                                 }
@@ -205,34 +207,31 @@ public class E_NPCSecurityGuard : MonoBehaviour
             else if (_state == NPC_State.Chase)     // 状態がChaseの場合
             {
 
-                    //Chase中に衝突したらSceneを切り替える
+                    // Chase中に衝突したらSceneを切り替える
                     SceneManager.LoadScene("Caught Scene");
-                    //次のプレイのためにプレイヤーの状態をNoDetectionにしておく
+                    // 次のプレイのためにプレイヤーの状態をNoDetectionにしておく
                     GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
 
                 
             }
         }
     }
-
+    /// <summary>
+    /// Waypointを巡回するための関数
+    /// </summary>
     private void PatrolUpdate()
     {
-        if (ChaseTimeText != null)
-        {
-            ChaseTimeText.text = "盗め";
-
-        }
 
         if (isWaiting) return; // 停止中は何もしない
 
-        //現在位置と目的の巡回ポイント座標の取得
+        // 現在位置と目的の巡回ポイント座標の取得
         Vector2 currentPos = transform.position;
         Vector2 patrolPos = patrolPoints[currentPointIndex].position;
 
-        //NavMeshAgent2Dの移動速度を巡回速度に設定
+        // NavMeshAgent2Dの移動速度を巡回速度に設定
         agent.speed = P_moveSpeed;
 
-        //現在の目的地の設定
+        // 現在の目的地の設定
         agent.destination = patrolPos;
 
         // 巡回ポイントへのベクトルを計算
@@ -240,16 +239,17 @@ public class E_NPCSecurityGuard : MonoBehaviour
         Vector2 moveDirection = diff.normalized;
 
         // 到着判定
-        //一定距離以下になったら次の地点へ行く前に待機
+        // 一定距離以下になったら次の地点へ行く前に待機
         if (Vector2.Distance(currentPos, patrolPos) < 0.1f)
         {
+            // 待機コルーチン開始
             StartCoroutine(WaitBeforeNextPoint());
         }
 
         // 移動方向に合わせてなめらかに回転
         if (moveDirection != Vector2.zero)
         {
-            //移動方向のベクトルを角度に変換
+            // 移動方向のベクトルを角度に変換
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.Lerp(transform.rotation,
@@ -259,21 +259,24 @@ public class E_NPCSecurityGuard : MonoBehaviour
         }
     }
 
-    //巡回時Waypoint到達時の一時停止
+    
+    /// <summary>
+    /// 巡回時Waypoint到達時の一時停止関数
+    /// </summary>
     private IEnumerator WaitBeforeNextPoint()
     {
-        //待機中フラグ
+        // 待機中フラグ
         isWaiting = true;
         agent.speed = 0; // 移動停止（物理的に止まる）
 
-        //経過時間を初期化
+        // 経過時間を初期化
         float Elapsed = 0.0f;
 
-        //P_waitTime = Random.Range(2.0f, 2.5f);
-        //指定時間経過するまで待機
+        // P_waitTime = Random.Range(2.0f, 2.5f);
+        // 指定時間経過するまで待機
         while (Elapsed < P_waitTime)
         {
-            //もし途中でChase状態になったら待機を中断
+            // もし途中でChase状態になったら待機を中断
             if (_state == NPC_State.Chase)
             {
                 isWaiting = false;
@@ -281,68 +284,62 @@ public class E_NPCSecurityGuard : MonoBehaviour
                 yield break; //コルーチンを即終了
             }
 
-            //経過時間を加算して次のフレームまで待つ
+            // 経過時間を加算して次のフレームまで待つ
             Elapsed += Time.deltaTime;
             yield return null;
 
         }
 
-        //待機完了後　次のポイントへ
+        // 待機完了後　次のポイントへ
         currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
-        //スピードを元に戻す
+        // スピードを元に戻す
         agent.speed = P_moveSpeed;
         isWaiting = false;
     }
 
-    //チェイス用関数
+    /// <summary>
+    ///  プレイヤーを見つけた時のチェイス用関数
+    /// </summary>
     private void ChaseUpdate()
     {
-
-        if (ChaseTimeText != null)
-        {
-            ChaseTimeText.text = $"逃げきれ {Mathf.FloorToInt(ChaseTimer)}";
-
-        }
-
-        //追跡速度に設定
+        // 追跡速度に設定
         agent.speed = Chase_Speed;
 
-        //Agentの目的地をプレイヤーの現在位置に設定
+        // Agentの目的地をプレイヤーの現在位置に設定
         agent.destination = target.position;
-        //チェイス時間を加算
+        // チェイス時間を加算
         ChaseTimer -= Time.deltaTime;
 
-        //ChaseTimerが０以下になったら
+        // ChaseTimerが０以下になったら
         if (ChaseTimer < 0)
         {
-            //状態がDetectionの場合
+            // 状態がDetectionの場合
             if (GameStateManager.instance.currentPlayerState == PlayerState.Detection)
             {
-                //Playerの状態をNoDetectionにする
+                // Playerの状態をNoDetectionにする
                 GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
             }
 
             Debug.Log("NoDetection!");
-            //Patrolへ変更
+            // Patrolへ変更
             _state = NPC_State.Patrol;
-            //ChaseTimerを初期化
+            // ChaseTimerを初期化
             ChaseTimer = Constants.CHASE_TIMER;
         }
 
         //プレイヤー方向のベクトルを計算
         Vector2 moveDirection = (target.position - transform.position).normalized;
 
-        //NPCが停止していない場合、移動方向を向くように回転
+        // NPCが停止していない場合、移動方向を向くように回転
         if (moveDirection != Vector2.zero)
         {
-            //ベクトルから角度へ変換
+            // ベクトルから角度へ変換
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            //なめらかに回転
+            // 回転
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.Euler(0, 0, angle),
                 Time.deltaTime * TurnSpeed
                 );
         }
     }
-
 }
