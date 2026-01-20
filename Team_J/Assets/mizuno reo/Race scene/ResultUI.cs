@@ -8,13 +8,16 @@ public class ResultUI : MonoBehaviour
     public TextMeshProUGUI rankText;
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI totalText;
-
+    
+    /// <summary>
+    /// リザルトのテキスト表示
+    /// </summary>
     void Start()
     {
+
         int rank = PlayerPrefs.GetInt("LastRank", 0);
         int points = PlayerPrefs.GetInt("LastPoints", 0);
         int total = PlayerPrefs.GetInt("TotalPoints", 0);
-
 
     }
 

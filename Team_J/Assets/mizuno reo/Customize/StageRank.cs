@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class StageRank : MonoBehaviour
 {
     [SerializeField] private Text RankText;
-
+    /// <summary>
+    /// 強化レベルをCarstageから持ってくる
+    /// </summary>
     private void Start()
     {//CarStageを表示
         if (RankText == null)
@@ -15,7 +17,7 @@ public class StageRank : MonoBehaviour
         }
         RankText.text = $"現在の強化レベル: {Customize.CarStage}";
     }
-
+   
     private void Update()
     {//CarStageを更新した分を表示
         if (RankText == null) return;

@@ -1,6 +1,4 @@
 //PlaiyerCarController 
-//using JetBrains.Annotations;
-//using UnityEditorInternal;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +42,8 @@ public class PlayerCarController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,7 +55,7 @@ public class PlayerCarController : MonoBehaviour
     private void Start()
     {
 
-        PlayIdlingSound(); //ゲーム開始時に呼び出し
+        PlayIdlingSound(); ///ゲーム開始時に呼び出し
 
         Debug.Log($"PlayerCarController initialized → Accel:{acceleration}, MaxSpeed:{maxSpeed}");
 
@@ -153,29 +153,6 @@ public class PlayerCarController : MonoBehaviour
                 }
             }
         }
-        // 加速・減速の入力処理
-        //if (Input.GetKey(KeyCode.W))
-        //{ 
-        //    currentSpeed += appliedAcceleration * Time.deltaTime; // 加速
-        //}
-        //else
-        //{
-        //      currentSpeed -= deceleration * Time.deltaTime;        // 減速
-        //}
-
-        //// Wキー押下・離すの検出
-        ////Wを押したときに走行音へ切り替え
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    PlayDriveSound();//加速音を再生
-        //    isAccelerating = true;
-        //}
-        ////Wキーを離したときにアイドリング音へ戻す
-        //else if (Input.GetKeyUp(KeyCode.W))
-        //{
-        //    PlayIdlingSound();//アイドリング音を再生
-        //    isAccelerating = false;
-        //}
 
         float currentMaxSpeed = isBoosting
             ? maxSpeed * boostSpeedLimitMultiplier

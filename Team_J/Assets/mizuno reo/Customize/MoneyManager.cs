@@ -4,7 +4,9 @@ public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance;
     public int money = 0; // 現在のお金
-
+    /// <summary>
+    /// マネーを次のシーンに渡す
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)

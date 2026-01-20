@@ -154,6 +154,10 @@ public class RaceManager : MonoBehaviour
     // ======================================================
     // 🔹 ゴール処理
     // ======================================================
+    /// <summary>
+    /// Rivalが先にゴールしたときに残りの順位を計算する
+    /// </summary>
+    /// <param name="car"></param>
     public void RegisterFinish(GameObject car)
     {
         if (finishedCars.Contains(car)) return;
@@ -169,7 +173,7 @@ public class RaceManager : MonoBehaviour
             Debug.Log($"Rival {car.name} が {rank} 位でゴール！");
             return;
         }
-
+        
         if (car.CompareTag("Player"))
         {
             playerRank = rank;
@@ -201,6 +205,10 @@ public class RaceManager : MonoBehaviour
     // ======================================================
     // 🔹 ゴール後のメッセージ・シーケンス
     // ======================================================
+
+    /// <summary>
+    /// プレイヤーがゴールした時にメッセージを表示する
+    /// </summary>
     private void HandleFinishSequence()
     {
         if (raceState != RaceState.Finish) return;
@@ -269,6 +277,11 @@ public class RaceManager : MonoBehaviour
     // ======================================================
     // 🔹 ポイント計算・保存
     // ======================================================
+    /// <summary>
+    /// ゴールした時に順位ごとにポイントを計算する
+    /// </summary>
+    /// <param name="rank"></param>
+    /// <returns></returns>
     private float CalculatePoints(int rank)
     {
         switch (rank)
@@ -280,7 +293,11 @@ public class RaceManager : MonoBehaviour
 
         }
     }
-
+    /// <summary>
+    /// ゴールした時に順位ごとにポイントを保存する
+    /// </summary>
+    /// <param name="rank"></param>
+    /// <param name="points"></param>
     private void SaveResult(int rank, int points)
     {
         PlayerPrefs.SetInt("LastRank", rank);
@@ -292,23 +309,21 @@ public class RaceManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // ======================================================
     // 🔹 リザルト表示
-    // ======================================================
+
     private void ShowFinalResults()
     {
         ShowMessage("Moving to Results...", 3f);
     }
 
-    // ======================================================
     // 🔹 状態確認メソッド
-    // ======================================================
+
     public bool IsRaceStarted() => raceState == RaceState.Racing;
     public bool IsCountdownActive() => raceState == RaceState.Countdown;
     public bool IsRaceFinished() => raceState == RaceState.Finish || raceState == RaceState.Done;
 
     /// <summary>
-    /// PlayerCar から前方向に Ray を飛ばしてゴール判定
+    /// PlayerCar から前方向に Ray を飛ばしてゴール判定をつける
     /// </summary>
     private void CheckPlayerGoalRay()
     {

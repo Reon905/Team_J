@@ -9,7 +9,9 @@ public class Customize : MonoBehaviour
     public static 
     int totalMoney;
 
-
+    /// <summary>
+    /// W‚ß‚½DayMoney‚ğ”ä‚×‚Ä’´‚¦‚½•ª‹­‰»‚µ‚Ä‚¢‚­
+    /// </summary>
     private void Awake()
     {
         //lMoney + Item5.totalMoney + Item6.totalMoney + Item7.totalMoney + Item8.totalMoney + Item9.totalMoney + Item10.totalMoney + Item11.totalMoney + Item12.totalMoney;

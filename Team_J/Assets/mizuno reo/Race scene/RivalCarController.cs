@@ -40,6 +40,9 @@ public class RivalCarController : MonoBehaviour
     // ======================================================
     // 🔸 初期化処理
     // ======================================================
+    /// <summary>
+    /// スタート前にRivalを初期化する
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -114,14 +117,11 @@ public class RivalCarController : MonoBehaviour
     // ======================================================
     // 🔸 スピードをランダムに設定する
     // ======================================================
+    /// <summary>
+    /// プレイヤーの段階ごとの最高速度に合わせて速度をばらつきがあるように設定する
+    /// </summary>
     public void SetRandomSpeed()
     {
-        //CarStageaに応じてライバルの速度作る
-        //float dynamicMin = minSpeed + (Carstage * 1.0f);
-        //float dynamicMax = maxSpeed + (Carstage * 1.5f);
-
-        //if (dynamicMax < dynamicMin)
-        //    dynamicMin = dynamicMin + 1f;
 
         //民家
         if (GameStateManager.Game_Progress == 2)
