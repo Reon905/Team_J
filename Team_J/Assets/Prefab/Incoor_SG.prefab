@@ -324,6 +324,12 @@ MonoBehaviour:
   - {fileID: 0}
   _state: 0
   DetectionClip: {fileID: 8300000, guid: cc3ce61e3fffa6042a146cc46a27c044, type: 3}
+  viewMeshFilter: {fileID: 0}
+  viewRadius: 5.5
+  viewAngle: 90
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!82 &-1400629038294766543
 AudioSource:
   m_ObjectHideFlags: 0
