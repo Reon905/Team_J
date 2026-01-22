@@ -91,7 +91,7 @@ public class E_Player_Controller : MonoBehaviour
         }
         if (WalkDelay > 30)
         {
-            Debug.Log("ï‡çsâπçƒê∂");
+            //Debug.Log("ï‡çsâπçƒê∂");
             WalkAudio.PlayOneShot(WalkAudioClip);
             WalkDelay = 0;
         }
