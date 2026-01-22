@@ -91,7 +91,7 @@ public class PlayerCarController : MonoBehaviour
             currentSpeed -= deceleration * Time.deltaTime;
         }
 
-        Debug.Log("canDrive:" + canDrive); //デバッグ用
+
         // --- 車の操作が有効でない場合は停止 ---
         if (!canDrive)
         {

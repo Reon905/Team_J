@@ -63,10 +63,7 @@ public class RivalCarController : MonoBehaviour
     // ======================================================
     void Update()
     {
-        if (canDrive)
-        {
-            Debug.Log($"{gameObject.name} running at {currentSpeed}");
-        }
+
         // 動けない状態なら止める
         if (!canDrive)
         {
@@ -147,5 +144,5 @@ public class RivalCarController : MonoBehaviour
 
         // デバッグ出力（ゲーム中はコンソールに出る）
         Debug.Log($"{gameObject.name} の目標速度: {targetSpeed:F2} / 現在速度: {currentSpeed:F2}");
-    }
+    }     
 }
