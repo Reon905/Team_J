@@ -8118,6 +8118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Indoor_Civil
       objectReference: {fileID: 0}
+    - target: {fileID: 3859507833383209786, guid: c059cac6761558c47988c470abd3edad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5728044772125753571, guid: c059cac6761558c47988c470abd3edad, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.948654
@@ -8222,6 +8226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Incoor_SG
       objectReference: {fileID: 0}
+    - target: {fileID: 3859507833383209786, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5728044772125753571, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.085127
@@ -8261,6 +8269,10 @@ PrefabInstance:
     - target: {fileID: 5728044772125753571, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250325211915857647, guid: 4c9f6b64b72cd4f48af1e06542dcc3d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

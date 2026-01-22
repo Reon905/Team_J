@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using JetBrains.Annotations;
+using TMPro;
 
 public class RaceManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class RaceManager : MonoBehaviour
 
     [Header("UI関連")]
     [SerializeField] private Text messageText;
+    [SerializeField] private GameObject @objectmessageBackground;
 
     [Header("車両関連")]
     public PlayerCarController playerCar;
@@ -63,6 +65,8 @@ public class RaceManager : MonoBehaviour
     private float messageDisplayTime = 0f;
     private float messageDuration = 0f;
 
+    public GameObject countdownBG;
+
     private void Start()
     {
         StartCountdown();
@@ -78,6 +82,7 @@ public class RaceManager : MonoBehaviour
         {
             CheckPlayerGoalRay();
         }
+
     }
 
     // ======================================================
@@ -149,6 +154,7 @@ public class RaceManager : MonoBehaviour
         }
 
         Debug.Log("レース開始！");
+        countdownBG.SetActive(false);
     }
 
     // ======================================================
@@ -214,7 +220,7 @@ public class RaceManager : MonoBehaviour
         if (raceState != RaceState.Finish) return;
 
         stateTimer += Time.unscaledDeltaTime;
-
+        countdownBG.SetActive(true);
         switch (finishState)
         {
             case FinishState.ShowRank:
@@ -258,6 +264,9 @@ public class RaceManager : MonoBehaviour
 
         if (messageText != null)
             messageText.text = msg;
+
+        //if (messageBackground != null)
+        //    messageBackground.SetActive(true);
     }
 
     private void HandleMessageDisplay()
