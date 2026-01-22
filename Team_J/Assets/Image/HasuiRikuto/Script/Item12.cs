@@ -25,6 +25,7 @@ public class Item12 : BaseItem
     {
         if (other.CompareTag("Player"))
         {
+            itemCount++;
 
             Money.Instance.DayMoney += price;
             Money.Instance.DayPoint += 40;

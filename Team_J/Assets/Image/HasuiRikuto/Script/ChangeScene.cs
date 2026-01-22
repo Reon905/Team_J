@@ -75,7 +75,7 @@ public class ChangeScene : MonoBehaviour
                
                 
 
-                //タイマーもリセット
+                //タイマーリセット
                 ChangeSceneAfterTime.timer = 0f;
 
                 Debug.Log("全データをリセットしました（アイテム・金額・時間）");
