@@ -13,6 +13,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
 
     public float m_fSightAngle;    // 前方視界範囲
     public float Detection_Value;  // 発覚値(視界内に入ると上昇)
+    private bool isDetection;
 
     private Vector2 posDelta;        // NPCからプレイヤーへのベクトル
 
@@ -67,6 +68,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
         m_fSightAngle = Constants.DEFAULT_SIGHT_ANGLE;        //30.0f
         Detection_Value = Constants.DEFAULT_DETECTION_VALUE;  //2.5f
         ChaseTimer = Constants.CHASE_TIMER; //10.0f
+        isDetection = false;
         TimeOut = 0.02f;
 
         agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
@@ -138,18 +140,18 @@ public class E_NPCSecurityGuard : MonoBehaviour
                         // プレイヤーが視界内にいる時の処理
                         if (hit.collider.gameObject.CompareTag("Player"))
                         {
-                            if(GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
+                            if (_state == NPC_State.Patrol)
                             {
                                 Detection_Value += 0.1f;    // 発覚値を上昇させる
                                 Debug.Log("発覚値上昇");
                             }
-                            else if(GameStateManager.instance.currentPlayerState == PlayerState.Detection)
+                            else if (_state == NPC_State.Chase)
                             {
                                 // 追跡中は発覚値を増やさない
                             }
 
-                            // 発覚値がMAX_DETECTION_VALUEを超えたら
-                            if (Detection_Value > Constants.MAX_DETECTION_VALUE)
+                        // 発覚値がMAX_DETECTION_VALUEを超えたら
+                        if (Detection_Value > Constants.MAX_DETECTION_VALUE)
                             {
                                 Detection_Value = 0.0f;     // 発覚値を0に
 
