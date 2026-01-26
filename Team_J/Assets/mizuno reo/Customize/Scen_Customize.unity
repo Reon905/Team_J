@@ -1364,7 +1364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905479007}
-  - component: {fileID: 1905479006}
+  - component: {fileID: 1905479008}
   m_Layer: 0
   m_Name: NextLevel
   m_TagString: Untagged
@@ -1372,19 +1372,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1905479006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905479005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e64e0000131a349b1ae208e851139d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextLevelText: {fileID: 2088391025}
 --- !u!4 &1905479007
 Transform:
   m_ObjectHideFlags: 0
@@ -1400,6 +1387,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1905479008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905479005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e64e0000131a349b1ae208e851139d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevelText: {fileID: 2088391025}
 --- !u!1 &2019769284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,6 @@ GameObject:
   - component: {fileID: 2088391023}
   - component: {fileID: 2088391026}
   - component: {fileID: 2088391025}
-  - component: {fileID: 2088391024}
   m_Layer: 5
   m_Name: NextLevel
   m_TagString: Untagged
@@ -1567,19 +1566,6 @@ RectTransform:
   m_AnchoredPosition: {x: -6.98, y: -109}
   m_SizeDelta: {x: 1266.1, y: 65.49}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2088391024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088391022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e64e0000131a349b1ae208e851139d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextLevelText: {fileID: 0}
 --- !u!114 &2088391025
 MonoBehaviour:
   m_ObjectHideFlags: 0

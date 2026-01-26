@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class NextLevel: MonoBehaviour
 {
 
-    [SerializeField] private Text nextLevelText;
+  [SerializeField] private Text nextLevelText;
 
     void Start()
     {
