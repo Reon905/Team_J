@@ -138,8 +138,16 @@ public class E_NPCSecurityGuard : MonoBehaviour
                         // プレイヤーが視界内にいる時の処理
                         if (hit.collider.gameObject.CompareTag("Player"))
                         {
-                            Detection_Value += 0.1f;    // 発覚値を上昇させる
-                            Debug.Log("発覚値上昇");
+                            if(GameStateManager.instance.currentPlayerState == PlayerState.NoDetection)
+                            {
+                                Detection_Value += 0.1f;    // 発覚値を上昇させる
+                                Debug.Log("発覚値上昇");
+                            }
+                            else
+                            {
+
+                            }
+
                             // 発覚値がMAX_DETECTION_VALUEを超えたら
                             if (Detection_Value > Constants.MAX_DETECTION_VALUE)
                             {
