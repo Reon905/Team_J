@@ -143,9 +143,9 @@ public class E_NPCSecurityGuard : MonoBehaviour
                                 Detection_Value += 0.1f;    // 発覚値を上昇させる
                                 Debug.Log("発覚値上昇");
                             }
-                            else
+                            else if(GameStateManager.instance.currentPlayerState == PlayerState.Detection)
                             {
-
+                                // 追跡中は発覚値を増やさない
                             }
 
                             // 発覚値がMAX_DETECTION_VALUEを超えたら
