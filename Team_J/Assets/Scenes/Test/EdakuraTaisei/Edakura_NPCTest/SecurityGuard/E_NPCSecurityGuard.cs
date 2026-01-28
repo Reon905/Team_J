@@ -264,7 +264,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
 
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.Euler(0, 0, angle),
-                Time.deltaTime * 1.5f
+                Time.deltaTime * TurnSpeed
                 );
         }
     }
@@ -340,7 +340,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
         //プレイヤー方向のベクトルを計算
         Vector2 moveDirection = (target.position - transform.position).normalized;
 
-        // NPCが停止していない場合、移動方向を向くように回転
+        // 移動方向を向くように回転
         if (moveDirection != Vector2.zero)
         {
             // ベクトルから角度へ変換

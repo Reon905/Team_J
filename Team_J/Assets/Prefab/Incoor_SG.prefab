@@ -312,7 +312,7 @@ MonoBehaviour:
   Detection_Value: 0
   P_moveSpeed: 5
   P_waitTime: 2
-  TurnSpeed: 32
+  TurnSpeed: 2
   Chase_Speed: 6
   ChaseTimer: 0
   target: {fileID: 0}
