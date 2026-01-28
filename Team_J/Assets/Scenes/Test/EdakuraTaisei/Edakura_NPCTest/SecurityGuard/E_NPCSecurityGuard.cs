@@ -259,7 +259,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
         // 移動方向に合わせてなめらかに回転
         if (moveDirection != Vector2.zero)
         {
-            // 移動方向のベクトルを角度に変換
+            // 移動方向へのベクトルを角度に変換
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.Lerp(transform.rotation,
