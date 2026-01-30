@@ -28,7 +28,7 @@ public class SceneChangeOnEnter : MonoBehaviour
             if (!hasPlayedSound && audioSource != null && enterClip != null)
             {
                 audioSource.PlayOneShot(enterClip);
-                DontDestroyOnLoad(audioSource.gameObject);
+               // DontDestroyOnLoad(audioSource.gameObject);
                 hasPlayedSound = true;
             }
 
