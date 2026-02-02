@@ -475,6 +475,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7675a1d40f9bd4dad066185911d464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DayMoney: 0
+  DayPoint: 0
+  racePoints: 0
+  totalMoney: 0
+  totalPoints: 0
+  resultPoint: 0
+  SceneMoney: 0
+  ScenePoint: 0
+  SceneItemCount: 0
 --- !u!4 &627785959
 Transform:
   m_ObjectHideFlags: 0
@@ -939,7 +948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1805829595
 AudioSource:
   m_ObjectHideFlags: 0

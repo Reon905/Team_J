@@ -137,8 +137,17 @@ public class Civilian_Controller : MonoBehaviour
                         // プレイヤーが視界内にいる時の処理
                         if (hit.collider.gameObject.CompareTag("Player"))
                         {
-                            Detection_Value += 0.1f;    // 発覚値を上昇させる
-                            Debug.Log("発覚値上昇");
+                            if (_state == NPC_State.Patrol)
+                            {
+                                Detection_Value += 0.1f;    // 発覚値を上昇させる
+                                Debug.Log("発覚値上昇");
+                            }
+                            else if (_state == NPC_State.Chase)
+                            {
+                                // 追跡中は発覚値を増やさない
+                            }
+
+
                             // 発覚値がMAX_DETECTION_VALUEを超えたら
                             if (Detection_Value > Constants.MAX_DETECTION_VALUE)
                             {
@@ -148,9 +157,9 @@ public class Civilian_Controller : MonoBehaviour
                                 {
                                     //Playerの状態をDetectionにする
                                     GameStateManager.instance.currentPlayerState = PlayerState.Detection;
-                                    DetectionSource.PlayOneShot(DetectionClip);
+                                    
                                 }
-
+                                DetectionSource.Play();
                                 Debug.Log("Detection!!!");
 
                                 _state = NPC_State.Chase;      // 状態をChaseに切り替え
@@ -328,6 +337,7 @@ public class Civilian_Controller : MonoBehaviour
                 GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
             }
 
+            DetectionSource.Stop();
             Debug.Log("NoDetection!");
             //Patrolへ変更
             _state = NPC_State.Patrol;

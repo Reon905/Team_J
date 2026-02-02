@@ -6,25 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class E_NPCSecurityGuard : MonoBehaviour
 {
+    
     public Text ChaseTimeText;  //UnityからText表示場所を入れる
+    Rigidbody2D NPC_rbody;
 
     // 視界の対象とするレイヤー（Playerや障害物など）
     public LayerMask m_TargetLayer; // これを設定することにより、自身(NPC)のコライダーに反応しなくなる
-
+  
+    private Vector2 posDelta;        // NPCからプレイヤーへのベクトル
     public float m_fSightAngle;    // 前方視界範囲
     public float Detection_Value;  // 発覚値(視界内に入ると上昇)
     private bool isDetection;
 
-    private Vector2 posDelta;        // NPCからプレイヤーへのベクトル
-
-    Rigidbody2D NPC_rbody;
-
-    private float TargetAngle;    // Playerへの角度      TargetAngleとChaseAngleを統一する
+    private float TargetAngle;    // Playerへの角度      
     private float TimeElapsed;    // 経過時間
     private float TimeOut;        // 実行間隔
 
 
-
+    // NPCの状態（パトロールかチェイスか）
     public enum NPC_State { Patrol, Chase };
 
     public float P_moveSpeed = 2f;      // Patrol移動速度
@@ -32,6 +31,9 @@ public class E_NPCSecurityGuard : MonoBehaviour
     public float TurnSpeed = 32f;      // 旋回速度
 
     private int currentPointIndex = 0;    // 次の目的地を示すインデックス
+    public Transform[] patrolPoints;    // 巡回地点を格納する配列
+    [SerializeField] Transform target;  //追跡するターゲット
+
     private bool isWaiting = false; // 停止中フラグ
 
     [SerializeField] float Chase_Speed = 2.0f; // 敵の追跡速度
@@ -39,8 +41,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
 
 
     NavMeshAgent2D agent;               //NavMeshAgent2Dを使用するための変数
-    [SerializeField] Transform target;  //追跡するターゲット
-    public Transform[] patrolPoints;    // 巡回地点を格納する配列
+    
 
 
     // 初期状態をPatrolにしておく
@@ -49,7 +50,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
     AudioSource DetectionSource;
     public AudioClip DetectionClip;
 
-    //アニメーション用
+    //　アニメーション用
     Animator Police_animator;
     string stopAnime = "PoliceStop";
     string moveAnime = "PoliceMove";
@@ -128,7 +129,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
 
                 // 視野の設定
                 posDelta = other.transform.position - this.transform.position;  // NPCからPlayerへの方向ベクトル
-                TargetAngle = Vector2.Angle(this.transform.right, posDelta);    // NPCからPlayerの角度
+                TargetAngle = Vector2.Angle(this.transform.right, posDelta);    // NPCからPlayer方向の角度
 
                 // PlayerがNPCの視界に入っているか確認（障害物は無視）
                 if (TargetAngle < m_fSightAngle)     // targetAngleがm_SightAngleに収まっているかどうか
@@ -160,9 +161,9 @@ public class E_NPCSecurityGuard : MonoBehaviour
                                 {
                                     // Playerの状態をDetectionにする
                                     GameStateManager.instance.currentPlayerState = PlayerState.Detection;
-                                    DetectionSource.PlayOneShot(DetectionClip);
+                                    
                                 }
-
+                                DetectionSource.Play();
                                 Debug.Log("Detection!!!");
 
                                 _state = NPC_State.Chase;      // 状態をChaseに切り替え
@@ -301,7 +302,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
         }
 
         // 待機完了後　次のポイントへ
-        currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+        currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;// 巡回地点の個数で割り余剰を求め、無限ループ
         // スピードを元に戻す
         agent.speed = P_moveSpeed;
         isWaiting = false;
@@ -315,7 +316,7 @@ public class E_NPCSecurityGuard : MonoBehaviour
         // 追跡速度に設定
         agent.speed = Chase_Speed;
 
-        // Agentの目的地をプレイヤーの現在位置に設定
+        // 目的地をプレイヤー(Unity側で設定した)の現在位置に設定
         agent.destination = target.position;
         // チェイス時間を加算
         ChaseTimer -= Time.deltaTime;
@@ -330,7 +331,8 @@ public class E_NPCSecurityGuard : MonoBehaviour
                 GameStateManager.instance.currentPlayerState = PlayerState.NoDetection;
             }
 
-            Debug.Log("NoDetection!");
+            DetectionSource.Stop();
+            Debug.Log("NoDetection...");
             // Patrolへ変更
             _state = NPC_State.Patrol;
             // ChaseTimerを初期化

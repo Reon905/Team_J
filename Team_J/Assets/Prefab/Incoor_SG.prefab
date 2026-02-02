@@ -313,17 +313,17 @@ MonoBehaviour:
   P_moveSpeed: 5
   P_waitTime: 2
   TurnSpeed: 2
-  Chase_Speed: 6
-  ChaseTimer: 0
-  target: {fileID: 0}
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  target: {fileID: 0}
+  Chase_Speed: 6
+  ChaseTimer: 0
   _state: 0
-  DetectionClip: {fileID: 8300000, guid: cc3ce61e3fffa6042a146cc46a27c044, type: 3}
+  DetectionClip: {fileID: 8300000, guid: aade1c9351f638c42bc6999914840731, type: 3}
 --- !u!82 &-1400629038294766543
 AudioSource:
   m_ObjectHideFlags: 0
@@ -335,11 +335,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: aade1c9351f638c42bc6999914840731, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.641
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
