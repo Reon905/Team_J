@@ -65,6 +65,10 @@ public class RaceManager : MonoBehaviour
     private float messageDisplayTime = 0f;
     private float messageDuration = 0f;
 
+    private string currentMessage1 = "";
+    private float messageDisplayTime1 = 0f;
+    private float messageDuration1 = 0f;
+
     public GameObject countdownBG;
 
     private void Start()
