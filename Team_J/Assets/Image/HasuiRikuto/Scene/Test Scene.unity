@@ -1857,6 +1857,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1536853006405501314, guid: 2ecfca370ae4b434d97e735bcb81b763, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7167278567308314323, guid: 2ecfca370ae4b434d97e735bcb81b763, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.938
@@ -1917,6 +1921,14 @@ PrefabInstance:
     - target: {fileID: 826837417918708797, guid: eeeeff8144fef08479f442cc73d61d36, type: 3}
       propertyPath: m_Name
       value: Earrings
+      objectReference: {fileID: 0}
+    - target: {fileID: 826837417918708797, guid: eeeeff8144fef08479f442cc73d61d36, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073702707911241661, guid: eeeeff8144fef08479f442cc73d61d36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3310331494531154476, guid: eeeeff8144fef08479f442cc73d61d36, type: 3}
       propertyPath: m_LocalScale.y
@@ -1979,6 +1991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseSafe
       objectReference: {fileID: 0}
+    - target: {fileID: 6666754924672527664, guid: 761786e9392b616409fd7df8b47b7238, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6965061665405479664, guid: 761786e9392b616409fd7df8b47b7238, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.398361
@@ -2032,6 +2048,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1243691768198929137, guid: d3fd0dc15321e3440b7c341b29bd51f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2209039887433639281, guid: d3fd0dc15321e3440b7c341b29bd51f9, type: 3}
       propertyPath: m_Name
       value: Watch
@@ -2089,6 +2109,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 435966119474340803, guid: 2d8a88ae746766b44b993ba6281c27b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3320286071787881175, guid: 2d8a88ae746766b44b993ba6281c27b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.48
