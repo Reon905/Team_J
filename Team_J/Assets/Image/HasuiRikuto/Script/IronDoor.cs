@@ -12,6 +12,7 @@ public class IronDoor : MonoBehaviour
     public AudioClip itemSound;
 
     public Text messageText;
+    public float Timer = 2.0f;
     public float holdTime = 2.0f;
     private float holdTimer = 0f;
     private bool playerInRange = false;
@@ -34,14 +35,15 @@ public class IronDoor : MonoBehaviour
             if (Input.GetKey(KeyCode.Return))
             {
                 holdTimer += Time.deltaTime;
-                if (messageText != null) messageText.text = "開錠中・・・";
+                Timer -= Time.deltaTime;
+                if (messageText != null) messageText.text = $"残り {Timer:F1} 秒";
 
                 if (holdTimer >= holdTime)
                     OpenItem();
             }
-
             if (Input.GetKeyUp(KeyCode.Return))
             {
+                Timer = 2.0f;
                 holdTimer = 0f;
                 if (messageText != null) messageText.text = "Enterを長押しで開錠";
             }

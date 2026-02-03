@@ -16,6 +16,7 @@ public class Item7 : BaseItem
     public AudioClip itemSound;
 
     public Text messageText;
+    public float Timer = 3.0f;
     public float holdTime = 2.0f;
     private float holdTimer = 0f;
     private bool playerInRange = false;
@@ -54,14 +55,15 @@ public class Item7 : BaseItem
             if (Input.GetKey(KeyCode.Return))
             {
                 holdTimer += Time.deltaTime;
-                if (messageText != null) messageText.text = "æ“¾’†c";
+                Timer -= Time.deltaTime;
+                if (messageText != null) messageText.text = $"c‚è {Timer:F1} •b";
 
                 if (holdTimer >= holdTime)
                     OpenItem();
             }
-
             if (Input.GetKeyUp(KeyCode.Return))
             {
+                Timer = 2.0f;
                 holdTimer = 0f;
                 if (messageText != null) messageText.text = "Enter‚ğ’·‰Ÿ‚µ‚ÅŠJù";
             }

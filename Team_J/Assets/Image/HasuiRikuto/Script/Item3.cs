@@ -16,6 +16,7 @@ public class Item3 : BaseItem
     public AudioClip itemSound;
 
     public Text messageText;
+    public float Timer = 3.0f;
     public float holdTime = 2.0f;
     private float holdTimer = 0f;
     private bool playerInRange = false;
@@ -53,13 +54,15 @@ public class Item3 : BaseItem
             if (Input.GetKey(KeyCode.Return))
             {
                 holdTimer += Time.deltaTime;
-                if (messageText != null) messageText.text = "取得中…";
+                Timer -= Time.deltaTime;
+                if (messageText != null) messageText.text = $"残り {Timer:F1} 秒";
 
                 if (holdTimer >= holdTime)
                     OpenItem();
             }
             if (Input.GetKeyUp(KeyCode.Return))
             {
+                Timer = 2.0f;
                 holdTimer = 0f;
                 if (messageText != null) messageText.text = "Enterを長押しで開錠";
             }
