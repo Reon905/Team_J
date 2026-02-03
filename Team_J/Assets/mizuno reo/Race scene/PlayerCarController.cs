@@ -174,7 +174,8 @@ public class PlayerCarController : MonoBehaviour
             {
 
                 boostTimeRemaining = 0f;
-           //     isBoosting = false;
+          
+                currentSpeed = 1f;
             }
         }
         else
