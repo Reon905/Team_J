@@ -41,6 +41,17 @@ public class PlayerCarController : MonoBehaviour
     private bool isBoosting = false;       // ブースト中フラグ
     [SerializeField] private AudioSource audioSource;
 
+    //演出関連
+    [Header("Shake Settings")]
+    [Header("Overheat SE")]
+    [SerializeField] private CarVisualShake carShake;
+    [SerializeField] private AudioSource overheatAudio;
+    [SerializeField] private AudioClip overheatClip;
+
+    private float overheat = 0f; //オーバーヒート値
+    private float overheatCoolDelay = 2f;//冷却が始まるまでの時間
+    private float coolTimer = 0f;
+    private bool hasPlayedOverheatSE = false; // オーバーヒートSE再生フラグ
 
 
 
@@ -199,6 +210,51 @@ public class PlayerCarController : MonoBehaviour
         {
             boostSlider.value = boostTimeRemaining;
         }
+
+        //オーバーヒート計算
+        if (isBoosting)
+        {
+            overheat += Time.deltaTime * 40f; //ブーストをすると増加
+            coolTimer = overheatCoolDelay; //ブースト中はタイマーリセット
+        }
+        else
+        {
+            if(coolTimer > 0f)
+            {
+                coolTimer -= Time.deltaTime;
+            }
+            else
+            {
+
+            }
+                overheat -= Time.deltaTime * 35f; //冷却
+        }
+
+        overheat = Mathf.Clamp(overheat, 0f, 100f);
+        // オーバーヒートSE処理
+        if (overheat >= 80f)
+        {
+            if (!hasPlayedOverheatSE)
+            {
+                overheatAudio.PlayOneShot(overheatClip);
+                hasPlayedOverheatSE = true;
+            }
+        }
+        else
+        {
+            // 温度が下がったらまた鳴らせるようにリセット
+            hasPlayedOverheatSE = false;
+        }
+
+
+        //震え強度計算
+        float shakeAmount = 0f;
+
+        if (overheat > 60f)
+        {
+            shakeAmount = (overheat - 60) / 40 * 0.1f;
+        }
+        carShake.SetShake(shakeAmount);
     }
 
     // --- 他スクリプトから呼び出す用（レース開始など） ---
