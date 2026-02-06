@@ -99,6 +99,7 @@ public class Item8 : BaseItem
         {
             playerInRange = false;
             holdTimer = 0f;
+            Timer = 2.0f;
             if (messageText != null) messageText.text = "";
         }
     }
